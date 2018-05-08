@@ -7,6 +7,8 @@ var Leituras_gli = require('./APPI/leituras_gli');
 var Medicos = require('./APPI/medicos');
 var Notificacoes = require('./APPI/notificacoes');
 var Pacientes = require('./APPI/pacientes');
+var Gmail = require('./APPI/gmail');
+
 var passport = require("passport");
 var app = express();
 var LocalStrategy = require("passport-local");
@@ -16,9 +18,11 @@ var async = require("async");
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session = require("express-session");
+var moment = require('moment');
+var ISODate = require("isodate");
 /*var methodOverride = require("method-override");
 app.use(methodOverride("_method"));*/
-app.use(express.static(__dirname + '/public'));
+
 
 
 
@@ -37,7 +41,7 @@ app.configure(function() {
 
 var nodemailer = require("nodemailer");
 
-
+app.use(express.static(__dirname + '/views'));
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(require("express-session")({
@@ -89,12 +93,29 @@ app.get("/update", function(req, res){
 
 });
 
+app.get("/post/leituras", function(req, res){
+    
+   res.render("leituras", {page: 'leituras'}); 
+
+});
+
+
+app.get("/get/pacientes", function(req, res){
+    
+   res.redirect("/get/pacientes"); 
+
+});
 
 //---------
 // show register form
 app.get("/register", function(req, res){
      req.flash("reg", "register here");
    res.render("register", {page: 'register'}); 
+});
+
+app.get("/login", function(req, res){
+   
+   res.render("login", {page: 'login'}); 
 });
 
 
@@ -137,10 +158,10 @@ app.get("/login", function(req, res){
 
 app.post("/login", passport.authenticate("local", 
     {
-        successRedirect: "/get/pacientes",
+        successRedirect: "/home",
         failureRedirect: "/login",
         failureFlash: true,
-        successFlash: 'Welcome to YelpCamp!'
+        successFlash: 'Welcome!'
     }), function(req, res){
                 //res.render("home" , { expressFlash: req.flash('success')}); 
 
@@ -180,7 +201,15 @@ app.post('/forgot', function(req, res, next) {
       });
     },
     function(token, user, done) {
+     /*  Gmail.find(function(err, docs){
+      console.log(docs);
+     process.env.USER = docs.username;
+    });*/
       var smtpTransport = nodemailer.createTransport({
+        
+        
+        
+     
         service: 'Gmail', 
         auth: {
           user: 'diabetes.ptsi2018@gmail.com',
@@ -352,7 +381,7 @@ app.get("/get/leituras/user", function(req, res) {
 });
 
 app.get("/get/leituras/last", function(req, res) {
-    Leituras.findOne().sort({"date_reg": +1}).exec(function(err, docs){
+    Leituras.findOne().sort({"date_reg": -1}).exec(function(err, docs){
       console.log(docs);
       res.json(docs);
     });
@@ -394,20 +423,64 @@ app.get("/get/leituras_gli", function(req, res) {
 
 
 
-app.get("/get/leituras_gli/user", function(req, res) {
-    Leituras.findOne({username: 'lu'},function(err, docs){
+app.get("/get/leituras/date", function(req, res) {
+    Leituras.findOne({data_resg: 'edd'},function(err, docs){
       console.log(docs);
+    //ar date = new Date(docs.data_resg);
+    // var date = ISODate(docs.data_resg);
+    //  console.log(docs.data_resg.getMonth()+1);
+      
       res.json(docs);
     });
 });
 
 
 app.get("/get/leituras_gli/user", function(req, res) {
-    Leituras_gli.findOne({username: 'lu'},function(err, docs){
+    Leituras_gli.findOne({username: req.body.username},function(err, docs){
       console.log(docs);
       res.json(docs);
     });
 });
+
+app.get("/get/leituras_gli/last", function(req, res) {
+    Leituras.findOne().sort({"date_reg": -1}).exec(function(err, docs){
+      console.log(docs);
+      res.json(docs);
+    });
+});
+
+
+
+app.post("/update/leituras_gli", function(req, res) {
+   
+  var id = req.body.id;
+ 
+   Leituras_gli.findOne({_id: id},function(err, docs){
+    
+       if(err){
+            console.log(err);
+            
+        }
+        // res.send(docs);
+        
+     docs.glicemia = req.body.glicemia;
+      docs.glicemia_p = req.body.glicemia_p;
+       docs.glicemia_a = req.body.glicemia_a;
+       
+     docs.save(function(err, docs) {
+      if(err){
+        console.log(err);
+        
+      }
+      console.log('y');
+      res.send(docs);
+      
+ 
+
+    });
+});
+ });
+
 
 
 
@@ -463,21 +536,7 @@ app.get("/get/pacientes/:id", function(req, res) {
 app.post("/update", function(req, res) {
    
   var id = req.body.id;
- /*var body = new Pacientes({
-   
-    username: "lu",
-    nome: "luisa",
-    num_tel: 999999999,
-    morada: req.body.morada,
-    mail: "lu@lu",
-    utente: 546546,
-      beneficiario: 65
-    });
-  */
-// console.log(body);
-
-
-
+ 
    Pacientes.findOne({username: id},function(err, docs){
     
        if(err){
@@ -615,11 +674,32 @@ app.post("/post/notificacoes", function(req, res){
 
 
 
+//----------------
 
 
+//DATAS------------------------------------------------------------------------------
 
+/*var startDate = moment(data_resg.params.startTime).utcOffset('+0700').format("YYYY-MM-DDTHH:mm:ss.SSSZ"); //req.params.startTime = 2016-09-25 00:00:00
+var endDate   = moment(data_resg.params.endTime).utcOffset('+0700').format("YYYY-MM-DDTHH:mm:ss.SSSZ"); //req.params.endTime = 2016-09-25 01:00:00
 
+//Find 
+Leituras.find({
+    unit_id: data_resg.params.unit_id,
+    utc_ts: {
+        $gt:  startDate,
+        $lt:  endDate
+    }
+}, function(err, positions) {
+    if (err) {
+        return err
+    }
+    else {
+        //console.log(positions);
+        res.json(positions);
+    }
+});
 
+Leituras.t1.find({dt:{$gt:ISODate("2015-06-22T13:40:00.000Z"),$lt:ISODate("2015-06-22T13:41:00.000Z")} })*/
 
 app.listen(process.env.PORT);
 console.log('run');

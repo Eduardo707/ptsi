@@ -6,12 +6,12 @@ var leituras_gliSchema = new mongoose.Schema({
     glicemia: Number,
  glicemia_a: Number,
     glicemia_p: Number,
-    date_reg: Date
+    date_resg: Date
 
     
 });
 
 
- module.exports = mongoose.model('leituras_gli', leituras_gliSchema);
+ module.exports = mongoose.model('leituras_glis', leituras_gliSchema);
 
     
