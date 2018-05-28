@@ -20,9 +20,15 @@ var router = express();
 var server = http.createServer(router);
 var io = socketio.listen(server);
 
-router.use(express.static(path.resolve(__dirname, 'client')));
+//router.use(express.static(path.resolve(__dirname, 'client')));
 var messages = [];
 var sockets = [];
+
+
+var routes= require('./app');
+//app.use('/', index);
+server.use('/', routes);
+
 
 io.on('connection', function (socket) {
     messages.forEach(function (data) {
