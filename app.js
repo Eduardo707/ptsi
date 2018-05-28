@@ -8,7 +8,7 @@ var Medicos= require('./api/APPI/medicos');
 var Notificacoes= require('./api/APPI/notificacoes');
 var Pacientes= require('./api/APPI/pacientes');
 var Gmail= require('./api/APPI/gmail');
-
+var path = require('path');
 var passport= require("passport");
 var app= express();
 
@@ -42,7 +42,7 @@ app.use(express.session({ cookie: { maxAge: 60000 }}));
 
 
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(path.resolve(__dirname + '/views')));
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(require("express-session")({
