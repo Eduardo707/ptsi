@@ -11,7 +11,7 @@
     "connect-flash": "^0.1.1",
     "cookie-parser": "*",
     "ejs": "2.2.3",
-    "express": "~3.2.4",
+    "express": "~4.13.4",
     "express-session": "*",
     "gentelella": "^1.4.0",
     "mongodb": "^3.0.6",
