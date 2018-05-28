@@ -11,6 +11,7 @@ var Gmail= require('./api/APPI/gmail');
 
 var passport= require("passport");
 var app= express();
+
 var LocalStrategy= require("passport-local");
 var passportLocalMongoose= require("passport-local-mongoose");
 
@@ -124,6 +125,13 @@ app.get('/forgot', function(req, res) {
 });
 
 
+app.post('/endpoint', function(req, res){
+	var obj = {};
+	obj.title = 'title';
+	obj.data = 'data';
+	console.log('body: ' + JSON.stringify(req.body));
+	res.send(req.body);
+});
 
 /*
 //handling user sign up
