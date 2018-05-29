@@ -11,6 +11,8 @@ var socketio = require('socket.io');
 var express = require('express');
 var passport= require("passport");
 var bodyParser= require('body-parser');
+var User= require('./api/APPI/user');
+
 var mongoose= require('mongoose');
 //
 // ## SimpleServer `SimpleServer(obj)`
@@ -32,8 +34,8 @@ var session= require("express-session");
 var moment= require('moment');
 
 
-app.use(express.static(path.resolve(__dirname + '/views')));
-app.use(express.static(__dirname + '/views'));
+
+router.use(express.static(__dirname + '/views'));
 
 
 router.use(express.static(path.resolve(__dirname, 'views')));
