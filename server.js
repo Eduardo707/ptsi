@@ -53,7 +53,7 @@ var gets= require("./gets")
 app.use("/get", gets);
 */
 
-
+/*
 router.configure(function() {
   router.use(express.cookieParser('keyboard cat'));
 router.use(express.session({ cookie: { maxAge: 60000 }}));
@@ -151,7 +151,7 @@ router.post('/endpoint', function(req, res){
 	console.log('body: ' + JSON.stringify(req.body));
 	res.send(req.body);
 });
-
+*/
 io.on('connection', function (socket) {
     messages.forEach(function (data) {
       socket.emit('message', data);
