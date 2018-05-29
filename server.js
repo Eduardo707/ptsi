@@ -9,11 +9,11 @@ var path = require('path');
 var async = require('async');
 var socketio = require('socket.io');
 var express = require('express');
-var passport= require("passport");
+/*var passport= require("passport");
 var bodyParser= require('body-parser');
 var User= require('./api/APPI/user');
 
-var mongoose= require('mongoose');
+var mongoose= require('mongoose');*/
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
@@ -24,7 +24,7 @@ var router = express();
 var server = http.createServer(router);
 var io = socketio.listen(server);
 
-var LocalStrategy= require("passport-local");
+/*var LocalStrategy= require("passport-local");
 var passportLocalMongoose= require("passport-local-mongoose");
 
 
@@ -35,7 +35,7 @@ var moment= require('moment');
 
 
 
-
+*/
 
 //router.use(express.static(__dirname, '/views'));
 
