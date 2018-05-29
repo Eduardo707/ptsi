@@ -25,9 +25,6 @@ var messages = [];
 var sockets = [];
 
 
-var routes= require('./app');
-//app.use('/', index);
-server.use('/', routes);
 
 
 io.on('connection', function (socket) {
