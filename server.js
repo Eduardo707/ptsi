@@ -9,11 +9,11 @@ var path = require('path');
 var async = require('async');
 var socketio = require('socket.io');
 var express = require('express');
-/*var passport= require("passport");
+var passport= require("passport");
 var bodyParser= require('body-parser');
 var User= require('./api/APPI/user');
 
-var mongoose= require('mongoose');*/
+var mongoose= require('mongoose');
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
@@ -24,22 +24,22 @@ var router = express();
 var server = http.createServer(router);
 var io = socketio.listen(server);
 
-/*var LocalStrategy= require("passport-local");
-var passportLocalMongoose= require("passport-local-mongoose");
+var LocalStrategy= require("passport-local");
+//var passportLocalMongoose= require("passport-local-mongoose");
 
 
 var flash= require('connect-flash');
-var cookieParser= require('cookie-parser');
+/*var cookieParser= require('cookie-parser');
 var session= require("express-session");
 var moment= require('moment');
 
 
-
 */
 
-//router.use(express.static(__dirname, '/views'));
 
-router.use(express.static(path.resolve(__dirname, 'client')));
+router.use(express.static(__dirname, '/views'));
+
+router.use(express.static(path.resolve(__dirname, 'views')));
 var messages = [];
 var sockets = [];
 
@@ -54,7 +54,7 @@ var gets= require("./gets")
 app.use("/get", gets);
 */
 
-/*
+
 router.configure(function() {
   router.use(express.cookieParser('keyboard cat'));
 router.use(express.session({ cookie: { maxAge: 60000 }}));
@@ -152,7 +152,7 @@ router.post('/endpoint', function(req, res){
 	console.log('body: ' + JSON.stringify(req.body));
 	res.send(req.body);
 });
-*/
+
 io.on('connection', function (socket) {
     messages.forEach(function (data) {
       socket.emit('message', data);
