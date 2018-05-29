@@ -21,6 +21,11 @@ var cookieParser= require('cookie-parser');
 var session= require("express-session");
 var moment= require('moment');
 
+
+app.use(express.static(path.resolve(__dirname + '/views')));
+app.use(express.static(__dirname + '/views'));
+
+
 /*var methodOverride= require("method-override");
 app.use(methodOverride("_method"));*/
 
@@ -42,7 +47,6 @@ app.use(express.session({ cookie: { maxAge: 60000 }}));
 
 
 
-app.use(express.static(path.resolve(__dirname + '/views')));
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(require("express-session")({
