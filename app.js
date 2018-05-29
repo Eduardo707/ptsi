@@ -3,26 +3,17 @@ var bodyParser= require('body-parser');
 var mongoose= require('mongoose');
 var User= require('./api/APPI/user');
 
-var Leituras_gli= require('./api/APPI/leituras_gli');
-var Medicos= require('./api/APPI/medicos');
-var Notificacoes= require('./api/APPI/notificacoes');
-var Pacientes= require('./api/APPI/pacientes');
-var Gmail= require('./api/APPI/gmail');
 var path = require('path');
 var passport= require("passport");
 var app= express();
 
 var LocalStrategy= require("passport-local");
-var passportLocalMongoose= require("passport-local-mongoose");
 
 
 var flash= require('connect-flash');
-var cookieParser= require('cookie-parser');
-var session= require("express-session");
-var moment= require('moment');
 
 
-app.use(express.static(path.resolve(__dirname + '/views')));
+app.use(express.static(path.resolve(__dirname + 'views')));
 app.use(express.static(__dirname + '/views'));
 
 
