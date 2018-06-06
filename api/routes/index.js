@@ -3,11 +3,8 @@
 var express = require('express');
 var router =  new express();
 
-
-router.get('/', function(req, res) {
-    console.log('ge')
-  res.redirect('/allRoutes');
-
-});
+var routes= require('./allRoutes');
+//app.use('/', index);
+router.use('/', routes);
 
 module.exports = router;
