@@ -13,8 +13,8 @@ var LocalStrategy= require("passport-local");
 var flash= require('connect-flash');
 
 
-app.use(express.static(path.resolve(__dirname + 'views')));
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(path.resolve(__dirname + 'client')));
+app.use(express.static(__dirname + '/client'));
 
 
 /*var methodOverride= require("method-override");
@@ -68,7 +68,7 @@ var db= mongoose.connection;
 
 
 //var index= require('./api/routes/index');
-var routes= require('./api/routes/allRoutes');
+var routes= require('./api/routes/index');
 //app.use('/', index);
 app.use('/', routes);
 
