@@ -12,7 +12,10 @@ var LocalStrategy= require("passport-local");
 
 var flash= require('connect-flash');
 
-
+app.isten(process.env.PORT || 5000, process.env.IP || "0.0.0.0", function(){
+  var addr = app.address();
+  console.log("Chat server listening at", addr.address + ":" + addr.port);
+});
 app.use(express.static(path.resolve(__dirname + '/views')));
 //app.use(express.static(__dirname + '/views'));
 
@@ -684,7 +687,6 @@ $lt: endDate
 
 Leituras.t1.find({dt:{$gt:ISODate("2015-06-22T13:40:00.000Z"),$lt:ISODate("2015-06-22T13:41:00.000Z")} })*/
 module.exports= app;
-app.listen(process.env.PORT || 5000);
 
 
 console.log('run');
