@@ -22,6 +22,7 @@
     "passport-local-mongoose": "*",
     "socket.io": "~0.9.14",
     "method-override": "*",
-    "css": "*"
+    "css": "*",
+    "body-parser": "*"
   }
 }

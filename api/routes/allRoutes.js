@@ -25,7 +25,9 @@ const notifications= require('../controllers/notifications_controller');
 router.use(loggedIn);*/
  
  router.get('/', function(req, res) {
+  res.render("index", {page: 'index'}); 
   res.json('index');
+ 
 });
 router.get('/index', function(req, res) {
   res.json('home2');
