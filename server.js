@@ -4,7 +4,7 @@
 // A simple chat server using Socket.IO, Express, and Async.
 //
 var http = require('http');
-//var path = require('path');
+var path = require('path');
 
 var async = require('async');
 var socketio = require('socket.io');
@@ -20,6 +20,7 @@ var server = http.createServer(router);
 var io = socketio.listen(server);
 
 
+router.use(express.static(path.resolve(__dirname + '/views')));
 
 var routes= require('./app');
 router.use('/', routes);

@@ -13,8 +13,8 @@ var LocalStrategy= require("passport-local");
 var flash= require('connect-flash');
 
 
-app.use(express.static(path.resolve(__dirname + 'views')));
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(path.resolve(__dirname + '/views')));
+//app.use(express.static(__dirname + '/views'));
 
 
 /*var methodOverride= require("method-override");
