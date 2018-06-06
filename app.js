@@ -22,7 +22,7 @@ var flash= require('connect-flash');
 
 /*var methodOverride= require("method-override");
 app.use(methodOverride("_method"));*/
-app.use(express.static(path.resolve(__dirname, 'views')));
+//app.use(express.static(path.resolve(__dirname, 'views')));
 
 
 
