@@ -13,7 +13,7 @@ var LocalStrategy= require("passport-local");
 var flash= require('connect-flash');
 
 
-app.use(express.static(path.resolve(__dirname + 'client')));
+//app.use(express.static(path.resolve(__dirname + 'client')));
 //app.use(express.static(__dirname + '/client'));
 
 

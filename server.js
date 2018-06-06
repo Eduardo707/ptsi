@@ -3,18 +3,13 @@
 //
 // A simple chat server using Socket.IO, Express, and Async.
 //
-var http = require('http');
+/*var http = require('http');
 var path = require('path');
 
 var async = require('async');
 var socketio = require('socket.io');
 var express = require('express');
-var passport= require("passport");
-var bodyParser= require('body-parser');
-var User= require('./api/APPI/user');
 
-var mongoose= require('mongoose');
-//
 // ## SimpleServer `SimpleServer(obj)`
 //
 // Creates a new instance of SimpleServer with the following options:
@@ -24,20 +19,7 @@ var router = express();
 var server = http.createServer(router);
 var io = socketio.listen(server);
 
-var LocalStrategy= require("passport-local");
-//var passportLocalMongoose= require("passport-local-mongoose");
 
-
-var flash= require('connect-flash');
-/*var cookieParser= require('cookie-parser');
-var session= require("express-session");
-var moment= require('moment');
-
-
-*/
-
-
-//router.use(express.static(__dirname, '/client'));
 
 router.use(express.static(path.resolve(__dirname, 'client')));
 var messages = [];
@@ -47,111 +29,6 @@ var sockets = [];
 
 
 
-
-/*
-var gets= require("./gets")
-
-app.use("/get", gets);
-*/
-
-
-server.configure(function() {
-  server.use(express.cookieParser('keyboard cat'));
-server.use(express.session({ cookie: { maxAge: 60000 }}));
-  server.use(flash());
-});
-
-
-
-
-server.use(bodyParser.urlencoded({extended:true}));
-server.use(require("express-session")({
-secret:"Rusty is the best og in the world",
-resave: false,
-saveUninitialized: false
-}));
-
-server.set('view engine','ejs');
-server.use(passport.initialize());
-server.use(passport.session());
-// 
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
- 
-
-
-
-
-
-
-mongoose.connect('mongodb://ed:ed@ds237489.mlab.com:37489/heroku_4jqslj1n');
-
-var db= mongoose.connection;
-
-
-
-
-//var index= require('./api/routes/index');
-var routes= require('./api/routes/index');
-//app.use('/', index);
-server.use('/', routes);
-
-
-
-/////////////////////////////////////
-
-
-
-
-server.get("/post/leituras", function(req, res){
-    
-res.render("leituras", {page: 'leituras'}); 
-
-});
-server.get("/register", function(req, res){
-    
-res.render("register", {page: 'register'}); 
-
-});
-
-
-
-server.get("/get/pacientes", function(req, res){
-    
-   res.redirect("/get/pacientes"); 
-
-});
-
-//---------
-// show register form
-server.get("/register", function(req, res){
-     req.flash("reg", "register here");
-res.render("register", {page: 'register'}); 
-});
-
-server.get("/login", function(req, res){
-   
-res.render("login", {page: 'login'}); 
-});
-
-server.get("/login", function(req, res){
-   
-res.render("login", {page: 'login'}); 
-});
-
-server.get('/forgot', function(req, res) {
-  res.render('forgot');
-});
-
-
-server.post('/endpoint', function(req, res){
-	var obj = {};
-	obj.title = 'title';
-	obj.data = 'data';
-	console.log('body: ' + JSON.stringify(req.body));
-	res.send(req.body);
-});
 
 io.on('connection', function (socket) {
     messages.forEach(function (data) {
@@ -210,4 +87,135 @@ function broadcast(event, data) {
 server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   var addr = server.address();
   console.log("Chat server listening at", addr.address + ":" + addr.port);
+});
+*/
+
+var express= require('express');
+var bodyParser= require('body-parser');
+var mongoose= require('mongoose');
+var User= require('./api/APPI/user');
+
+var path = require('path');
+var passport= require("passport");
+var app= express();
+
+var LocalStrategy= require("passport-local");
+
+
+var flash= require('connect-flash');
+
+
+app.use(express.static(path.resolve(__dirname + 'client')));
+//app.use(express.static(__dirname + '/client'));
+
+
+/*var methodOverride= require("method-override");
+app.use(methodOverride("_method"));*/
+
+
+
+
+/*
+var gets= require("./gets")
+
+app.use("/get", gets);
+*/
+
+
+app.configure(function() {
+  app.use(express.cookieParser('keyboard cat'));
+app.use(express.session({ cookie: { maxAge: 60000 }}));
+  app.use(flash());
+});
+
+
+
+
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(require("express-session")({
+secret:"Rusty is the best og in the world",
+resave: false,
+saveUninitialized: false
+}));
+
+app.set('view engine','ejs');
+app.use(passport.initialize());
+app.use(passport.session());
+// 
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+ 
+
+
+
+
+
+
+mongoose.connect('mongodb://ed:ed@ds237489.mlab.com:37489/heroku_4jqslj1n');
+
+var db= mongoose.connection;
+
+
+
+
+//var index= require('./api/routes/index');
+var routes= require('./api/routes/index');
+//app.use('/', index);
+app.use('/', routes);
+
+
+
+/////////////////////////////////////
+
+
+
+
+app.get("/post/leituras", function(req, res){
+    
+res.render("leituras", {page: 'leituras'}); 
+
+});
+app.get("/register", function(req, res){
+    
+res.render("register", {page: 'register'}); 
+
+});
+
+
+
+app.get("/get/pacientes", function(req, res){
+    
+   res.redirect("/get/pacientes"); 
+
+});
+
+//---------
+// show register form
+app.get("/register", function(req, res){
+     req.flash("reg", "register here");
+res.render("register", {page: 'register'}); 
+});
+
+app.get("/login", function(req, res){
+   
+res.render("login", {page: 'login'}); 
+});
+
+app.get("/login", function(req, res){
+   
+res.render("login", {page: 'login'}); 
+});
+
+app.get('/forgot', function(req, res) {
+  res.render('forgot');
+});
+
+
+app.post('/endpoint', function(req, res){
+	var obj = {};
+	obj.title = 'title';
+	obj.data = 'data';
+	console.log('body: ' + JSON.stringify(req.body));
+	res.send(req.body);
 });
