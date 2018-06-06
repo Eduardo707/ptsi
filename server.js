@@ -93,7 +93,7 @@ var db= mongoose.connection;
 
 
 //var index= require('./api/routes/index');
-var routes= require('./api/routes/allRoutes');
+var routes= require('./api/routes/index');
 //app.use('/', index);
 router.use('/', routes);
 
