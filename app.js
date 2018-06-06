@@ -14,7 +14,6 @@ var LocalStrategy= require("passport-local");
 var flash= require('connect-flash');
 var cookieParser= require('cookie-parser');
 var session= require("express-session");
-var moment= require('moment');
 
 
 app.use(express.static(path.resolve(__dirname, 'client')));
