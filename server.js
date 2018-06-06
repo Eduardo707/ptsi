@@ -20,7 +20,7 @@ var server = http.createServer(router);
 var io = socketio.listen(server);
 
 
-router.use(express.static(path.resolve(__dirname + '/client')));
+router.use(express.static(path.resolve(__dirname + 'client')));
 
 var routes= require('./app');
 router.use('/', routes);
