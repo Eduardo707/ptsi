@@ -16,7 +16,7 @@ var flash= require('connect-flash');
   var addr = app.address();
   console.log("Chat server listening at", addr.address + ":" + addr.port);
 });*/
-app.use(express.static(path.resolve(__dirname, 'views')));
+//app.use(express.static(path.resolve(__dirname, 'views')));
 //app.use(express.static(__dirname + '/views'));
 
 
