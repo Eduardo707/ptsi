@@ -684,7 +684,9 @@ $lt: endDate
 
 Leituras.t1.find({dt:{$gt:ISODate("2015-06-22T13:40:00.000Z"),$lt:ISODate("2015-06-22T13:41:00.000Z")} })*/
 module.exports= app;
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 5000);
+
+
 console.log('run');
 
 
