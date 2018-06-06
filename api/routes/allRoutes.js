@@ -98,7 +98,7 @@ router.post('/medics/:id',loggedIn,medics.update_medics);
   router.get('/notifications/recent',loggedIn,notifications.get_recent_notifs);
 router.post('/notifications/:id',loggedIn,notifications.update_notifs);
 
-router.listen(process.env.PORT || 3000);
+
 
   
   
