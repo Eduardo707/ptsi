@@ -10,11 +10,7 @@ var app= express();
 var LocalStrategy= require("passport-local");
 
 
-
-var flash= require('connect-flash');
-var cookieParser= require('cookie-parser');
-var session= require("express-session");
-
+//app.use(express.static(__dirname + '/views'));
 
 app.use(express.static(path.resolve(__dirname, 'client')));
 
@@ -23,7 +19,7 @@ app.use(express.static(path.resolve(__dirname, 'client')));
   console.log("Chat server listening at", addr.address + ":" + addr.port);
 });*/
 //app.use(express.static(path.resolve(__dirname, 'views')));
-//app.use(express.static(__dirname + '/views'));
+//
 
 
 /*var methodOverride= require("method-override");
@@ -40,11 +36,7 @@ app.use("/get", gets);
 */
 
 
-app.configure(function() {
-  app.use(express.cookieParser('keyboard cat'));
-app.use(express.session({ cookie: { maxAge: 60000 }}));
-  app.use(flash());
-});
+
 
 
 
@@ -694,6 +686,7 @@ $lt: endDate
 
 Leituras.t1.find({dt:{$gt:ISODate("2015-06-22T13:40:00.000Z"),$lt:ISODate("2015-06-22T13:41:00.000Z")} })*/
 module.exports= app;
+app.listen(process.env.PORT || 3000);
 
 
 console.log('run');
