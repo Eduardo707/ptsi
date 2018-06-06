@@ -39,7 +39,7 @@ var moment= require('moment');
 
 //router.use(express.static(__dirname, '/client'));
 
-server.use(express.static(path.resolve(__dirname, 'client')));
+router.use(express.static(path.resolve(__dirname, 'client')));
 var messages = [];
 var sockets = [];
 
