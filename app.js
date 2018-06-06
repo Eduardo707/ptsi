@@ -11,12 +11,9 @@ var LocalStrategy= require("passport-local");
 
 
 var flash= require('connect-flash');
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
-  var addr = app.address();
-  console.log("Chat server listening at", addr.address + ":" + addr.port);
-});
 
-app.use(express.static(path.resolve(__dirname, 'client')));
+
+//app.use(express.static(path.resolve(__dirname, 'client')));
 
 /*app.listen(process.env.PORT || 5000, process.env.IP || "0.0.0.0", function(){
   var addr = app.address();

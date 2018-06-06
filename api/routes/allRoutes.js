@@ -98,10 +98,7 @@ router.post('/medics/:id',loggedIn,medics.update_medics);
   router.get('/notifications/recent',loggedIn,notifications.get_recent_notifs);
 router.post('/notifications/:id',loggedIn,notifications.update_notifs);
 
-router.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
-  var addr = router.address();
-  console.log("Chat server listening at", addr.address + ":" + addr.port);
-});
+
   
   
 module.exports= router;

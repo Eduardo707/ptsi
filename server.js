@@ -26,7 +26,7 @@ router.use(express.static(path.resolve(__dirname, 'client')));
 //var index= require('./api/routes/index');
 var routes= require('./app');
 //app.use('/', index);
-//router.use('/', routes);
+router.use('/', routes);
 
 
 var messages = [];
