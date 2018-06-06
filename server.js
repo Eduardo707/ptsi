@@ -39,7 +39,7 @@ var moment= require('moment');
 
 //router.use(express.static(__dirname, '/client'));
 
-router.use(express.static(path.resolve(__dirname, 'client')));
+server.use(express.static(path.resolve(__dirname, 'client')));
 var messages = [];
 var sockets = [];
 
@@ -55,25 +55,25 @@ app.use("/get", gets);
 */
 
 
-router.configure(function() {
-  router.use(express.cookieParser('keyboard cat'));
-router.use(express.session({ cookie: { maxAge: 60000 }}));
-  router.use(flash());
+server.configure(function() {
+  server.use(express.cookieParser('keyboard cat'));
+server.use(express.session({ cookie: { maxAge: 60000 }}));
+  server.use(flash());
 });
 
 
 
 
-router.use(bodyParser.urlencoded({extended:true}));
-router.use(require("express-session")({
+server.use(bodyParser.urlencoded({extended:true}));
+server.use(require("express-session")({
 secret:"Rusty is the best og in the world",
 resave: false,
 saveUninitialized: false
 }));
 
-router.set('view engine','ejs');
-router.use(passport.initialize());
-router.use(passport.session());
+server.set('view engine','ejs');
+server.use(passport.initialize());
+server.use(passport.session());
 // 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -95,7 +95,7 @@ var db= mongoose.connection;
 //var index= require('./api/routes/index');
 var routes= require('./api/routes/index');
 //app.use('/', index);
-router.use('/', routes);
+server.use('/', routes);
 
 
 
@@ -104,12 +104,12 @@ router.use('/', routes);
 
 
 
-router.get("/post/leituras", function(req, res){
+server.get("/post/leituras", function(req, res){
     
 res.render("leituras", {page: 'leituras'}); 
 
 });
-router.get("/register", function(req, res){
+server.get("/register", function(req, res){
     
 res.render("register", {page: 'register'}); 
 
@@ -117,7 +117,7 @@ res.render("register", {page: 'register'});
 
 
 
-router.get("/get/pacientes", function(req, res){
+server.get("/get/pacientes", function(req, res){
     
    res.redirect("/get/pacientes"); 
 
@@ -125,27 +125,27 @@ router.get("/get/pacientes", function(req, res){
 
 //---------
 // show register form
-router.get("/register", function(req, res){
+server.get("/register", function(req, res){
      req.flash("reg", "register here");
 res.render("register", {page: 'register'}); 
 });
 
-router.get("/login", function(req, res){
+server.get("/login", function(req, res){
    
 res.render("login", {page: 'login'}); 
 });
 
-router.get("/login", function(req, res){
+server.get("/login", function(req, res){
    
 res.render("login", {page: 'login'}); 
 });
 
-router.get('/forgot', function(req, res) {
+server.get('/forgot', function(req, res) {
   res.render('forgot');
 });
 
 
-router.post('/endpoint', function(req, res){
+server.post('/endpoint', function(req, res){
 	var obj = {};
 	obj.title = 'title';
 	obj.data = 'data';
