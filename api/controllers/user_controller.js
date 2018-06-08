@@ -41,7 +41,7 @@ exports.get_all_users = function(req, res) {
             
         }
       console.log(docs);
-      res.json('success');
+      res.json(docs);
     });
 };
 
