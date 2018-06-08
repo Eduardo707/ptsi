@@ -92,6 +92,13 @@ res.render("register", {page: 'register'});
 
 });
 
+app.get("/site", function(req, res){
+    
+res.render("site", {page: 'site'}); 
+
+});
+
+
 
 
 app.get("/get/pacientes", function(req, res){
