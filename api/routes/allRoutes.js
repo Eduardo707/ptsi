@@ -34,7 +34,7 @@ router.get('/index', function(req, res) {
 });
 
 function loggedIn(req, res, next) {
-    if (req.user) {
+    if (req.user.token) {
         next();
         
         console.log(req.user.id);
