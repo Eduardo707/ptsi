@@ -54,7 +54,7 @@ function loggedIn(req, res, next) {
 // PARTE DOS ROLES
   //app.route('/users')
   router.post('/users/new', loggedIn,user.register);
-  router.get('/users/lists',user.get_all_users);
+  router.get('/users/lists',loggedIn,user.get_all_users);
   router.get('/users/profile',loggedIn,user.get_user_profile);
 router.post('/users/update/:id',loggedIn,user.update_user);
 
