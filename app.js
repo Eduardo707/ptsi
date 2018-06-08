@@ -12,7 +12,7 @@ var LocalStrategy= require("passport-local");
 
 //app.use(express.static(__dirname + '/views'));
 
-app.use(express.static(path.resolve(__dirname, 'client')));
+app.use(express.static(path.resolve(__dirname, 'views')));
 
 /*app.listen(process.env.PORT || 5000, process.env.IP || "0.0.0.0", function(){
   var addr = app.address();
