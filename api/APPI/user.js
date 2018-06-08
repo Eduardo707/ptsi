@@ -8,10 +8,11 @@ var userSchema = new mongoose.Schema({
     resetPasswordToken: String,
     resetPasswordExpires: Date,
     isAdmin: {type: Boolean, default: false},
-   // token: {type: String, unique: true, required: true}
+    token: {type: String, unique: false, require: false}
 });
 
 userSchema.plugin(passportLocalMongoose);
+
 
  module.exports = mongoose.model('users', userSchema);
 

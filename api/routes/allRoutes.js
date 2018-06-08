@@ -46,9 +46,12 @@ function loggedIn(req, res, next) {
 
  router.get('/logout',log.logout);
   router.post('/login',passport.authenticate("local"), function (req, res) {
-   res.json('success');
+   res.json(req.user);
 });
   
+    router.post('/login1',passport.authenticate("bearer"), function (req, res) {
+   res.json(req.user);
+});
   
 
 // PARTE DOS ROLES

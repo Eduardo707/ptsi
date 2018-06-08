@@ -7,7 +7,11 @@ var path = require('path');
 var passport= require("passport");
 var app= express();
 
-var LocalStrategy= require("passport-local");
+var LocalStrategy= require("passport-local").Strategy;
+var BearerStrategy= require("passport-http-token").Strategy;
+ 
+     
+
 
 
 //app.use(express.static(__dirname + '/views'));
@@ -53,6 +57,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 // 
 passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new BearerStrategy( function(token, done) {
+    User.findOne({ token: token }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      return done(null, user, { scope: 'all' });
+    });
+  }
+));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
  
@@ -87,7 +99,7 @@ app.get("/post/leituras", function(req, res){
 res.render("leituras", {page: 'leituras'}); 
 
 });
-app.get("/register", function(req, res){
+app.get("/users/new", function(req, res){
     
 res.render("register", {page: 'register'}); 
 
@@ -120,9 +132,9 @@ app.get("/login", function(req, res){
 res.render("login", {page: 'login'}); 
 });
 
-app.get("/login", function(req, res){
+app.get("/login1", function(req, res){
    
-res.render("login", {page: 'login'}); 
+res.render("login1", {page: 'login1'}); 
 });
 
 app.get('/forgot', function(req, res) {

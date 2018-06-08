@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express');
+var crypto = require("crypto");
 
 var mongoose = require('mongoose');
 var User = require('../APPI/user');
@@ -19,14 +20,19 @@ exports.register = function(req, res){
     if(req.body.adminCode === 'admin') {
       newUser.isAdmin = true;
     }
+       crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+         newUser.token= token;
 
     User.register(newUser, req.body.password, function(err, user){
+        
+      
         if(err){
             res.status(500).json({errors: [err]})
         }
-        passport.authenticate("local")(req, res, function(){
-           res.redirect("/home"); 
-        });
+        passport.authenticate("local", "bearer")(req, res, function(){
+           res.json(success); 
+        })});
     });
 };
 
