@@ -8,6 +8,7 @@ var passport = require("passport");
 
 
 exports.register = function(req, res){
+    
     var newUser = new User({
         username: req.body.username,
       

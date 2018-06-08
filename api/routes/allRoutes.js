@@ -39,7 +39,7 @@ function loggedIn(req, res, next) {
         
         console.log(req.user.id);
     } else {
-     res.json('not logged in');
+     res.json(req);
        
     }
 }

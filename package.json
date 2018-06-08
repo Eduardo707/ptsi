@@ -19,6 +19,7 @@
     "nodemailer": "^4.6.4",
     "passport": "*",
     "passport-local": "*",
+    
     "passport-local-mongoose": "*",
     "socket.io": "~0.9.14",
     "method-override": "*",

@@ -13,7 +13,7 @@ exports.forgot =  function(req, res, next) {
     function(done) {
       crypto.randomBytes(20, function(err, buf) {
         var token = buf.toString('hex');
-        done(err, token);
+       done(err, token);
       });
     },
     function(token, done) {

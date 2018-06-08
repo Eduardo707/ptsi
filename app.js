@@ -68,7 +68,8 @@ var db= mongoose.connection;
 
 
 
-
+  
+        
 //var index= require('./api/routes/index');
 var routes= require('./api/routes/index');
 //app.use('/', index);
@@ -692,8 +693,25 @@ $lt: endDate
 });
 
 Leituras.t1.find({dt:{$gt:ISODate("2015-06-22T13:40:00.000Z"),$lt:ISODate("2015-06-22T13:41:00.000Z")} })*/
+
+
+var crypto = require("crypto");
+var token = '';
+  app.get('/d', function(req, res) {
+      crypto.randomBytes(20, function(err, buf) {
+         token = buf.toString('hex');
+
+        
+      });
+     
+     
+    });
+
+
 module.exports= app;
 app.listen(process.env.PORT || 3000);
+
+
 
 
 console.log('run');
