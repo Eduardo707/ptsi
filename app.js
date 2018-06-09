@@ -58,7 +58,7 @@ app.use(passport.session());
 // 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.use(new BearerStrategy( function(token, done) {
-    User.findOne({ token: token }, function (err, user) {
+    User.findOne({ token: token, resetSessionExpires: { $gt: Date.now() } }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
       return done(null, user, { scope: 'read' });

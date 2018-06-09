@@ -23,6 +23,7 @@ exports.register = function(req, res){
        crypto.randomBytes(20, function(err, buf) {
         var token = buf.toString('hex');
          newUser.token= token;
+         newUser.resetSessionExpires = Date.now + 1800000;
 
     User.register(newUser, req.body.password, function(err, user){
         
@@ -31,7 +32,7 @@ exports.register = function(req, res){
             res.status(500).json({errors: [err]})
         }
         passport.authenticate("local", "bearer")(req, res, function(){
-           res.json(success); 
+           res.json('user registered'); 
         })});
     });
 };

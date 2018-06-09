@@ -1,6 +1,10 @@
 'use strict';
 var http= require("http");
 var express= require('express');
+var crypto = require("crypto");
+
+var mongoose = require('mongoose');
+var User = require('../APPI/user');
 
 var router= express();
 var passport = require("passport");
@@ -46,10 +50,17 @@ function loggedIn(req, res, next) {
 
  router.get('/logout',log.logout);
   router.post('/login',passport.authenticate("local","bearer"), function (req, res) {
- //res.json({success: true, token: req.user.token});
+          
+   User.findOne({ username:req.user.username}, function(err, user) {
+      crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+         user.token= token;
+         user.resetSessionExpires = Date.now + 1800000;
+        user.save();
+        
  res.json({username: req.user.username,
  token: req.user.token});
-});
+});});});
   
     router.post('/login1',passport.authenticate("bearer"), function (req, res) {
    res.json(req.user);
