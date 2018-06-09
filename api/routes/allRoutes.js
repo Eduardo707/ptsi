@@ -4,12 +4,12 @@ var express= require('express');
 var crypto = require("crypto");
 
 var mongoose = require('mongoose');
-var User = require('../APPI/user');
+var Users = require('../APPI/user');
 
 var router= express();
 var passport = require("passport");
 
-const user= require('../controllers/user_controller');
+const userr= require('../controllers/user_controller');
 const log= require('../controllers/login_controller');
 const email= require('../controllers/email_controller');
 const readings= require('../controllers/readings_controller');
@@ -49,18 +49,34 @@ function loggedIn(req, res, next) {
 }
 
  router.get('/logout',log.logout);
-  router.post('/login',passport.authenticate("local","bearer"), function (req, res) {
+  router.post('/login',passport.authenticate("local"), function (req, res) {
           
-   User.findOne({ username:req.user.username}, function(err, user) {
+ res.json('success');
+ /* res.json({username: req.user.username,
+ token: req.user.token});*/
+  });
+  
+  function tok(req,res,next){
+             
+   Users.findOne({ username: req.user.username}, function(err, docs) {
       crypto.randomBytes(20, function(err, buf) {
         var token = buf.toString('hex');
-         user.token= token;
-         user.resetSessionExpires = Date.now + 1800000;
-        user.save();
+         docs.token= token;
+         docs.resetSessionExpires = Date.now() ;
+        docs.save(function(err, docs) {
+        if(err) {
+            console.log(err);
+            res.json({err});
+        }
+      console.log('y');
+     
+     req.user.username = "sa";
+
+    });
         
- res.json({username: req.user.username,
- token: req.user.token});
-});});});
+
+});}); next();
+  };
   
     router.post('/login1',passport.authenticate("bearer"), function (req, res) {
    res.json(req.user);
@@ -69,15 +85,15 @@ function loggedIn(req, res, next) {
 
 // PARTE DOS ROLES
   //app.route('/users')
-  router.post('/users/new', passport.authenticate("bearer", {session: true}),user.register);
-  router.get('/users/lists',passport.authenticate("bearer", {session: true}),user.get_all_users);
-  router.get('/users/profile',passport.authenticate("bearer", {session: true}),user.get_user_profile);
-router.post('/users/update/:id',passport.authenticate("bearer", {session: true}),user.update_user);
+  router.post('/users/new', passport.authenticate("bearer", {session: true}),userr.register);
+  router.get('/users/lists',passport.authenticate("bearer", {session: true}),userr.get_all_users);
+  router.get('/users/profile',passport.authenticate("bearer", {session: true}),userr.get_user_profile);
+router.post('/users/update/:id',passport.authenticate("bearer", {session: true}),userr.update_user);
 
 
  
   
-  router.post('/forgot',passport.authenticate("bearer", {session: true}),email.forgot);
+  router.post('/forgot',loggedIn,email.forgot);
 router.get('/reset/:token',passport.authenticate("bearer", {session: true}),email.get_reset);
 router.post('/reset/:token',passport.authenticate("bearer", {session: true}),email.post_reset);
   
