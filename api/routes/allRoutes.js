@@ -34,7 +34,7 @@ router.get('/index', function(req, res) {
 });
 
 function loggedIn(req, res, next) {
-    if (req.user.token) {
+    if (req.user) {
         next();
         
         console.log(req.user.id);
@@ -58,7 +58,7 @@ function loggedIn(req, res, next) {
 // PARTE DOS ROLES
   //app.route('/users')
   router.post('/users/new', loggedIn,user.register);
-  router.get('/users/lists',passport.authenticate("bearer", {session: false}),user.get_all_users);
+  router.get('/users/lists',passport.authenticate("bearer", {session: true}),user.get_all_users);
   router.get('/users/profile',loggedIn,user.get_user_profile);
 router.post('/users/update/:id',loggedIn,user.update_user);
 
