@@ -57,51 +57,51 @@ function loggedIn(req, res, next) {
 
 // PARTE DOS ROLES
   //app.route('/users')
-  router.post('/users/new', loggedIn,user.register);
+  router.post('/users/new', passport.authenticate("bearer", {session: true}),user.register);
   router.get('/users/lists',passport.authenticate("bearer", {session: true}),user.get_all_users);
-  router.get('/users/profile',loggedIn,user.get_user_profile);
-router.post('/users/update/:id',loggedIn,user.update_user);
+  router.get('/users/profile',passport.authenticate("bearer", {session: true}),user.get_user_profile);
+router.post('/users/update/:id',passport.authenticate("bearer", {session: true}),user.update_user);
 
 
  
   
-  router.post('/forgot',loggedIn,email.forgot);
-router.get('/reset/:token',loggedIn,email.get_reset);
-router.post('/reset/:token',loggedIn,email.post_reset);
+  router.post('/forgot',passport.authenticate("bearer", {session: true}),email.forgot);
+router.get('/reset/:token',passport.authenticate("bearer", {session: true}),email.get_reset);
+router.post('/reset/:token',passport.authenticate("bearer", {session: true}),email.post_reset);
   
-  router.get('/readings/getAll',loggedIn,readings.get_all_reads);
-  router.post('/readings/new',loggedIn,readings.post_readings);
-  router.get('/readings/user',loggedIn,readings.get_user_reads);
-  router.get('/readings/recent',loggedIn,readings.get_recent_read);
-router.post('/readings/:id',loggedIn,readings.update_read);
+  router.get('/readings/getAll',passport.authenticate("bearer", {session: true}),readings.get_all_reads);
+  router.post('/readings/new',passport.authenticate("bearer", {session: true}),readings.post_readings);
+  router.get('/readings/user',passport.authenticate("bearer", {session: true}),readings.get_user_reads);
+  router.get('/readings/recent',passport.authenticate("bearer", {session: true}),readings.get_recent_read);
+router.post('/readings/:id',passport.authenticate("bearer", {session: true}),readings.update_read);
 
 
- router.get('/readings_gli/all',loggedIn,readings_gli.get_all_reads_gli);
-  router.post('/readings_gli/new',loggedIn,readings_gli.create_readings_gli);
-  router.get('/readings_gli/user',loggedIn,readings_gli.get_user_reads_gli);
-  router.get('/readings_gli/recent',loggedIn,readings_gli.get_recent_read_gli);
-router.post('/readings_gli/:id',loggedIn,readings_gli.update_read_gli);
+ router.get('/readings_gli/all',passport.authenticate("bearer", {session: true}),readings_gli.get_all_reads_gli);
+  router.post('/readings_gli/new',passport.authenticate("bearer", {session: true}),readings_gli.create_readings_gli);
+  router.get('/readings_gli/user',passport.authenticate("bearer", {session: true}),readings_gli.get_user_reads_gli);
+  router.get('/readings_gli/recent',passport.authenticate("bearer", {session: true}),readings_gli.get_recent_read_gli);
+router.post('/readings_gli/:id',passport.authenticate("bearer", {session: true}),readings_gli.update_read_gli);
 
 
- router.get('/pacients/all',loggedIn,pacients.get_all_pacients);
-  router.post('/pacients/new',loggedIn,pacients.create_pacients);
-  router.get('/pacients/user',loggedIn,pacients.get_user_pacients);
-  router.get('/pacients/recent',loggedIn,pacients.get_recent_pacients);
-router.post('/pacients/:id',loggedIn,pacients.update_pacients);
+ router.get('/pacients/all',passport.authenticate("bearer", {session: true}),pacients.get_all_pacients);
+  router.post('/pacients/new',passport.authenticate("bearer", {session: true}),pacients.create_pacients);
+  router.get('/pacients/user',passport.authenticate("bearer", {session: true}),pacients.get_user_pacients);
+  router.get('/pacients/recent',passport.authenticate("bearer", {session: true}),pacients.get_recent_pacients);
+router.post('/pacients/:id',passport.authenticate("bearer", {session: true}),pacients.update_pacients);
 
 
- router.get('/medics',loggedIn,medics.get_all_medics);
-  router.post('/medics/new',loggedIn,medics.create_medics);
-  router.get('/medics/user',loggedIn,medics.get_user_medics);
-  router.get('/medics/recent',loggedIn,medics.get_recent_medics);
-router.post('/medics/:id',loggedIn,medics.update_medics);
+ router.get('/medics',passport.authenticate("bearer", {session: true}),medics.get_all_medics);
+  router.post('/medics/new',passport.authenticate("bearer", {session: true}),medics.create_medics);
+  router.get('/medics/user',passport.authenticate("bearer", {session: true}),medics.get_user_medics);
+  router.get('/medics/recent',passport.authenticate("bearer", {session: true}),medics.get_recent_medics);
+router.post('/medics/:id',passport.authenticate("bearer", {session: true}),medics.update_medics);
 
 
- router.get('/notifications',loggedIn,notifications.get_all_notifs);
-  router.post('/notifications/new',loggedIn,notifications.create_notifs);
-  router.get('/notifications/user',loggedIn,notifications.get_user_notifs);
-  router.get('/notifications/recent',loggedIn,notifications.get_recent_notifs);
-router.post('/notifications/:id',loggedIn,notifications.update_notifs);
+ router.get('/notifications',passport.authenticate("bearer", {session: true}),notifications.get_all_notifs);
+  router.post('/notifications/new',passport.authenticate("bearer", {session: true}),notifications.create_notifs);
+  router.get('/notifications/user',passport.authenticate("bearer", {session: true}),notifications.get_user_notifs);
+  router.get('/notifications/recent',passport.authenticate("bearer", {session: true}),notifications.get_recent_notifs);
+router.post('/notifications/:id',passport.authenticate("bearer", {session: true}),notifications.update_notifs);
 
 
 
