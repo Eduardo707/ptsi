@@ -47,7 +47,8 @@ function loggedIn(req, res, next) {
  router.get('/logout',log.logout);
   router.post('/login',passport.authenticate("local","bearer"), function (req, res) {
  //res.json({success: true, token: req.user.token});
- res.json(req.user);
+ res.json({username: req.user.username,
+ token: req.user.token});
 });
   
     router.post('/login1',passport.authenticate("bearer"), function (req, res) {

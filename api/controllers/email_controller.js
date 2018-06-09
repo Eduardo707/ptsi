@@ -124,6 +124,6 @@ exports.post_reset = function(req, res) {
       });
     }
   ], function(err) {
-    res.redirect('/login');
+    res.json('reset successfull');
   });
 };
