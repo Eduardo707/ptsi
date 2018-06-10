@@ -46,7 +46,7 @@ app.use("/get", gets);
 
 
 
-// app.use(express.cookieParser());
+ app.use(express.cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(require("express-session")({
 secret:"Rusty is the best og in the world",
@@ -97,7 +97,7 @@ passport.use(new BearerStrategy( function(token, done) {
     User.findOne({ token: token, resetSessionExpires: { $gt: Date.now() } }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      return done(null, user, { scope: 'read' });
+      return done(null, user, { scope: 'all' });
     });
   }
 ));
