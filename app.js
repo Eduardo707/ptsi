@@ -2,7 +2,7 @@ var express= require('express');
 var bodyParser= require('body-parser');
 var mongoose= require('mongoose');
 var User= require('./api/APPI/user');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 
 var path = require('path');
 var crypto = require("crypto");
