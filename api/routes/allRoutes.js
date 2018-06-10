@@ -43,7 +43,7 @@ function loggedIn(req, res, next) {
         
         console.log(req.user.id);
     } else {
-     res.json(req);
+     res.json(req.user);
        
     }
 }
@@ -51,7 +51,7 @@ function loggedIn(req, res, next) {
  router.get('/logout',log.logout);
   router.post('/login',passport.authenticate("local"), function (req, res) {
           
- res.json(req.session);
+ res.json(req.user);
  /* res.json({username: req.user.username,
  token: req.user.token});*/
   });
@@ -86,7 +86,7 @@ function loggedIn(req, res, next) {
 // PARTE DOS ROLES
   //app.route('/users')
   router.post('/users/new', passport.authenticate("bearer", {session: true}),userr.register);
-  router.get('/users/lists',passport.authenticate("bearer", {session: true}),userr.get_all_users);
+  router.get('/users/lists',loggedIn,userr.get_all_users);
   router.get('/users/profile',passport.authenticate("bearer", {session: true}),userr.get_user_profile);
 router.post('/users/update/:id',passport.authenticate("bearer", {session: true}),userr.update_user);
 
