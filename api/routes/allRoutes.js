@@ -50,6 +50,7 @@ function loggedIn(req, res, next) {
 
  router.get('/logout',log.logout);
  router.post('/login', tok,passport.authenticate('local', 'bearer'), (req, res, next) => {
+  console.log({session: req.session, user: req.user});
 });
   
   function tok(req,res,next){
