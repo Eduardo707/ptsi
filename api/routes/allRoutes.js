@@ -51,16 +51,16 @@ function loggedIn(req, res, next) {
  router.get('/logout',log.logout);
  router.post('/login', tok,passport.authenticate('local'), (req, res, next) => {
 //  res.json({session: req.session, user: req.user});
-req.session.save((err) => {
+/*req.session.save((err) => {
     if (err) {
       return next(err);
     }
     console.log('req.session', req.session)
     console.log('req.user', req.user)
     res.session = { cookie: req.session.cookie }
-    res.cookie('userid', req.user._id, { maxAge: 2592000000 });
+    res.cookie('userid', req.user._id, { maxAge: 2592000000 });*/
     res.status(200).json({ msg: "logged in", user: req.user, session: req.session });
-  });
+  //});
 });
   
   function tok(req,res,next){
