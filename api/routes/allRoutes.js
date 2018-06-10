@@ -49,39 +49,30 @@ function loggedIn(req, res, next) {
 }
 
  router.get('/logout',log.logout);
-  router.post('/login', passport.authenticate('local'), (req, res, next) => {
-  req.session.save((err) => {
-    if (err) {
-      return next(err);
-    }
-    console.log('req.session', req.session)
-    console.log('req.user', req.user)
-    res.session = { cookie: req.session.cookie }
-    res.cookie('userid', req.user._id, { maxAge: 2592000000 });
-    res.status(200).json({ msg: "logged in", user: req.user });
-  });
+ router.post('/login', tok,passport.authenticate('local', 'bearer'), (req, res, next) => {
 });
   
   function tok(req,res,next){
              
-   Users.findOne({ username: req.user.username}, function(err, docs) {
+   Users.findOne({username: req.body.username}, function(err, docs) {
+    console.log(docs);
       crypto.randomBytes(20, function(err, buf) {
         var token = buf.toString('hex');
-         docs.token= token;
-         docs.resetSessionExpires = Date.now() ;
+         docs.token = token;
+         docs.resetSessionExpires = Date.now() + 3600000;
         docs.save(function(err, docs) {
         if(err) {
             console.log(err);
             res.json({err});
         }
       console.log('y');
-     
-     req.user.username = "sa";
+   
+    next();
 
-    });
+    });  
         
 
-});}); next();
+});}); 
   };
   
     router.post('/login1',passport.authenticate("bearer"), function (req, res) {
