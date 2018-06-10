@@ -46,7 +46,7 @@ app.use("/get", gets);
 
 
 
-
+ app.use(express.cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(require("express-session")({
 secret:"Rusty is the best og in the world",
