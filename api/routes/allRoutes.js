@@ -49,7 +49,7 @@ function loggedIn(req, res, next) {
 }
 
  router.get('/logout',log.logout);
- router.post('/login', tok,passport.authenticate('local', 'bearer'), (req, res, next) => {
+ router.post('/login', tok,passport.authenticate('local'), (req, res, next) => {
   console.log({session: req.session, user: req.user});
 });
   
