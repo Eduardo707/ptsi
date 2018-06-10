@@ -59,7 +59,7 @@ req.session.save((err) => {
     console.log('req.user', req.user)
     res.session = { cookie: req.session.cookie }
     res.cookie('userid', req.user._id, { maxAge: 2592000000 });
-    res.status(200).json({ msg: "logged in", user: req.user.user, session: req.session });
+    res.status(200).json({ msg: "logged in", user: req.user, session: req.session });
   });
 });
   
