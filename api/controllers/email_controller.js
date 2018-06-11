@@ -19,8 +19,8 @@ exports.forgot =  function(req, res, next) {
     function(token, done) {
       User.findOne({ email: req.body.email }, function(err, user) {
         if (!user) {
-          req.flash('error', 'No account with that email address exists.');
-          return res.redirect('/forgot');
+        //  req.flash('error', 'No account with that email address exists.');
+          return done(null,err);
         }
 
         user.resetPasswordToken = token;
@@ -59,12 +59,13 @@ exports.forgot =  function(req, res, next) {
       smtpTransport.sendMail(mailOptions, function(err) {
         console.log('mail sent');
         req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        res.json('done');
         done(err, 'done');
       });
     }
   ], function(err) {
     if (err) return next(err);
-    res.redirect('/forgot');
+  //  res.redirect('/forgot');
   });
 };
 //////////////////////
@@ -74,7 +75,7 @@ exports.get_reset =  function(req, res) {
       req.flash('error', 'Password reset token is invalid or has expired.');
       return res.redirect('/forgot');
     }
-    res.render('reset', {token: req.params.token});
+    res.json('reset', {token: req.params.token});
   });
 };
 
@@ -83,7 +84,7 @@ exports.post_reset = function(req, res) {
     function(done) {
       User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
-          req.flash('error', 'Password reset token is invalid or has expired.');
+              res.json('back');
           return res.redirect('back');
         }
         if(req.body.password === req.body.confirm) {
@@ -93,12 +94,13 @@ exports.post_reset = function(req, res) {
 
             user.save(function(err) {
               req.logIn(user, function(err) {
+                     res.json(user);
                 done(err, user);
               });
             });
           })
         } else {
-            req.flash("error", "Passwords do not match.");
+               res.json('back');
             return res.redirect('back');
         }
       });
