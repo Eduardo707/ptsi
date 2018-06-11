@@ -16,6 +16,8 @@ const readings= require('../controllers/readings_controller');
 const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
+const m_p= require('../controllers/m_p_controller');
+
 const notifications= require('../controllers/notifications_controller');
 
 /* function loggedIn(req, res, next) {
@@ -138,6 +140,11 @@ router.post('/pacients/:id',passport.authenticate("bearer", {session: false}),pa
   router.get('/medics/recent',passport.authenticate("bearer", {session: false}),medics.get_recent_medics);
 router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medics.update_medics);
 
+
+ router.get('/m_p',passport.authenticate("bearer", {session: false}),m_p.get_all_m_p);
+  router.post('/m_p/new',passport.authenticate("bearer", {session: false}),m_p.create_m_p);
+  router.get('/m_p/:email',passport.authenticate("bearer", {session: false}),m_p.get_m_p);
+ 
 
  router.get('/notifications',passport.authenticate("bearer", {session: false}),notifications.get_all_notifs);
   router.post('/notifications/new',passport.authenticate("bearer", {session: false}),notifications.create_notifs);
