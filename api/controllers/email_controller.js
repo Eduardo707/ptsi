@@ -47,7 +47,7 @@ exports.forgot =  function(req, res, next) {
           pass: 'ptsidiabetes'
         }
       });
-      res.json(req.headers.host);
+     
       var mailOptions = {
         to: user.email,
         from: 'diabetes.ptsi2018@gmail.com',
@@ -60,7 +60,7 @@ exports.forgot =  function(req, res, next) {
       smtpTransport.sendMail(mailOptions, function(err) {
         console.log('mail sent');
       //  req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-        res.json('mail sent');
+       
         done(err, 'done');
       });
     }
@@ -68,6 +68,7 @@ exports.forgot =  function(req, res, next) {
   //  if (err) return next(err);
   //  res.redirect('/forgot');
   });
+   res.json('mail sent');
 };
 
 
