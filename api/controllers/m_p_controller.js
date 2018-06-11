@@ -1,17 +1,18 @@
 'use strict';
-
+var express = require('express');
 var mongoose= require('mongoose');
-var MP= require('../APPI/medic_pacient');
+var MP= require('../APPI/medic_pacients');
 
 
 
-exports.create_m_p= function(req, res){
+exports.create_m_p = function(req, res){
 var newMP= new MP({
-medic_email: req.body.medic_email,
-pacient_email: req.body.pacient_email,  
+medicEmail: req.body.medicEmail,
+pacientEmail: req.body.pacientEmail
 
        
       });
+
 
 
 
@@ -23,7 +24,6 @@ pacient_email: req.body.pacient_email,
        res.send("sucesso");
     });
 };
-
 
 
 
@@ -39,8 +39,8 @@ exports.get_all_m_p= function(req, res) {
 };
 
 
-exports.get_m_p= function(req, res) {
-MP.find({medic_email: req.param.medic_email},function(err, docs){
+exports.get_medic_p= function(req, res) {
+MP.find({medicEmail: req.body.medicEmail},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});

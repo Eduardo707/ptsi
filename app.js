@@ -141,6 +141,16 @@ res.render("register", {page: 'register'});
 
 });
 
+app.get("/readings/new", function(req, res){
+    
+res.render("leituras", {page: 'leituras'}); 
+
+});
+app.get("/mp/new", function(req, res){
+    
+res.render("mp", {page: 'mp'}); 
+
+});
 app.get("/site", function(req, res){
     
 res.render("site", {page: 'site'}); 

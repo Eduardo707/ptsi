@@ -16,7 +16,7 @@ const readings= require('../controllers/readings_controller');
 const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
-const m_p= require('../controllers/m_p_controller');
+const mp= require('../controllers/m_p_controller');
 
 const notifications= require('../controllers/notifications_controller');
 
@@ -102,7 +102,7 @@ var cc;
 // PARTE DOS ROLES
   //app.route('/users')
   router.post('/users/new', userr.register);
-  router.get('/users/lists',passport.authenticate("bearer",{session: false}),userr.get_all_users);
+  router.get('/users/lists',userr.get_all_users);
   router.get('/users/profile',passport.authenticate("bearer", {session: false}),userr.get_user_profile);
 router.post('/users/update/:id',passport.authenticate("bearer", {session: false}),userr.update_user);
 
@@ -114,7 +114,7 @@ router.get('/reset/:token',email.get_reset);
 router.post('/reset/:token',email.post_reset);
   
   router.get('/readings/getAll',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
-  router.post('/readings/new',passport.authenticate("bearer", {session: false}),readings.post_readings);
+  router.post('/readings/new', readings.post_readings);
   router.get('/readings/user',passport.authenticate("bearer", {session: false}),readings.get_user_reads);
   router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);
 router.post('/readings/:id',passport.authenticate("bearer", {session: false}),readings.update_read);
@@ -140,10 +140,12 @@ router.post('/pacients/:id',passport.authenticate("bearer", {session: false}),pa
   router.get('/medics/recent',passport.authenticate("bearer", {session: false}),medics.get_recent_medics);
 router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medics.update_medics);
 
+  router.get('/mp/list', mp.get_medic_p);
+ router.post('/mp/new', mp.create_m_p);
 
- router.get('/m_p',passport.authenticate("bearer", {session: false}),m_p.get_all_m_p);
-  router.post('/m_p/new',passport.authenticate("bearer", {session: false}),m_p.create_m_p);
-  router.get('/m_p/:email',passport.authenticate("bearer", {session: false}),m_p.get_m_p);
+ router.get('/mp/all', mp.get_all_m_p);
+ 
+
  
 
  router.get('/notifications',passport.authenticate("bearer", {session: false}),notifications.get_all_notifs);
