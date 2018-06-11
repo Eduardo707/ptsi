@@ -58,16 +58,21 @@ exports.forgot =  function(req, res, next) {
       };
       smtpTransport.sendMail(mailOptions, function(err) {
         console.log('mail sent');
-        req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+      //  req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
         res.json('done');
         done(err, 'done');
       });
     }
   ], function(err) {
-    if (err) return next(err);
+  //  if (err) return next(err);
   //  res.redirect('/forgot');
   });
 };
+
+
+
+
+
 //////////////////////
 exports.get_reset =  function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
