@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var leiturasSchema = new mongoose.Schema({
 
 
-    username: String,
+    email: String,
     ritmo: Number,  
     pressao_art: Number, 
     temp_pele: Number,

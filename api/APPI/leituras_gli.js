@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var leituras_gliSchema = new mongoose.Schema({
     
-     username: String,
+     email: String,
     glicemia: Number,
  glicemia_a: Number,
     glicemia_p: Number,
