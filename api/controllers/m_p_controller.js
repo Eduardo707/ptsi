@@ -40,7 +40,7 @@ exports.get_all_m_p= function(req, res) {
 
 
 exports.get_medic_p= function(req, res) {
-MP.find({medicEmail: "edumf7@gmail.com"},function(err, docs){
+MP.find({medicEmail: req.body.medicEmail},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
