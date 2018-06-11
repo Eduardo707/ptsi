@@ -99,8 +99,8 @@ var cc;
 
 // PARTE DOS ROLES
   //app.route('/users')
-  router.post('/users/new', passport.authenticate("bearer", {session: false}),userr.register);
-  router.get('/users/lists',passport.authenticate("bearer"),userr.get_all_users);
+  router.post('/users/new', userr.register);
+  router.get('/users/lists',passport.authenticate("bearer",{session: false}),userr.get_all_users);
   router.get('/users/profile',passport.authenticate("bearer", {session: false}),userr.get_user_profile);
 router.post('/users/update/:id',passport.authenticate("bearer", {session: false}),userr.update_user);
 

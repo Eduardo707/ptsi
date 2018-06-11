@@ -159,7 +159,7 @@ app.get("/get/pacientes", function(req, res){
 //---------
 // show register form
 app.get("/register", function(req, res){
-     req.flash("reg", "register here");
+     //req.flash("reg", "register here");
 res.render("register", {page: 'register'}); 
 });
 

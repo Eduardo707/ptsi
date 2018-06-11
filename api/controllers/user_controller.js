@@ -31,9 +31,11 @@ exports.register = function(req, res){
         if(err){
             res.status(500).json({errors: [err]})
         }
-        passport.authenticate("local", "bearer")(req, res, function(){
+       // passport.authenticate("local", "bearer")(req, res, function(){
            res.json('user registered'); 
-        })});
+   //     });
+        
+    });
     });
 };
 
