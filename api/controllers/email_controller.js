@@ -47,6 +47,7 @@ exports.forgot =  function(req, res, next) {
           pass: 'ptsidiabetes'
         }
       });
+      res.json(req.headers.host);
       var mailOptions = {
         to: user.email,
         from: 'diabetes.ptsi2018@gmail.com',
