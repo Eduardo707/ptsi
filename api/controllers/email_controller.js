@@ -59,7 +59,7 @@ exports.forgot =  function(req, res, next) {
       smtpTransport.sendMail(mailOptions, function(err) {
         console.log('mail sent');
       //  req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-        res.json('done');
+        res.json('mail sent');
         done(err, 'done');
       });
     }
