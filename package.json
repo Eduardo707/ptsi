@@ -19,7 +19,7 @@
     "nodemailer": "^4.6.4",
     "passport": "*",
     "passport-local": "*",
-       "passport-http-token": "*",
+       "passport-http-bearer": "*",
     "passport-local-mongoose": "*",
     "socket.io": "~0.9.14",
     "method-override": "*",

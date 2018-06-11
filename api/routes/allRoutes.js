@@ -54,7 +54,7 @@ var cc;
      res.json(cc);
  });
  router.get('/logout',log.logout);
- router.post('/login', tok,passport.authenticate('local'), (req, res, next) => {
+ router.post('/login', tok,passport.authenticate('local'), (req, res) => {
 //  res.json({session: req.session, user: req.user});
 /*req.session.save((err) => {
     if (err) {
@@ -72,11 +72,11 @@ var cc;
   function tok(req,res,next){
              
    Users.findOne({username: req.body.username}, function(err, docs) {
-    console.log(docs);
+  //  console.log(docs);
       crypto.randomBytes(20, function(err, buf) {
         var token = buf.toString('hex');
          docs.token = token;
-         docs.resetSessionExpires = Date.now() + 3600000;
+         docs.resetSessionExpires = Date.now() + 18000000;
         docs.save(function(err, docs) {
         if(err) {
             console.log(err);
@@ -100,7 +100,7 @@ var cc;
 // PARTE DOS ROLES
   //app.route('/users')
   router.post('/users/new', passport.authenticate("bearer", {session: false}),userr.register);
-  router.get('/users/lists',passport.authenticate("bearer", {session: false}),userr.get_all_users);
+  router.get('/users/lists',passport.authenticate("bearer"),userr.get_all_users);
   router.get('/users/profile',passport.authenticate("bearer", {session: false}),userr.get_user_profile);
 router.post('/users/update/:id',passport.authenticate("bearer", {session: false}),userr.update_user);
 

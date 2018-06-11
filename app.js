@@ -10,7 +10,7 @@ var passport= require("passport");
 var app= express();
 var session = require("express-session");
 var LocalStrategy= require("passport-local").Strategy;
-var BearerStrategy= require("passport-http-token").Strategy;
+var BearerStrategy= require("passport-http-bearer").Strategy;
  
      
 
@@ -94,10 +94,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 
 passport.use(new BearerStrategy( function(token, done) {
-    User.findOne({ token: token, resetSessionExpires: { $gt: Date.now() } }, function (err, user) {
+    User.findOne({ token: token, resetSessionExpires:{ $gt: Date.now() }}, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      return done(null, user, { scope: 'all' });
+      return done(null, user, { scope: 'read' });
     });
   }
 ));
