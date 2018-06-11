@@ -107,9 +107,9 @@ router.post('/users/update/:id',passport.authenticate("bearer", {session: false}
 
  
   
-  router.post('/forgot',passport.authenticate("bearer", {session: false}),email.forgot);
-router.get('/reset/:token',passport.authenticate("bearer", {session: false}),email.get_reset);
-router.post('/reset/:token',passport.authenticate("bearer", {session: false}),email.post_reset);
+  router.post('/forgot',email.forgot);
+router.get('/reset/:token',email.get_reset);
+router.post('/reset/:token',email.post_reset);
   
   router.get('/readings/getAll',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
   router.post('/readings/new',passport.authenticate("bearer", {session: false}),readings.post_readings);
