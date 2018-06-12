@@ -111,7 +111,7 @@ router.post('/users/update/:id',passport.authenticate("bearer", {session: false}
   
   router.post('/forgot',email.forgot);
 router.get('/reset/:token',email.get_reset);
-router.post('/reset/:token',email.post_reset);
+router.post('/resett/:token',email.post_reset);
   
   router.get('/readings/getAll',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
   router.post('/readings/new', readings.post_readings);
