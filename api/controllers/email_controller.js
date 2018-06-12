@@ -90,10 +90,10 @@ exports.get_reset =  function(req, res) {
 exports.post_reset = function(req, res) {
   async.waterfall([
     function(done) {
-      User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+      User.findOne({ resetPasswordToken: req.body.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
         if (!user) {
               res.json('back');
-          return res.redirect('back');
+          //return res.redirect('back');
         }
         if(req.body.password === req.body.confirm) {
           user.setPassword(req.body.password, function(err) {
@@ -108,7 +108,7 @@ exports.post_reset = function(req, res) {
             });
           })
         } else {
-               res.json('back');
+               res.json('back1');
           //  return res.redirect('back');
         }
       });
