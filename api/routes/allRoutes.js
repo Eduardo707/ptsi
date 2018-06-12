@@ -130,7 +130,7 @@ router.post('/readings_gli/:id',passport.authenticate("bearer", {session: false}
 
 
 
- router.get('/readings_gli/ll',readings_gli.get_ll_reads_gli);
+// router.get('/readings_gli/ll',readings_gli.get_ll_reads_gli);
 
 
  router.get('/pacients/all',passport.authenticate("bearer", {session: false}),pacients.get_all_pacients);
