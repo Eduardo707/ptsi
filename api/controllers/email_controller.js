@@ -102,7 +102,7 @@ exports.post_reset = function(req, res) {
 
             user.save(function(err) {
               req.logIn(user, function(err) {
-                     res.json(user);
+                    // res.json(user);
                 done(err, user);
               });
             });
