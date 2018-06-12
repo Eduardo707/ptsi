@@ -129,6 +129,10 @@ router.post('/readings/:id',passport.authenticate("bearer", {session: false}),re
 router.post('/readings_gli/:id',passport.authenticate("bearer", {session: false}),readings_gli.update_read_gli);
 
 
+
+ router.get('/readings_gli/ll',readings_gli.get_ll_reads_gli);
+
+
  router.get('/pacients/all',passport.authenticate("bearer", {session: false}),pacients.get_all_pacients);
   router.post('/pacients/new',passport.authenticate("bearer", {session: false}),pacients.create_pacients);
   router.get('/pacients/user',passport.authenticate("bearer", {session: false}),pacients.get_user_pacients);

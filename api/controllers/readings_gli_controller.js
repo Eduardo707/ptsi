@@ -2,7 +2,7 @@
 
 var mongoose= require('mongoose');
 var Leituras_gli= require('../APPI/leituras_gli');
-
+var MP= require('../APPI/medic_pacients');
 
 
 exports.create_readings_gli= function(req, res){
@@ -37,6 +37,34 @@ exports.get_all_reads_gli= function(req, res) {
       res.json(docs);
     });
 };
+
+exports.get_ll_reads_gli= function(req, res) {
+    MP.find({medicEmail: 'edumf7@gmail.com'},function(err, docs){
+         if(err) {
+            console.log(err);
+            res.json({err});
+        }
+       
+      var keys = Object.keys(docs);
+      console.log(keys);
+for (var i = 0; i < keys.length; i++) {
+  console.log(docs[keys[i]].pacientEmail);
+var em = docs[keys[i]].pacientEmail
+    //  res.json(docs);
+   
+    
+    Leituras_gli.find({email: em},function(err, docs){
+        if(err) {
+            console.log(err);
+            res.json({err});
+        }
+      console.log(docs);
+      res.json(docs);
+    });}
+ });};
+
+
+
 
 exports.get_user_reads_gli= function(req, res) {
 Leituras_gli.find({email: req.body.email},function(err, docs){
