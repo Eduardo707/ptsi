@@ -8,6 +8,8 @@ var Leituras = require('../APPI/leituras');
 exports.post_readings =  function(req, res){
     var newL = new Leituras({
       email: req.body.email,
+      medicEmail:req.body.medicEmail,
+
           ritmo: req.body.ritmo,  
     pressao_art: req.body.pressao_art, 
     temp_pele: req.body.temp_pele,
@@ -74,6 +76,7 @@ Leituras.findOne({_id: id},function(err, docs){
         // res.send(docs);
         
 docs.email= req.body.email;
+docs.medicEmail=req.body.medicEmail;
 docs.ritmo= req.body.ritmo;
 docs.pressao_art= req.body.pressao_art;
 docs.temp_pele= req.body.temp_pele;

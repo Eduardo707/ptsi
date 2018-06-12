@@ -8,6 +8,8 @@ var MP= require('../APPI/medic_pacients');
 exports.create_readings_gli= function(req, res){
 var newL= new Leituras_gli({
 email: req.body.email,
+medicEmail:req.body.medicEmail,
+
 glicemia: req.body.glicemia,  
 glicemia_a: req.body.glicemia_a, 
 glicemia_p: req.body.glicemia_p,
@@ -156,7 +158,8 @@ Leituras_gli.findOne({_id: id},function(err, docs){
             res.json({err});
         }
         // res.send(docs);
-        
+        docs.medicEmail=req.body.medicEmail;
+
 docs.glicemia= req.body.glicemia;
 docs.glicemia_p= req.body.glicemia_p;
 docs.glicemia_a= req.body.glicemia_a;

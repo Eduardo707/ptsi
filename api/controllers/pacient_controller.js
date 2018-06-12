@@ -7,7 +7,8 @@ var Pacientes= require('../APPI/pacientes');
 
 exports.create_pacients= function(req, res){
 var newP= new Pacientes({
-username: req.body.username,
+email: req.body.email,
+medicEmail:req.body.medicEmail,
 nome: req.body.nome,  
 num_tel: req.body.num_tel, 
 morada: req.body.morada,
@@ -42,7 +43,7 @@ exports.get_all_pacients= function(req, res) {
 };
 
 exports.get_user_pacients= function(req, res) {
-Pacientes.find({username: req.body.username},function(err, docs){
+Pacientes.find({email: req.body.email},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
@@ -76,7 +77,8 @@ Pacientes.findOne({_id: id},function(err, docs){
         }
         // res.send(docs);
         
-docs.username= req.body.username;
+docs.email= req.body.email;
+docs.medicEmail= req.body.medicEmail;
 docs.nome= req.body.nome;
 docs.num_tel= req.body.num_tel;
 docs.morada= req.body.morada;
