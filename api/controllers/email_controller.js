@@ -128,11 +128,12 @@ exports.post_reset = function(req, res) {
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
-        req.flash('success', 'Success! Your password has been changed.');
+        //req.flash('success', 'Success! Your password has been changed.');
         done(err);
+        res.json('reset successfull');
       });
     }
   ], function(err) {
-    res.json('reset successfull');
+    
   });
 };
