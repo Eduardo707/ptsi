@@ -80,7 +80,7 @@ exports.get_reset =  function(req, res) {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
    //   req.flash('error', 'Password reset token is invalid or has expired.');
-  //    return res.redirect('/forgot');
+  //    ret/urn res.redirect('/forgot');
     }
     res.json({msg: 'reset', token: req.params.token});
   });
@@ -108,7 +108,7 @@ exports.post_reset = function(req, res) {
           })
         } else {
                res.json('back');
-            return res.redirect('back');
+          //  return res.redirect('back');
         }
       });
     },
@@ -117,7 +117,7 @@ exports.post_reset = function(req, res) {
         service: 'Gmail', 
         auth: {
           user: 'diabetes.ptsi2018@gmail.com',
-          pass: 'ptsidiabetes'
+          pass: 'diabetesptsi'
         }
       });
       var mailOptions = {
