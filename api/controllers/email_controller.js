@@ -82,7 +82,7 @@ exports.get_reset =  function(req, res) {
    //   req.flash('error', 'Password reset token is invalid or has expired.');
   //    return res.redirect('/forgot');
     }
-    res.json('reset', {token: req.params.token});
+    res.json({msg: 'reset', token: req.params.token});
   });
 };
 
