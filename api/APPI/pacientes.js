@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var pacientesSchema = new mongoose.Schema({
     
-     username: String,
+     email: String,
+     medicEmail:String,
     nome: String,
  num_tel: Number,
     especialidade: String, 

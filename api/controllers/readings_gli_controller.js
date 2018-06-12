@@ -37,7 +37,32 @@ exports.get_all_reads_gli= function(req, res) {
       res.json(docs);
     });
 };
+var merge = function() {
+var destination = {},
+    sources = [].slice.call( arguments, 0 );
+sources.forEach(function( source ) {
+    var prop;
+    for ( prop in source ) {
+        if ( prop in destination && Array.isArray( destination[ prop ] ) ) {
 
+            // Concat Arrays
+            destination[ prop ] = destination[ prop ].concat( source[ prop ] );
+
+        } else if ( prop in destination && typeof destination[ prop ] === "object" ) {
+
+            // Merge Objects
+            destination[ prop ] = merge( destination[ prop ], source[ prop ] );
+
+        } else {
+
+            // Set new values
+            destination[ prop ] = source[ prop ];
+
+        }
+    }
+});
+return destination;
+};
 exports.get_ll_reads_gli= function(req, res) {
     MP.find({medicEmail: 'edumf7@gmail.com'},function(err, docs){
          if(err) {
@@ -46,21 +71,51 @@ exports.get_ll_reads_gli= function(req, res) {
         }
        
       var keys = Object.keys(docs);
-      console.log(keys);
+     // console.log(keys);
+     
+     
+      var result;
+      
+     
 for (var i = 0; i < keys.length; i++) {
-  console.log(docs[keys[i]].pacientEmail);
+    
+ // console.log(docs[keys[i]].pacientEmail);
 var em = docs[keys[i]].pacientEmail
     //  res.json(docs);
    
     
-    Leituras_gli.find({email: em},function(err, docs){
+    Leituras_gli.find({email: em},function(err, docs1){
         if(err) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
-      res.json(docs);
-    });}
+    //  console.log(docs);
+    //  res.json(JSON.parse(docs));
+   // console.log('/////////////'+docs);
+     // var newStr = docs.substring(1, docs .length-1);
+//console.log(newStr);
+     if(i==0){result= docs1;}
+      else{ result = merge(result,docs1);
+          
+          res.json(result);
+      }
+         
+         
+         
+         
+         
+
+    
+   
+
+     
+    });
+    
+   
+    
+      
+    
+} console.log(JSON.stringify(result));
  });};
 
 

@@ -4,6 +4,7 @@ var leiturasSchema = new mongoose.Schema({
 
 
     email: String,
+     medicEmail: String,
     ritmo: Number,  
     pressao_art: Number, 
     temp_pele: Number,
