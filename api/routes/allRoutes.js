@@ -122,7 +122,7 @@ router.post('/readings/:id',passport.authenticate("bearer", {session: false}),re
 
  router.get('/readings_gli/all',passport.authenticate("bearer", {session: false}),readings_gli.get_all_reads_gli);
   router.post('/readings_gli/new',passport.authenticate("bearer", {session: false}),readings_gli.create_readings_gli);
-  router.get('/readings_gli/user',passport.authenticate("bearer", {session: false}),readings_gli.get_user_reads_gli);
+  router.get('/readings_gli/user',readings_gli.get_user_reads_gli);
   router.get('/readings_gli/recent',passport.authenticate("bearer", {session: false}),readings_gli.get_recent_read_gli);
    
 
