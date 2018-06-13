@@ -1,8 +1,12 @@
 
 
+<link rel="stylesheet" href="/css/styles2.css">
+<div class="wrapper fadeInDown">
+<h1 style="color:white;"> Reset </h1>
+   <div id="formContent">
 		<form action="/reset/<%= token %>" method="POST">
 		  <legend>Reset Password</legend>
-		  <div class="form-group">
+		
 		    <label for="password">New Password</label>
 		    <input type="password" name="password" value="" placeholder="New password" autofocus="autofocus" class="form-control"/>
 		  </div>
@@ -11,6 +15,7 @@
 		    <input type="password" name="confirm" value="" placeholder="Confirm password" class="form-control"/>
 		  </div>
 		  <div class="form-group">
-		    <button type="submit" class="btn btn-primary">Update Password</button>
+		    <button type="submit" value="Update Password"></button>
 		  </div>
 		</form>
+</div></div>

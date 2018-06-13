@@ -11,8 +11,7 @@ email: req.body.email,
 medicEmail:req.body.medicEmail,
 
 glicemia: req.body.glicemia,  
-glicemia_a: req.body.glicemia_a, 
-glicemia_p: req.body.glicemia_p,
+
    
 data_resg: Date.now(),
     
@@ -161,8 +160,7 @@ Leituras_gli.findOne({_id: id},function(err, docs){
         docs.medicEmail=req.body.medicEmail;
 
 docs.glicemia= req.body.glicemia;
-docs.glicemia_p= req.body.glicemia_p;
-docs.glicemia_a= req.body.glicemia_a;
+docs.date_reg= req.body.date_reg;
        
      docs.save(function(err, docs) {
         if(err) {
