@@ -7,13 +7,13 @@ var MP= require('../APPI/medic_pacients');
 
 exports.create_readings_gli= function(req, res){
 var newL= new Leituras_gli({
-email: req.body.email,
-medicEmail:req.body.medicEmail,
+email:'lu@lu',
+medicEmail:'edumf7@gmail.com',
 
-glicemia: req.body.glicemia,  
+glicemia: '164',  
 
    
-data_resg: Date.now(),
+date_resg: Date.now(),
     
        
       });

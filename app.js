@@ -135,9 +135,9 @@ app.use('/', routes);
 
 
 
-app.get("/post/leituras", function(req, res){
+app.get("/readings_gli/new", function(req, res){
     
-res.render("leituras", {page: 'leituras'}); 
+res.render("leituras_gli", {page: 'leituras_gli'}); 
 
 });
 app.get("/users/new", function(req, res){
