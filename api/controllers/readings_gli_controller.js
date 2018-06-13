@@ -133,6 +133,17 @@ Leituras_gli.find({email: req.body.email},function(err, docs){
     });
 };
 
+exports.get_medic_reads_gli= function(req, res) {
+Leituras_gli.find({medicEmail: req.body.medicEmail},function(err, docs){
+         if(err) {
+            console.log(err);
+            res.json({err});
+        }
+      console.log(docs);
+      res.json(docs);
+    });
+};
+
 
 exports.get_recent_read_gli= function(req, res) {
 Leituras_gli.findOne().sort({"date_reg": -1}).exec(function(err, docs){
