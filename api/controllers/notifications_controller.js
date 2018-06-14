@@ -5,25 +5,40 @@ var Notificacoes= require('../APPI/notificacoes');
 
 
 
-exports.create_notifs= function(req, res){
+exports.create_notifs= function(req, res){   
+    if(req.body.glicemia>=120){
 var newN= new Notificacoes({
-username: req.body.username,
-paciente: req.body.paciente,  
-aviso: req.body.aviso, 
-nivel: req.body.nivel
+email:req.body.email,
+medicEmail:req.body.medicEmail,
+pacient: req.body.pacient,
+glicemia: req.body.glicemia,
+
+aviso: 'Os niveis do paciente ' + req.body.pacient + ' estão acima do normal!' ,
+nivel: 'Vermelho',  
+date_resg: Date.now()
+
+
        
       });
+   console.log(req.body.email);
 
 
 
     newN.save(function(err){
         if(err){
             console.log(err);
-            
-        }
-       res.send("sucesso");
+            res.send(err);
+        }else{
+       res.send('suc');}
     });
+ 
+} 
 };
+
+
+
+
+
 exports.get_all_notifs= function(req, res) {
     Notificacoes.find(function(err, docs){
         if(err) {
@@ -36,7 +51,7 @@ exports.get_all_notifs= function(req, res) {
 };
 
 exports.get_user_notifs= function(req, res) {
-Notificacoes.find({username: req.body.username},function(err, docs){
+Notificacoes.find({email: req.body.email},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
@@ -70,7 +85,8 @@ Notificacoes.findOne({_id: id},function(err, docs){
         }
         // res.send(docs);
         
-docs.username= req.body.username;
+docs.email= req.body.email;
+docs.medicEmail = req.body.medicEmail;
 docs.paciente= req.body.paciente;
 docs.aviso= req.body.aviso;
 docs.nivel= req.body.nivel;

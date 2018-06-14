@@ -2,18 +2,19 @@ var mongoose = require('mongoose');
 
 var notificacoesSchema = new mongoose.Schema({
     
-     username: String,
-    paciente: String,
+     email: String,
+    pacient: String,
     medicEmail:String,
-
- aviso: Number,
-    nivel: Number 
+glicemia: Number,
+ aviso: String,
+    nivel: String,
+    date_resg: Date
   
       
     
 });
 
 
- module.exports = mongoose.model('paciente',  notificacoesSchema);
+ module.exports = mongoose.model('notificacoes',  notificacoesSchema);
 
     

@@ -3,20 +3,50 @@
 var mongoose= require('mongoose');
 var Leituras_gli= require('../APPI/leituras_gli');
 var MP= require('../APPI/medic_pacients');
+var Notificacoes= require('../APPI/notificacoes');
+
 
 
 exports.create_readings_gli= function(req, res){
 var newL= new Leituras_gli({
-email:'lu@lu',
-medicEmail:'edumf7@gmail.com',
+email:req.body.email,
+medicEmail:req.body.medicEmail,
 
-glicemia: '164',  
-
+glicemia: req.body.glicemia,  
+//pacient
    
 date_resg: Date.now(),
     
        
       });
+
+    if(req.body.glicemia>=120){
+var newN= new Notificacoes({
+email:req.body.email,
+medicEmail:req.body.medicEmail,
+pacient: req.body.pacient,
+glicemia: req.body.glicemia,
+
+aviso: 'Os niveis do paciente ' + req.body.pacient + ' estão acima do normal!' ,
+nivel: 'Vermelho',  
+date_resg: Date.now()
+
+
+       
+      });
+   console.log(req.body.email);
+
+
+
+    newN.save(function(err){
+        if(err){
+            console.log(err);
+            res.send(err);
+        }else{
+       res.send('suc');}
+    });
+ 
+} 
 
 
 
@@ -25,8 +55,12 @@ date_resg: Date.now(),
             console.log(err);
             res.send(err);
         }else{
-       res.send("sucesso");}
+       res.send('sucesso');}
     });
+    
+    
+    
+ //   next();
 };
 exports.get_all_reads_gli= function(req, res) {
     Leituras_gli.find(function(err, docs){
@@ -65,7 +99,7 @@ sources.forEach(function( source ) {
 return destination;
 };
 exports.get_ll_reads_gli= function(req, res) {
-    MP.find({medicEmail: 'edumf7@gmail.com'},function(err, docs){
+    MP.find({medicEmail: req.body.medicEmail},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
