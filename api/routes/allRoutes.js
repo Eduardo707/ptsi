@@ -67,7 +67,7 @@ var cc;
     res.session = { cookie: req.session.cookie }
     res.cookie('userid', req.user._id, { maxAge: 2592000000 });*/
     cc = "hello";
-    res.status(200).json({ msg: "logged in", user: req.user, session: req.session });
+    res.status(200).json({ msg: "true", user: req.user, session: req.session });
   //});
 });
   
@@ -113,7 +113,7 @@ router.post('/users/update/:id',passport.authenticate("bearer", {session: false}
 router.get('/reset/:token',email.get_reset);
 router.post('/reset/:token',email.post_reset);
   
-  router.get('/readings/getAll',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
+  router.get('/readings/all',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
   router.post('/readings/new', readings.post_readings);
   router.get('/readings/user',passport.authenticate("bearer", {session: false}),readings.get_user_reads);
   router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);
