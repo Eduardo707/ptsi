@@ -11,7 +11,7 @@ username: req.body.username,
 nome: req.body.nome,  
 num_tel: req.body.num_tel, 
 morada: req.body.morada,
-mail: req.body.mail,
+email: req.body.email,
 especialidade:req.body.especialidade,
 data_nasc: Date.now(),
 cedula: req.body.cedula,
@@ -42,7 +42,7 @@ exports.get_all_medics= function(req, res) {
 };
 
 exports.get_user_medics= function(req, res) {
-Medicos.find({username: req.body.username},function(err, docs){
+Medicos.find({email: req.body.email},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
@@ -80,7 +80,7 @@ docs.username= req.body.username;
 docs.nome= req.body.nome;
 docs.num_tel= req.body.num_tel;
 docs.morada= req.body.morada;
-docs.mail= req.body.mail;
+docs.email= req.body.email;
 docs.especialidade=req.body.especialidade;
 docs.data_nasc= req.body.date;
 docs.cedula= req.body.cedula;

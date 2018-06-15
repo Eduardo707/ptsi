@@ -27,7 +27,7 @@ exports.post_readings =  function(req, res){
             console.log(err);
             
         }
-       res.send("sucesso");
+       res.json({msg: 'true'});
     });
 };
 exports.get_all_reads =  function(req, res) {

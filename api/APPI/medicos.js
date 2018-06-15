@@ -7,7 +7,7 @@ var medicosSchema = new mongoose.Schema({
  num_tel: Number,
     especialidade: String, 
     morada: String,  
-    mail:  String,
+    email:  String,
     cedula: String,
     data_nasc: Date,
     data_acesso: Date,
