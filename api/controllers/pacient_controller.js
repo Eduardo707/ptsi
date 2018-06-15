@@ -41,9 +41,13 @@ exports.get_all_pacients= function(req, res) {
 };
 
 exports.get_user_pacients= function(req, res) {
-Pacientes.findOne({email: req.body.email},function(err, docs){
-    var mail = decodeURIComponent(req.body.email);
+    
+    //var mail = decodeURIComponent(req.body.email);
+    var mail = unescape(req.body.email);
     console.log(mail);
+    
+Pacientes.findOne({email: mail},function(err, docs){
+    
          if(err) {
             console.log(err);
             res.json({err});
