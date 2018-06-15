@@ -43,6 +43,7 @@ exports.get_all_pacients= function(req, res) {
 exports.get_user_pacients= function(req, res) {
     
     //var mail = decodeURIComponent(req.body.email);
+    console.log("body " + req.body)
     var mail = unescape(req.body.email);
     console.log(mail);
     
