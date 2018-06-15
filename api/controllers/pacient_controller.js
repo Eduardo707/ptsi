@@ -83,7 +83,7 @@ Pacientes.findOne({_id: id},function(err, docs){
         }
         // res.send(docs);
         
-docs.email= unescape(req.body.email);
+docs.email= req.body.email;
 docs.medicEmail= req.body.medicEmail;
 docs.nome= req.body.nome;
 docs.num_tel= req.body.num_tel;

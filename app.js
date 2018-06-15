@@ -165,7 +165,7 @@ res.render("site", {page: 'site'});
 
 
 
-app.get("/pacients/new", function(req, res){
+app.get("/pacients/user", function(req, res){
     
    res.render("pacientes"); 
 

@@ -10,7 +10,7 @@ exports.post_readings =  function(req, res){
       email: req.body.email,
       medicEmail:req.body.medicEmail,
 
-          ritmo: req.body.ritmo,  
+    ritmo: req.body.ritmo,  
     pressao_art: req.body.pressao_art, 
     temp_pele: req.body.temp_pele,
     ph: req.body.ph,
@@ -42,7 +42,7 @@ exports.get_all_reads =  function(req, res) {
 };
 
 exports.get_user_reads =  function(req, res) {
-    Leituras.find({email: req.body.email},function(err, docs){
+    Leituras.findOne({email: req.body.email},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
