@@ -26,7 +26,7 @@ app: req.body.app
             console.log(err);
             
         }
-       res.send("sucesso");
+       res.json("sucesso");
     });
 };
 exports.get_all_pacients= function(req, res) {
