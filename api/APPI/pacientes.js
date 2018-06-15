@@ -8,7 +8,7 @@ var pacientesSchema = new mongoose.Schema({
  num_tel: Number,
     especialidade: String, 
     morada: String,  
-    email:  String,
+ 
     utente: Number,
     data_nasc: Date,
     beneficiario: Number,
