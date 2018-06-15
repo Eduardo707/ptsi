@@ -1,6 +1,9 @@
 'use strict';
 
-var mongoose= require('mongoose');
+var crypto = require("crypto");
+
+var mongoose = require('mongoose');
+var User = require('../APPI/user');
 var Pacientes= require('../APPI/pacientes');
 
 
@@ -11,6 +14,7 @@ var newP= new Pacientes({
 medicEmail:req.body.medicEmail,
 nome:req.body.nome,  
 num_tel: req.body.num_tel, 
+
 morada:req.body.morada,
 email: req.body.email,
 utente:req.body.utente,
@@ -21,6 +25,34 @@ app: req.body.app
        
       });
 
+
+    var newUser = new User({
+        username: req.body.username,
+      
+        email: req.body.email,
+       
+      });
+
+    if(req.body.adminCode === 'admin') {
+      newUser.isAdmin = true;
+    }
+       crypto.randomBytes(20, function(err, buf) {
+        var token = buf.toString('hex');
+         newUser.token= token;
+         newUser.resetSessionExpires = Date.now() + 1800000;
+
+    User.register(newUser, req.body.password, function(err, user){
+        
+      
+        if(err){
+            res.status(500).json({errors: [err]})
+        }
+       // passport.authenticate("local", "bearer")(req, res, function(){
+           res.json('user registered'); 
+   //     });
+        
+    });
+    });
     newP.save(function(err){
         if(err){
             console.log(err);
