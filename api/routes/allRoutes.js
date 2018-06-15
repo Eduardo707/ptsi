@@ -78,7 +78,7 @@ var cc;
       crypto.randomBytes(20, function(err, buf) {
         var token = buf.toString('hex');
          docs.token = token;
-         docs.resetSessionExpires = Date.now() + 18000000;
+         docs.resetSessionExpires = Date.now() + 86400000;
         docs.save(function(err, docs) {
         if(err) {
             console.log(err);

@@ -20,6 +20,7 @@
     "passport": "*",
     "passport-local": "*",
        "passport-http-bearer": "*",
+       "crypto" : "*",
     "passport-local-mongoose": "*",
     "socket.io": "~0.9.14",
     "method-override": "*",

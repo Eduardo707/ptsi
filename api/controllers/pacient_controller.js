@@ -49,6 +49,7 @@ Pacientes.find({email: req.body.email},function(err, docs){
             res.json({err});
         }
       console.log(docs);
+      console.log(req.body.email);
       res.json(docs);
     });
 };
