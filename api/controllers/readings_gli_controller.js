@@ -13,12 +13,14 @@ email:req.body.email,
 medicEmail:req.body.medicEmail,
 
 glicemia: req.body.glicemia,  
+
 //pacient
    
 date_resg: Date.now(),
     
        
       });
+      console.log("valor de glicemia inserido = " + req.body.glicemia);
 
     if(req.body.glicemia>=120){
 var newN= new Notificacoes({

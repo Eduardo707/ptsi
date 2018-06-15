@@ -7,7 +7,7 @@ var Leituras = require('../APPI/leituras');
 
 exports.post_readings =  function(req, res){
     var newL = new Leituras({
-      email: req.body.email,
+      email: decodeURIComponent(req.body.email),
       medicEmail:req.body.medicEmail,
 
     ritmo: req.body.ritmo,  
