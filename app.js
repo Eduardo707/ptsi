@@ -165,9 +165,9 @@ res.render("site", {page: 'site'});
 
 
 
-app.get("/get/pacientes", function(req, res){
+app.get("/pacients/new", function(req, res){
     
-   res.redirect("/get/pacientes"); 
+   res.render("pacientes"); 
 
 });
 

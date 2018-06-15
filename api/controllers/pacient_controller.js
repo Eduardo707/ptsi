@@ -7,12 +7,12 @@ var Pacientes= require('../APPI/pacientes');
 
 exports.create_pacients= function(req, res){
 var newP= new Pacientes({
-email: req.body.email,
+
 medicEmail:req.body.medicEmail,
-nome: req.body.nome,  
+nome:req.body.nome,  
 num_tel: req.body.num_tel, 
-morada: req.body.morada,
-mail: req.body.mail,
+morada:req.body.morada,
+email: req.body.email,
 utente:req.body.utente,
 data_nasc: Date.now(),
 beneficiario: req.body.beneficiario,
@@ -20,8 +20,6 @@ app: req.body.app
     
        
       });
-
-
 
     newP.save(function(err){
         if(err){
@@ -43,9 +41,9 @@ exports.get_all_pacients= function(req, res) {
 };
 
 exports.get_user_pacients= function(req, res) {
-Pacientes.find({email: req.body.email},function(err, docs){
+Pacientes.findOne({email: req.body.email},function(err, docs){
     var mail = decodeURIComponent(req.body.email);
-    console.log(req.body.email);
+    console.log(mail);
          if(err) {
             console.log(err);
             res.json({err});
