@@ -82,12 +82,12 @@ Pacientes.findOne({_id: id},function(err, docs){
         }
         // res.send(docs);
         
-docs.email= req.body.email;
+docs.email= unescape(req.body.email);
 docs.medicEmail= req.body.medicEmail;
 docs.nome= req.body.nome;
 docs.num_tel= req.body.num_tel;
 docs.morada= req.body.morada;
-docs.mail= req.body.mail;
+//docs.mail= req.body.mail;
 docs.utente=req.body.utente;
 docs.data_nasc= req.body.date;
 docs.beneficiario= req.body.beneficiario;
