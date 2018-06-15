@@ -44,6 +44,8 @@ exports.get_all_pacients= function(req, res) {
 
 exports.get_user_pacients= function(req, res) {
 Pacientes.find({email: req.body.email},function(err, docs){
+    var mail = decodeURIComponent(req.body.email);
+    console.log(req.body.email);
          if(err) {
             console.log(err);
             res.json({err});
