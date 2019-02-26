@@ -27,6 +27,6 @@
     "css": "*",
     "body-parser": "*",
     "cookie-parser": "*",
-    "dot-env": "*"
+    "dotenv": "*"
   }
 }
