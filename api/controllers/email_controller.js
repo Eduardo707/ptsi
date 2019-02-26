@@ -6,6 +6,8 @@ var passport = require("passport");
 var async = require("async");
 var crypto = require("crypto");
 var nodemailer = require("nodemailer");
+ var dotenv = require('dotenv').config();
+
 
 
 exports.forgot =  function(req, res, next) {
@@ -17,7 +19,7 @@ exports.forgot =  function(req, res, next) {
       });
     },
     function(token, done) {
-      User.findOne({ email: req.body.email }, function(err, user) {
+      User.findOne({ username: req.body.email }, function(err, user) {
         if (!user) {
         //  req.flash('error', 'No account with that email address exists.');
           return done(null,err);
@@ -36,25 +38,28 @@ exports.forgot =  function(req, res, next) {
       console.log(docs);
      process.env.USER = docs.username;
     });*/
+    
+    
+            console.log(process.env.EMAIL_USER);
+
       var smtpTransport = nodemailer.createTransport({
-        
         
         
      
         service: 'Gmail', 
         auth: {
-          user: 'diabetes.ptsi2018@gmail.com',
-          pass: 'diabetesptsi'
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
         }
       });
      
       var mailOptions = {
-        to: user.email,
+        to: user.username,
         from: 'diabetes.ptsi2018@gmail.com',
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.body.hostt + '/reset/' + token + '\n\n' +
+          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err) {
@@ -117,13 +122,13 @@ exports.post_reset = function(req, res) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {
-          user: 'diabetes.ptsi2018@gmail.com',
-          pass: 'diabetesptsi'
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
         }
       });
       var mailOptions = {
-        to: user.email,
-        from: 'diabetes.ptsi2018@mail.com',
+        to: user.username,
+        from: process.env.EMAIL_USER,
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'

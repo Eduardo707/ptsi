@@ -26,6 +26,7 @@
     "method-override": "*",
     "css": "*",
     "body-parser": "*",
-    "cookie-parser": "*"
+    "cookie-parser": "*",
+    "dot-env": "*"
   }
 }

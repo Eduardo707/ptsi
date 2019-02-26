@@ -146,7 +146,7 @@ res.render("register", {page: 'register'});
 
 });
 
-app.get("/readings/new", function(req, res){
+app.get("/medics/id", function(req, res){
     
 res.render("leituras", {page: 'leituras'}); 
 
@@ -183,10 +183,10 @@ app.get("/login", function(req, res){
 res.render("login", {page: 'login'}); 
 });
 
-app.get("/login1", function(req, res){
+/*app.get("/reset/:token", function(req, res){
    
-res.render("login1", {page: 'login1'}); 
-});
+res.render("reset", {page: 'reset'}); 
+});*/
 
 app.get('/forgot', function(req, res) {
   res.render('forgot');
