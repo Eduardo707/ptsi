@@ -88,7 +88,7 @@ exports.get_reset =  function(req, res) {
   //    ret/urn res.redirect('/forgot');
     }
     var tok = req.params.token;
-    res.json({msg: 'reset', token:tok});
+    res.json({msg:'reset', token:tok});
   });
 };
 
