@@ -70,8 +70,7 @@ exports.forgot =  function(req, res, next) {
       });
     }
   ], function(err) {
-console.log(err);
-res.json(err);
+ if (err) return next(err);
   });
  
 };
