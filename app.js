@@ -14,12 +14,10 @@ var BearerStrategy= require("passport-http-bearer").Strategy;
  
      
 
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'https://web-eduardoferreira.c9users.io');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
+app.use(function(req, res, next){
+   res.locals.currentUser = req.user;
+  
+   next();
 });
 
 
