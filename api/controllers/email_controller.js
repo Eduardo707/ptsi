@@ -65,15 +65,15 @@ exports.forgot =  function(req, res, next) {
       smtpTransport.sendMail(mailOptions, function(err) {
         console.log(req.headers.host);
       //  req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-      
+        res.json('mail sent');
         done(err, 'done');
       });
     }
   ], function(err) {
-  //  if (err) return next(err);
-  //  res.redirect('/forgot');
+console.log(err);
+res.json(err);
   });
-   res.json('mail sent');
+ 
 };
 
 
