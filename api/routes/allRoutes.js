@@ -54,7 +54,7 @@ function loggedIn(req, res, next) {
 
 var cc;
  router.get('/cc',function(req, res) {
-     res.json(cc);
+     res.json(req.user);
  });
  router.get('/logout',log.logout);
  router.post('/login', tok,passport.authenticate('local'), (req, res) => {
