@@ -17,6 +17,7 @@ const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
 const mp= require('../controllers/m_p_controller');
+const chat= require('../controllers/chat_controller');
 
 const notifications= require('../controllers/notifications_controller');
 
@@ -67,14 +68,14 @@ var cc;
     res.session = { cookie: req.session.cookie }
     res.cookie('userid', req.user._id, { maxAge: 2592000000 });*/
     cc = "hello";
-    res.status(200).json({ msg: "true", user: req.user, session: req.session });
+    res.status(200).json({  user: req.user, session: req.session });
   //});
 });
   
   function tok(req,res,next){
              
    Users.findOne({username: req.body.username}, function(err, docs) {
-  //  console.log(docs);
+    console.log(Date.now());
       crypto.randomBytes(20, function(err, buf) {
         var token = buf.toString('hex');
          docs.token = token;
@@ -153,6 +154,7 @@ router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medi
  router.get('/mp/all', mp.get_all_m_p);
  
 
+ //router.get('/chat', chat.chat);
  
 
  router.get('/notifications',passport.authenticate("bearer", {session: false}),notifications.get_all_notifs);
