@@ -21,14 +21,9 @@ var socketio = require('socket.io');
 var messages = [];
 var sockets = [];
 
-//
-// ## SimpleServer `SimpleServer(obj)`
-//
-// Creates a new instance of SimpleServer with the following options:
-//  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
-//
 
 var server = http.createServer(app);
+
 var io = socketio.listen(server);
 
 /*app.use(function(req, res, next){
@@ -36,10 +31,6 @@ var io = socketio.listen(server);
   
    next();
 });*/
-
-
-//app.use(express.static(__dirname + '/views'));
-
 app.use(express.static(path.resolve(__dirname, 'views')));
 
 
@@ -278,16 +269,16 @@ function broadcast(event, data) {
 }
 
 
-
-//server.listen(process.env.PORT || 3000);
-
-
+module.exports= app;
+server.listen(process.env.PORT || 3000);
+//server.listen(app);
+/*
 server.listen(process.env.PORT || 5000, process.env.IP , function(){
   var addr = server.address();
   console.log("Chat server listening at", addr.address + ":" + addr.port);
-});
+});*/
 
-module.exports= app;
+
 console.log('run');
 
 
