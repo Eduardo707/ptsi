@@ -22,9 +22,9 @@ var messages = [];
 var sockets = [];
 
 
-var server = http.createServer(app);
+/*var server = http.createServer(app);
 
-var io = socketio.listen(server);
+var io = socketio.listen(server);/////////////////////////*/
 
 /*app.use(function(req, res, next){
    res.locals.currentUser = req.user;
@@ -212,7 +212,7 @@ app.post('/endpoint', function(req, res){
 	res.send(req.body);
 });
 
-
+/****************************************************************************
 
 io.on('connection', function (socket) {
     messages.forEach(function (data) {
@@ -268,7 +268,7 @@ function broadcast(event, data) {
   });
 }
 
-
+*////////////////////////////////////////////////////////
 module.exports= app;
 
 
