@@ -270,10 +270,13 @@ function broadcast(event, data) {
 
 
 module.exports= app;
-var port = process.env.PORT || 3000;
 
+
+
+var port = process.env.PORT || 3000;
 server.listen(port, function () {
  console.log(`Example app listening on port !`);
+});
 //server.listen(app);
 /*
 server.listen(process.env.PORT || 5000, process.env.IP , function(){
