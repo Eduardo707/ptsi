@@ -30,10 +30,12 @@ const notifications= require('../controllers/notifications_controller');
 }
 
 router.use(loggedIn);*/
+
+//router.listen(process.env.PORT || 5000);
  
  router.get('/', function(req, res) {
-  res.render("index", {page: 'index'}); 
-  res.json('index');
+  res.render("login", {page: 'login'}); 
+  res.json('login');
  
 });
 router.get('/index', function(req, res) {
@@ -51,6 +53,10 @@ function loggedIn(req, res, next) {
     }
 }
 
+function port(req,res){
+    res.end();
+    
+}
 
 var cc;
  router.get('/cc',function(req, res) {
@@ -154,7 +160,7 @@ router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medi
  router.get('/mp/all', mp.get_all_m_p);
  
 
- //router.get('/chat', chat.chat);
+
  
 
  router.get('/notifications',passport.authenticate("bearer", {session: false}),notifications.get_all_notifs);

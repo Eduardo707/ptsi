@@ -16,15 +16,6 @@ var BearerStrategy= require("passport-http-bearer").Strategy;
 var http = require('http');
 
 var async = require('async');
-var socketio = require('socket.io');
-
-var messages = [];
-var sockets = [];
-
-
-var server = http.createServer(app);
-
-var io = socketio.listen(server);
 
 /*app.use(function(req, res, next){
    res.locals.currentUser = req.user;
@@ -34,12 +25,6 @@ var io = socketio.listen(server);
 app.use(express.static(path.resolve(__dirname, 'views')));
 
 
-/*app.listen(process.env.PORT || 5000, process.env.IP || "0.0.0.0", function(){
-  var addr = app.address();
-  console.log("Chat server listening at", addr.address + ":" + addr.port);
-});*/
-//app.use(express.static(path.resolve(__dirname, 'views')));
-//
 
 
 /*var methodOverride= require("method-override");
@@ -170,7 +155,7 @@ res.render("site", {page: 'site'});
 });
 
 app.get("/chat", function(req, res){
-    
+
 res.render("chat", {page: 'chat'}); 
 
 });
@@ -189,7 +174,7 @@ app.get("/register", function(req, res){
 res.render("register", {page: 'register'}); 
 });
 
-app.get("/", function(req, res){
+app.get("/login", function(req, res){
    
 res.render("login", {page: 'login'}); 
 });
@@ -214,67 +199,14 @@ app.post('/endpoint', function(req, res){
 
 
 
-io.on('connection', function (socket) {
-    messages.forEach(function (data) {
-      socket.emit('message', data);
-    });
-
-    sockets.push(socket);
-
-    socket.on('disconnect', function () {
-      sockets.splice(sockets.indexOf(socket), 1);
-      updateRoster();
-    });
-
-    socket.on('message', function (msg) {
-      var text = String(msg || '');
-
-      if (!text)
-        return;
-
-      socket.get('name', function (err, name) {
-        var data = {
-          name: name,
-          text: text
-        };
-
-        broadcast('message', data);
-        messages.push(data);
-      });
-    });
-
-    socket.on('identify', function (name) {
-      socket.set('name', String(name || 'Anonymous'), function (err) {
-        updateRoster();
-      });
-    });
-  });
-
-function updateRoster() {
-  async.map(
-    sockets,
-    function (socket, callback) {
-      socket.get('name', callback);
-    },
-    function (err, names) {
-      broadcast('roster', names);
-    }
-  );
-}
-
-function broadcast(event, data) {
-  sockets.forEach(function (socket) {
-    socket.emit(event, data);
-  });
-}
 
 
 module.exports= app;
 
 
 
+app.listen(process.env.PORT || 5000);
 
-server.listen(process.env.PORT);
 //server.listen(app);
 /*
 server.listen(process.env.PORT || 5000, process.env.IP , function(){

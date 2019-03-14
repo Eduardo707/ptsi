@@ -3,7 +3,7 @@
 //
 // A simple chat server using Socket.IO, Express, and Async.
 //
-/*
+
 var http = require('http');
 var path = require('path');
 var express= require('express');
@@ -11,15 +11,17 @@ var express= require('express');
 
 var async = require('async');
 var socketio = require('socket.io');
-var mongoose= require('mongoose');
+
 //
 // ## SimpleServer `SimpleServer(obj)`
 //
 // Creates a new instance of SimpleServer with the following options:
 //  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
 //
+/*
+var router = express();
 
-var server = http.createServer();
+var server = http.createServer(router);
 var io = socketio.listen(server);
 
 var messages = [];
@@ -28,7 +30,7 @@ var sockets = [];
 
 
 
-
+exports.chat= function(req, res){
 
 
 io.on('connection', function (socket) {
@@ -85,5 +87,6 @@ function broadcast(event, data) {
   });
 }
 
-*/
+server.listen(process.env.PORT || 5000);
 
+};*/
