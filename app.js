@@ -273,9 +273,8 @@ module.exports= app;
 
 
 
-var port = process.env.PORT || 3000;
-//app.listen(5000);
-server.listen(port);
+
+server.listen(process.env.PORT || 5000);
 //server.listen(app);
 /*
 server.listen(process.env.PORT || 5000, process.env.IP , function(){
