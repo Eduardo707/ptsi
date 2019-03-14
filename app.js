@@ -189,7 +189,7 @@ app.get("/register", function(req, res){
 res.render("register", {page: 'register'}); 
 });
 
-app.get("/login", function(req, res){
+app.get("/", function(req, res){
    
 res.render("login", {page: 'login'}); 
 });
@@ -274,7 +274,7 @@ module.exports= app;
 
 
 
-server.listen(process.env.PORT || 5000);
+server.listen(process.env.PORT);
 //server.listen(app);
 /*
 server.listen(process.env.PORT || 5000, process.env.IP , function(){
