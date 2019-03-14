@@ -74,7 +74,7 @@ var cc;
     res.session = { cookie: req.session.cookie }
     res.cookie('userid', req.user._id, { maxAge: 2592000000 });*/
     cc = "hello";
-    res.status(200).json({msg:true,  user: req.user, session: req.session });
+    res.status(200).json({msg:"true",  user: req.user, session: req.session });
   //});
 });
   
