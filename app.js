@@ -33,9 +33,13 @@ var io = socketio.listen(server);
 });*/
 app.use(express.static(path.resolve(__dirname, 'views')));
 
-
-
-
+ app.use(function(req, res, next){
+     res.header("Access-Control-Allow-Origin", "*");
+     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+     res.header('Access-Control-Allow-Credentials', "true");
+     next();
+ });
 /*var methodOverride= require("method-override");
 app.use(methodOverride("_method"));*/
 //app.use(express.static(path.resolve(__dirname, 'views')));
@@ -100,11 +104,13 @@ passport.use(new LocalStrategy(User.authenticate()));
 
 
 
-passport.use(new BearerStrategy( function(token, done) {
-    User.findOne({ token: token, resetSessionExpires:{ $gt: Date.now() }}, function (err, user) {
+passport.use(new BearerStrategy( function(access_token, done) {
+  
+    User.findOne({ token: access_token, resetSessionExpires:{ $gt: Date.now() }}, function (err, user) {
+      console.log(user)
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      return done(null, user, { scope: 'read' });
+      return done(null, user, { scope: '*' });
     });
   }
 ));
@@ -169,7 +175,11 @@ res.render("chat", {page: 'chat'});
 
 });
 
+app.get("/index", function(req, res){
 
+res.render("index", {page: 'index'}); 
+
+});
 app.get("/pacients/user", function(req, res){
     
    res.render("pacientes"); 
@@ -267,7 +277,7 @@ module.exports= app;
 
 
 
-server.listen(process.env.PORT || 5000);
+server.listen(process.env.PORT || 3000);
 
 //server.listen(app);
 /*

@@ -64,6 +64,7 @@ var cc;
  });
  router.get('/logout',log.logout);
  router.post('/login', tok,passport.authenticate('local'), (req, res) => {
+      
 //  res.json({session: req.session, user: req.user});
 /*req.session.save((err) => {
     if (err) {
@@ -73,8 +74,9 @@ var cc;
     console.log('req.user', req.user)
     res.session = { cookie: req.session.cookie }
     res.cookie('userid', req.user._id, { maxAge: 2592000000 });*/
-    cc = "hello";
-    res.status(200).json({msg:"true",  user: req.user, session: req.session });
+ //   cc = "hello";
+   res.status(200).json({msg:"true",  user: req.user});
+  
   //});
 });
   
@@ -101,15 +103,12 @@ var cc;
 });}); 
   };
   
-    router.post('/login1',passport.authenticate("bearer"), function (req, res) {
-   res.json(req.user);
-});
-  
+
 
 // PARTE DOS ROLES
   //app.route('/users')
   router.post('/users/new', userr.register);
-  router.get('/users/lists',userr.get_all_users);
+  router.get('/users/lists',passport.authenticate("bearer", {session: false}),userr.get_all_users);
   router.get('/users/profile',passport.authenticate("bearer", {session: false}),userr.get_user_profile);
 router.post('/users/update/:id',passport.authenticate("bearer", {session: false}),userr.update_user);
 
