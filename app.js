@@ -26,6 +26,7 @@ var server = http.createServer(app);
 
 var io = socketio.listen(server);
 
+
 /*app.use(function(req, res, next){
    res.locals.currentUser = req.user;
   
@@ -218,7 +219,7 @@ app.post('/endpoint', function(req, res){
 
 
 
-io.on('connection', function (socket) {
+io.sockets.on('connection', function (socket) {
     messages.forEach(function (data) {
       socket.emit('message', data);
     });
