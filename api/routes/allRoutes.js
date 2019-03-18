@@ -34,7 +34,7 @@ router.use(loggedIn);*/
  
  router.get('/', function(req, res) {
   res.render("login", {page: 'login'}); 
-  res.json('login');
+  
  
 });
 router.get('/index', function(req, res) {
