@@ -25,6 +25,7 @@ var sockets = [];
 var server = http.createServer(app);
 
 var io = socketio.listen(server);
+server.listen(process.env.PORT || 3000);
 
 
 /*app.use(function(req, res, next){
@@ -219,8 +220,9 @@ app.post('/endpoint', function(req, res){
 
 
 
-
+io.of('/chat');
 io.on('connection', function (socket) {
+  console.log(socket.id);
     messages.forEach(function (data) {
       socket.emit('message', data);
     });
@@ -279,7 +281,7 @@ module.exports= app;
 
 
 
-server.listen(process.env.PORT || 3000);
+
 
 //server.listen(app);
 /*
