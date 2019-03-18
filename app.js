@@ -219,7 +219,8 @@ app.post('/endpoint', function(req, res){
 
 
 
-io.sockets.on('connection', function (socket) {
+
+io.on('connection', function (socket) {
     messages.forEach(function (data) {
       socket.emit('message', data);
     });
