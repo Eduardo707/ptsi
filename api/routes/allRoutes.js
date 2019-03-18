@@ -17,7 +17,6 @@ const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
 const mp= require('../controllers/m_p_controller');
-const chat= require('../controllers/chat_controller');
 
 const notifications= require('../controllers/notifications_controller');
 
@@ -53,10 +52,7 @@ function loggedIn(req, res, next) {
     }
 }
 
-function port(req,res){
-    res.end();
-    
-}
+
 
 var cc;
  router.get('/cc',function(req, res) {
