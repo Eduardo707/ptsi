@@ -25,8 +25,10 @@ var sockets = [];
 var server = http.createServer(app);
 
 var io = socketio.listen(server);
-server.listen(process.env.PORT || 3000);
-
+server.listen(process.env.PORT || 3000,  function(){
+  var addr = server.address();
+  console.log("Chat server listening at", addr.address + ":" + addr.port);
+});
 
 /*app.use(function(req, res, next){
    res.locals.currentUser = req.user;
