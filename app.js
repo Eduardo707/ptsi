@@ -222,26 +222,62 @@ app.post('/endpoint', function(req, res){
 });
 
 
-var clients = {}; 
-io.on("connection", function (client) {  
-    client.on("join", function(name){
-    	console.log("Joined: " + name);
-        clients[client.id] = name;
-        client.emit("update", "You have connected to the server.");
-        client.broadcast.emit("update", name + " has joined the server.")
+
+io.on('connection', function (socket) {
+  console.log(socket.id);
+    messages.forEach(function (data) {
+      socket.emit('message', data);
     });
 
-    client.on("send", function(msg){
-    	console.log("Message: " + msg);
-        client.broadcast.emit("chat", clients[client.id], msg);
+    sockets.push(socket);
+
+    socket.on('disconnect', function () {
+      sockets.splice(sockets.indexOf(socket), 1);
+      updateRoster();
     });
 
-    client.on("disconnect", function(){
-    	console.log("Disconnect");
-        io.emit("update", clients[client.id] + " has left the server.");
-        delete clients[client.id];
+    socket.on('message', function (msg) {
+      var text = String(msg || '');
+
+      if (!text)
+        return;
+
+      socket.get('name', function (err, name) {
+        var data = {
+          name: name,
+          text: text
+        };
+
+        broadcast('message', data);
+        messages.push(data);
+      });
     });
-});
+
+    socket.on('identify', function (name) {
+      socket.set('name', String(name || 'Anonymous'), function (err) {
+        updateRoster();
+      });
+    });
+  });
+
+function updateRoster() {
+  async.map(
+    sockets,
+    function (socket, callback) {
+      socket.get('name', callback);
+    },
+    function (err, names) {
+      broadcast('roster', names);
+    }
+  );
+}
+
+function broadcast(event, data) {
+  sockets.forEach(function (socket) {
+    socket.emit(event, data);
+  });
+}
+
 
 module.exports= app;
 
