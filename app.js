@@ -222,7 +222,7 @@ app.post('/endpoint', function(req, res){
 });
 
 
-
+io.of('/chat');
 io.on('connection', function (socket) {
   console.log(socket.id);
     messages.forEach(function (data) {
