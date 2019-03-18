@@ -222,6 +222,7 @@ app.post('/endpoint', function(req, res){
 });
 
 
+var clients = {}; 
 io.on("connection", function (client) {  
     client.on("join", function(name){
     	console.log("Joined: " + name);
