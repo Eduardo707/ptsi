@@ -2,6 +2,8 @@ var express= require('express');
 var bodyParser= require('body-parser');
 var mongoose= require('mongoose');
 var User= require('./api/APPI/user');
+var Chat= require('./api/APPI/chat');
+
 var cookieParser = require('cookie-parser');
 
 var path = require('path');
@@ -224,9 +226,10 @@ app.post('/endpoint', function(req, res){
 
 
 io.on('connection', function (socket) {
-  console.log(socket.id);
+  
     messages.forEach(function (data) {
       socket.emit('message', data);
+      console.log(data);
     });
 
     sockets.push(socket);
@@ -249,7 +252,35 @@ io.on('connection', function (socket) {
         };
 
         broadcast('message', data);
+        
         messages.push(data);
+        
+        
+        
+        
+var newC= new Chat({
+
+
+medic_username: "dsa",
+//req.body.nome,  
+patient_username:"aaa"
+    
+       
+      });
+newC.msg.push({name: data.name, text: data.text})
+
+
+    newC.save(function(err){
+        if(err){
+            console.log(err);
+            
+        }
+     
+    });
+        
+        
+        
+        
       });
     });
 
