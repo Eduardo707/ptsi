@@ -95,7 +95,7 @@ exports.get_user_pacients2= function(req, res) {
     
     //var mail = decodeURIComponent(req.body.email);
     console.log("body " + req.body)
-    var mail = unescape(req.body.username);
+    var mail = unescape(req.body.email);
     console.log(mail);
     
 Pacientes.findOne({email: mail},function(err, docs){
@@ -105,7 +105,7 @@ Pacientes.findOne({email: mail},function(err, docs){
             res.json({err});
         }
       console.log(docs);
-      console.log(req.body.email);
+      console.log(req.body.username);
       res.json({patient:docs});
     });
 };
