@@ -76,7 +76,7 @@ exports.get_user_pacients= function(req, res) {
     
     //var mail = decodeURIComponent(req.body.email);
     console.log("body " + req.body)
-    var mail = unescape(req.body.email);
+    var mail = unescape(req.body.username);
     console.log(mail);
     
 Pacientes.findOne({email: mail},function(err, docs){
@@ -91,6 +91,24 @@ Pacientes.findOne({email: mail},function(err, docs){
     });
 };
 
+exports.get_user_pacients2= function(req, res) {
+    
+    //var mail = decodeURIComponent(req.body.email);
+    console.log("body " + req.body)
+    var mail = unescape(req.body.username);
+    console.log(mail);
+    
+Pacientes.findOne({email: mail},function(err, docs){
+    
+         if(err) {
+            console.log(err);
+            res.json({err});
+        }
+      console.log(docs);
+      console.log(req.body.email);
+      res.json({patient:docs});
+    });
+};
 exports.get_recent_pacients= function(req, res) {
 Pacientes.findOne().sort({"date_reg": -1}).exec(function(err, docs){
           if(err) {

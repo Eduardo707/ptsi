@@ -256,7 +256,8 @@ io.on('connection', function (socket) {
         messages.push(data);
         
         
-        
+        /*--------------------------------------------- base dados      
+  
         
 var newC= new Chat({
 
@@ -278,7 +279,7 @@ newC.msg.push({name: data.name, text: data.text})
      
     });
         
-        
+  --------------------------------------------- base dados   */   
         
         
       });
