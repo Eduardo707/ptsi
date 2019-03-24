@@ -96,7 +96,7 @@ exports.get_user_pacients2= function(req, res) {
  
  var us= req.body.email;
 
-Pacientes.findOne({emai: us},function(err, docs){
+Pacientes.findOne({email: us},function(err, docs){
     
          if(err) {
             console.log(err);
