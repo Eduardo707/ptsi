@@ -93,20 +93,17 @@ Pacientes.findOne({email: mail},function(err, docs){
 
 exports.get_user_pacients2= function(req, res) {
     
-    //var mail = decodeURIComponent(req.body.email);
-    console.log("body " + req.body)
-    var mail = unescape(req.body.email);
-    console.log(mail);
-    
-Pacientes.findOne({email: mail},function(err, docs){
+ 
+ var us= req.body.email;
+
+Pacientes.findOne({emai: us},function(err, docs){
     
          if(err) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
-      console.log(req.body.username);
-      res.json({patient:docs});
+
+      res.json(docs);
     });
 };
 exports.get_recent_pacients= function(req, res) {
