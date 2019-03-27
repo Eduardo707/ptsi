@@ -13,7 +13,7 @@ exports.post_readings =  function(req, res){
     ritmo: req.body.ritmo,  
     pressao_art: req.body.pressao_art, 
     temp_pele: req.body.temp_pele,
-    ph: req.body.ph,
+
     passos:req.body.passos,
       data_resg: Date.now(),
       notas: req.body.notas
@@ -80,7 +80,6 @@ docs.medicEmail=req.body.medicEmail;
 docs.ritmo= req.body.ritmo;
 docs.pressao_art= req.body.pressao_art;
 docs.temp_pele= req.body.temp_pele;
-docs.ph= req.body.ph;
 docs.passos= req.body.passos;
 docs.data_resg= req.body.data_resg;
 docs.notas= req.body.notas;
