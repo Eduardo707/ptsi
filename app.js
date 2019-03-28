@@ -131,6 +131,10 @@ mongoose.connect('mongodb://ed:ed@ds237489.mlab.com:37489/heroku_4jqslj1n');
 
 var db= mongoose.connection;
 
+app.get('/', (req, res) => {
+
+res.send('Chat Server is running on port 3000')
+});
 
 
         
