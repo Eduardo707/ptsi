@@ -205,10 +205,7 @@ app.get("/login", function(req, res){
 res.render("login", {page: 'login'}); 
 });
 
-/*app.get("/reset/:token", function(req, res){
-   
-res.render("reset", {page: 'reset'}); 
-});*/
+
 
 app.get('/forgot', function(req, res) {
   res.render('forgot');
@@ -241,6 +238,7 @@ io.on('connection', function (socket) {
 
     socket.on('message', function (msg) {
       var text = String(msg || '');
+      
 
       if (!text)
         return;
