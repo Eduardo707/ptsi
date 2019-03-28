@@ -226,10 +226,16 @@ app.post('/endpoint', function(req, res){
 
 
 io.on('connection', (socket) => {
+  
+messages.forEach(function (data) {
+      socket.emit('message', data);
+      console.log(data);
+    });
 
+    sockets.push(socket);
 console.log('user connected')
 
-socket.on('join', function(userNickname) {
+socket.on('identify', function(userNickname) {
 
         console.log(userNickname +" : has joined the chat "  );
 
@@ -237,16 +243,19 @@ socket.on('join', function(userNickname) {
     });
 
 
-socket.on('messagedetection', (senderNickname,messageContent) => {
+socket.on('message', (name,text) => {
        
        //log the message in console 
 
-       console.log(senderNickname+" :" +messageContent)
         //create a message object 
-       let  message = {"message":messageContent, "senderNickname":senderNickname}
+       let  data = {"text":text, "name":name}
           // send the message to the client side  
-       io.emit('message', message );
-     
+       io.emit('message', data );
+       
+            console.log(data);
+                    messages.push(data);
+
+
       });
       
   
