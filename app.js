@@ -224,38 +224,38 @@ app.post('/endpoint', function(req, res){
 
 
 
-io.on('connection', function (socket) {
-  console.log(socket);
-  
-    messages.forEach(function (data) {
-      socket.emit('message', data);
-      console.log(data);
+io.on('connection', (socket) => {
+
+console.log('user connected')
+
+socket.on('join', function(userNickname) {
+
+        console.log(userNickname +" : has joined the chat "  );
+
+        socket.broadcast.emit('userjoinedthechat',userNickname +" : has joined the chat ");
     });
 
-    sockets.push(socket);
 
-    socket.on('disconnect', function () {
-      sockets.splice(sockets.indexOf(socket), 1);
-      updateRoster();
-    });
+socket.on('messagedetection', (senderNickname,messageContent) => {
+       
+       //log the message in console 
 
-    socket.on('message', function (msg) {
-      var text = String(msg || '');
+       console.log(senderNickname+" :" +messageContent)
+        //create a message object 
+       let  message = {"message":messageContent, "senderNickname":senderNickname}
+          // send the message to the client side  
+       io.emit('message', message );
+     
+      });
       
+  
+ socket.on('disconnect', function() {
+    console.log( ' user has left ')
+    socket.broadcast.emit("userdisconnect"," user has left ") 
 
-      if (!text)
-        return;
+});
 
-      socket.get('name', function (err, name) {
-        var data = {
-          name: name,
-          text: text
-        };
 
-        broadcast('message', data);
-        
-        messages.push(data);
-        
         
         /*--------------------------------------------- base dados      
   
@@ -284,32 +284,8 @@ newC.msg.push({name: data.name, text: data.text})
         
         
       });
-    });
+    
 
-    socket.on('identify', function (name) {
-      socket.set('name', String(name || 'Anonymous'), function (err) {
-        updateRoster();
-      });
-    });
-  });
-
-function updateRoster() {
-  async.map(
-    sockets,
-    function (socket, callback) {
-      socket.get('name', callback);
-    },
-    function (err, names) {
-      broadcast('roster', names);
-    }
-  );
-}
-
-function broadcast(event, data) {
-  sockets.forEach(function (socket) {
-    socket.emit(event, data);
-  });
-}
 
 
 module.exports= app;
