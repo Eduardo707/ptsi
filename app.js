@@ -225,6 +225,7 @@ app.post('/endpoint', function(req, res){
 
 
 io.on('connection', function (socket) {
+  console.log(socket);
   
     messages.forEach(function (data) {
       socket.emit('message', data);

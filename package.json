@@ -22,7 +22,7 @@
        "passport-http-bearer": "*",
        "crypto" : "*",
     "passport-local-mongoose": "*",
-    "socket.io": "~0.9.14",
+    "socket.io": "^2.0.3",
     "method-override": "*",
     "css": "*",
     "body-parser": "*",
