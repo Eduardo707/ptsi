@@ -297,9 +297,10 @@ server.listen(process.env.PORT || 5000, process.env.IP , function(){
   var addr = server.address();
   console.log("Chat server listening at", addr.address + ":" + addr.port);
 });*/
-server.listen(process.env.PORT || 3000,  function(){
-  var addr = server.address();
-  console.log("Chat server listening at", addr.address + ":" + addr.port);
+server.listen(process.env.PORT || 3000,()=>{
+
+console.log('Node app is running on port 3000');
+
 });
 
 console.log('run');
