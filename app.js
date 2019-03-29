@@ -242,11 +242,11 @@ socket.on('identify', function(userNickname) {
 
         console.log(userNickname +" : has joined the chat "  );
 
-        socket.broadcast.emit('userjoinedthechat',userNickname +" : has joined the chat ");
+        socket.broadcast.emit('userjoinedthechat',userNickname," : has joined the chat ");
     });
 
 
-socket.on('message', (name,text) => {
+socket.on('newmessage', (name,text) => {
        
        //log the message in console 
 
