@@ -242,7 +242,7 @@ socket.on('identify', function(userNickname) {
 
         console.log(userNickname +" : has joined the chat "  );
 
-        socket.broadcast.emit('userjoinedthechat',userNickname," : has joined the chat ");
+        socket.broadcast.emit('userjoinedthechat',userNickname);
     });
 
 
