@@ -233,7 +233,10 @@ messages.forEach(function (data) {
     });
 
     sockets.push(socket);
-console.log('user connected')
+console.log('user connected');
+
+
+
 
 socket.on('identify', function(userNickname) {
 
