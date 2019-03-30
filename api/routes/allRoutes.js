@@ -158,7 +158,7 @@ router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medi
  router.get('/mp/all', mp.get_all_m_p);
  
 
- router.get('/calendar/all',passport.authenticate("bearer", {session: false}),ca.get_all_calendar);
+ router.get('/calendar/all',ca.get_all_calendar);
   router.post('/calendar/new',ca.create_calendar);
   router.get('/calendar/user',passport.authenticate("bearer", {session: false}),ca.get_user_calendar);
 router.post('/calendar/:id',passport.authenticate("bearer", {session: false}),ca.update_calendar);
