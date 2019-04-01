@@ -11,7 +11,6 @@ var Pacientes= require('../APPI/pacientes');
 exports.create_pacients= function(req, res){
 var newP= new Pacientes({
 
-medicEmail:req.body.medicEmail,
 nome:req.body.nome,  
 num_tel: req.body.num_tel, 
 
