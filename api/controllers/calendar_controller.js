@@ -15,7 +15,7 @@ var newC= new Calendar({
 
 
  username: 'edumf7@hotmail.com',
-    title: 'kmlm',
+    title: 'lkmklmkl',
      start_date: Date.now(),
     due_date: Date.now(),  
     assigned_to: 'Luisa', 
@@ -24,19 +24,14 @@ var newC= new Calendar({
        
       });
 
-     let Pusher = require('pusher');
-                let pusher = new Pusher({
-                    appId: process.env.PUSHER_APP_ID,
-                    key: process.env.PUSHER_APP_KEY,
-                    secret: process.env.PUSHER_APP_SECRET,
-                    cluster: process.env.PUSHER_APP_CLUSTER
-                });
-    newC.save(function(err, post){
+             
+             
+    newC.save(function(err){
         if(err){
             console.log(err);
             
         }
-        pusher.trigger('notifications', 'post_updated', post, req.headers['x-socket-id']);
+       
        res.send("sucesso");
     });
  };

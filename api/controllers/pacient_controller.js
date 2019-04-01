@@ -27,7 +27,7 @@ app: req.body.app
 
 
     var newUser = new User({
-        username: req.body.username,
+        username: req.body.email,
       
      //   email: req.body.email,
        

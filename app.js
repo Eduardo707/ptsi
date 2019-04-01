@@ -106,7 +106,17 @@ passport.use(new LocalStrategy(
 
 
 
+     let Pusher = require('pusher');
 
+  
+
+
+var pusher = Pusher.forURL("https://261855ea4e070c4bb300:6c53892bdc1267e666bd@api-eduardoferreira.c9users.io/apps/749232");
+
+console.log(pusher);
+pusher.trigger('my-channel', 'my-event', {
+  "message": "hello world"
+});
 
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -198,6 +208,14 @@ app.get("/pacients/user", function(req, res){
    res.render("pacientes"); 
 
 });
+
+
+app.get("/notif", function(req, res){
+    
+   res.render("notifications"); 
+
+});
+
 
 //---------
 // show register form
