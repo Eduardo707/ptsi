@@ -104,7 +104,13 @@ passport.use(new LocalStrategy(
 
 */
 
+
+
+
+
+
 passport.use(new LocalStrategy(User.authenticate()));
+
 
 
 
@@ -130,6 +136,12 @@ passport.deserializeUser(User.deserializeUser());
 mongoose.connect('mongodb://ed:ed@ds237489.mlab.com:37489/heroku_4jqslj1n');
 
 var db= mongoose.connection;
+
+
+  User.watch().
+    on('change', data => console.log(new Date(), data));
+
+
 
 app.get('/', (req, res) => {
 

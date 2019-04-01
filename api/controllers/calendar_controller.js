@@ -2,6 +2,7 @@
 
 var mongoose= require('mongoose');
 var Calendar= require('../APPI/calendar');
+    require('dotenv').config();
 
 
 
@@ -14,20 +15,28 @@ var newC= new Calendar({
 
 
  username: 'edumf7@hotmail.com',
-    title: 'tito',
+    title: 'kmlm',
      start_date: Date.now(),
     due_date: Date.now(),  
     assigned_to: 'Luisa', 
-    description: 'Diabetes fora do controlo, causa bolo cheio de gomas'
+    description: ''
 
        
       });
 
-    newC.save(function(err){
+     let Pusher = require('pusher');
+                let pusher = new Pusher({
+                    appId: process.env.PUSHER_APP_ID,
+                    key: process.env.PUSHER_APP_KEY,
+                    secret: process.env.PUSHER_APP_SECRET,
+                    cluster: process.env.PUSHER_APP_CLUSTER
+                });
+    newC.save(function(err, post){
         if(err){
             console.log(err);
             
         }
+        pusher.trigger('notifications', 'post_updated', post, req.headers['x-socket-id']);
        res.send("sucesso");
     });
  };
