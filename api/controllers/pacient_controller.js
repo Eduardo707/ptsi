@@ -13,7 +13,7 @@ var newP= new Pacientes({
 
 nome:req.body.nome,  
 num_tel: req.body.num_tel, 
-medicEmail: req.body.medicEmail,
+//medicEmail: req.body.medicEmail,
 morada:req.body.morada,
 email: req.body.email,
 utente:req.body.utente,
