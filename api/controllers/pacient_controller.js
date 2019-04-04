@@ -128,32 +128,32 @@ Pacientes.findOne({_id: id},function(err, docs){
             res.json({err});
         }
         // res.send(docs);
-        if(!req.body.email==null){
+        if(req.body.email!==null){
             docs.email= req.body.email;
         }
-          if(!req.body.medicEmail==null){
+          if(req.body.medicEmail!==null){
             docs.medicEmail= req.body.medicEmail;
         }
-          if(!req.body.nome==null){
+          if(req.body.nome!==null){
               console.log(req.body.nome);
             docs.nome= req.body.nome;
         }
-          if(!req.body.num_tel==null){
+          if(req.body.num_tel!==null){
             docs.num_tel= req.body.num_tel;
         } 
-        if(!req.body.morada==null){
+        if(req.body.morada!==null){
             docs.morada= req.body.morada;
         } 
-        if(!req.body.utente==null){
+        if(req.body.utente!==null){
             docs.utente= req.body.utente;
         }
-        if(!req.body.date==null){
+        if(req.body.date!==null){
             docs.date= req.body.date;
         }  
-        if(!req.body.beneficiario==null){
+        if(req.body.beneficiario!==null){
             docs.beneficiario= req.body.beneficiario;
         }
-        if(!req.body.app==null){
+        if(req.body.app!==null){
             docs.app= req.body.app;
         }
     
