@@ -10,7 +10,7 @@ var Notificacoes= require('../APPI/notificacoes');
 exports.create_readings_gli= function(req, res){
 var newL= new Leituras_gli({
 email:req.body.email,
-medicEmail:req.body.medicEmail,
+
 
 glicemia: req.body.glicemia,  
 
@@ -25,7 +25,7 @@ date_resg: Date.now(),
     if(req.body.glicemia>=120){
 var newN= new Notificacoes({
 email:req.body.email,
-medicEmail:req.body.medicEmail,
+
 pacient: req.body.pacient,
 glicemia: req.body.glicemia,
 
