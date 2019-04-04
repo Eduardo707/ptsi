@@ -144,7 +144,9 @@ Pacientes.findOne({_id: id},function(err, docs){
         }
         
           if( req.body.num_tel !== 'undefined'){
+              console.log(docs.num_tel + '     1');
             docs.num_tel= req.body.num_tel;
+             console.log(docs.num_tel + '     2');
         } 
         
         if( req.body.morada !== 'undefined'){
