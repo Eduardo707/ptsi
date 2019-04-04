@@ -122,6 +122,8 @@ exports.update_pacients= function(req, res) {
 var id= req.params.id;
  
 Pacientes.findOne({_id: id},function(err, docs){
+    console.log( docs + "docs-----");
+    console.log("++++++" + req.body);
     
          if(err) {
             console.log(err);
