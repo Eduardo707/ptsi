@@ -143,7 +143,7 @@ Pacientes.findOne({_id: id},function(err, docs){
             docs.nome= req.body.nome;
         }
         
-          if( req.body.num_tel !== 'undefined'){
+          if( req.body.num_tel){
               console.log(docs.num_tel + '     1');
             docs.num_tel= req.body.num_tel;
              console.log(docs.num_tel + '     2');
