@@ -130,32 +130,40 @@ Pacientes.findOne({_id: id},function(err, docs){
         // res.send(docs);
         if(req.body.email!==null){
             docs.email= req.body.email;
-        }
+        }else {docs.email = docs.email}
+        
           if(req.body.medicEmail!==null){
             docs.medicEmail= req.body.medicEmail;
-        }
+        }else {docs.medicEmail = docs.medicEmail}
+        
           if(req.body.nome!==null){
               console.log(req.body.nome);
             docs.nome= req.body.nome;
-        }
+        }else {docs.nome = docs.nome}
+        
           if(req.body.num_tel!==null){
             docs.num_tel= req.body.num_tel;
-        } 
+        } else {docs.num_tel = docs.num_tel}
+        
         if(req.body.morada!==null){
             docs.morada= req.body.morada;
-        } 
+        } else {docs.morada = docs.morada}
+        
         if(req.body.utente!==null){
             docs.utente= req.body.utente;
-        }
+        }else {docs.utente = docs.utente}
+        
         if(req.body.date!==null){
             docs.date= req.body.date;
-        }  
+        }  else {docs.date = docs.date}
+        
         if(req.body.beneficiario!==null){
             docs.beneficiario= req.body.beneficiario;
-        }
+        }else {docs.beneficiario = docs.beneficiario}
+        
         if(req.body.app!==null){
             docs.app= req.body.app;
-        }
+        }else {docs.app = docs.app}
     
 
        console.log(docs);
