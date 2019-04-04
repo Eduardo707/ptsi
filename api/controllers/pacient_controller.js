@@ -119,7 +119,7 @@ Pacientes.findOne().sort({"date_reg": -1}).exec(function(err, docs){
 
 exports.update_pacients= function(req, res) {
    
-var id= req.param.id;
+var id= req.params.id;
  
 Pacientes.findOne({_id: id},function(err, docs){
     
