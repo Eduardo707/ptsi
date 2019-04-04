@@ -135,6 +135,7 @@ Pacientes.findOne({_id: id},function(err, docs){
             docs.medicEmail= req.body.medicEmail;
         }
           if(!req.body.nome==null){
+              console.log(req.body.nome);
             docs.nome= req.body.nome;
         }
           if(!req.body.num_tel==null){
@@ -156,7 +157,6 @@ Pacientes.findOne({_id: id},function(err, docs){
             docs.app= req.body.app;
         }
     
-    console.log(docs);
 
        
      docs.save(function(err, docs) {
