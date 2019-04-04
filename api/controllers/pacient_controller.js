@@ -159,7 +159,7 @@ Pacientes.findOne({_id: id},function(err, docs){
     
 
        console.log(docs);
-   /*  docs.save(function(err, docs) {
+    docs.save(function(err, docs) {
         if(err) {
             console.log(err);
             res.json({err});
@@ -169,7 +169,7 @@ Pacientes.findOne({_id: id},function(err, docs){
       
  
 
-    });*/
+    });
 });
  };
 

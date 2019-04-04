@@ -143,7 +143,7 @@ router.post('/readings_gli/:id',passport.authenticate("bearer", {session: false}
     router.post('/pacients2/user',passport.authenticate("bearer", {session: false}),pacients.get_user_pacients2);
 
   router.get('/pacients/recent',passport.authenticate("bearer", {session: false}),pacients.get_recent_pacients);
-router.post('/pacients/:id',passport.authenticate("bearer", {session: false}),pacients.update_pacients);
+router.put('/pacients/:id',passport.authenticate("bearer", {session: false}),pacients.update_pacients);
 
 
  router.get('/medics',passport.authenticate("bearer", {session: false}),medics.get_all_medics);
