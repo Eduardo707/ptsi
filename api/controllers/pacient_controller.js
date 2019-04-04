@@ -155,7 +155,8 @@ Pacientes.findOne({_id: id},function(err, docs){
         if(!req.body.app==null){
             docs.app= req.body.app;
         }
-
+    
+    console.log(docs);
 
        
      docs.save(function(err, docs) {
