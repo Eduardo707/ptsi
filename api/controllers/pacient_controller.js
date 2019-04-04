@@ -132,28 +132,28 @@ Pacientes.findOne({_id: id},function(err, docs){
             docs.email= req.body.email;
         }
           if(!req.body.medicEmail==null){
-            docs.email= req.body.medicEmail;
+            docs.medicEmail= req.body.medicEmail;
         }
           if(!req.body.nome==null){
-            docs.email= req.body.nome;
+            docs.nome= req.body.nome;
         }
           if(!req.body.num_tel==null){
-            docs.email= req.body.num_tel;
+            docs.num_tel= req.body.num_tel;
         } 
         if(!req.body.morada==null){
-            docs.email= req.body.morada;
+            docs.morada= req.body.morada;
         } 
         if(!req.body.utente==null){
-            docs.email= req.body.utente;
+            docs.utente= req.body.utente;
         }
         if(!req.body.date==null){
-            docs.email= req.body.date;
+            docs.date= req.body.date;
         }  
         if(!req.body.beneficiario==null){
-            docs.email= req.body.beneficiario;
+            docs.beneficiario= req.body.beneficiario;
         }
         if(!req.body.app==null){
-            docs.email= req.body.app;
+            docs.app= req.body.app;
         }
 
 
@@ -162,9 +162,9 @@ Pacientes.findOne({_id: id},function(err, docs){
         if(err) {
             console.log(err);
             res.json({err});
-        }
+        } else{
       console.log('y');
-      res.send(docs);
+      res.send(docs);}
       
  
 
