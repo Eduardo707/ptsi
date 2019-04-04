@@ -130,40 +130,40 @@ Pacientes.findOne({_id: id},function(err, docs){
             res.json({err});
         }
         // res.send(docs);
-        if(req.body.email!==null){
+        if(req.body.email!=='undifined'){
             docs.email= req.body.email;
         }else {docs.email = docs.email}
         
-          if(req.body.medicEmail!==null){
+          if(req.body.medicEmail!=='undefined'){
             docs.medicEmail= req.body.medicEmail;
         }else {docs.medicEmail = docs.medicEmail}
         
-          if(req.body.nome!==null){
+          if(req.body.nome!=='undefined'){
               console.log(req.body.nome);
             docs.nome= req.body.nome;
         }else {docs.nome = docs.nome}
         
-          if(req.body.num_tel!==null){
+          if(req.body.num_tel!=='undefined'){
             docs.num_tel= req.body.num_tel;
         } else {docs.num_tel = docs.num_tel}
         
-        if(req.body.morada!==null){
+        if(req.body.morada!=='undefined'){
             docs.morada= req.body.morada;
         } else {docs.morada = docs.morada}
         
-        if(req.body.utente!==null){
+        if(req.body.utente!=='undefined'){
             docs.utente= req.body.utente;
         }else {docs.utente = docs.utente}
         
-        if(req.body.date!==null){
+        if(req.body.date!=='undefined'){
             docs.date= req.body.date;
         }  else {docs.date = docs.date}
         
-        if(req.body.beneficiario!==null){
+        if(req.body.beneficiario!=='undefined'){
             docs.beneficiario= req.body.beneficiario;
         }else {docs.beneficiario = docs.beneficiario}
         
-        if(req.body.app!==null){
+        if(req.body.app!=='undefined'){
             docs.app= req.body.app;
         }else {docs.app = docs.app}
     
