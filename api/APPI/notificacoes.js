@@ -4,7 +4,7 @@ var notificacoesSchema = new mongoose.Schema({
     
      email: String,
     pacient: String,
-    medicEmail:String,
+
 glicemia: Number,
  aviso: String,
     nivel: String,

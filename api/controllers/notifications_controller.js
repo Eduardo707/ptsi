@@ -9,7 +9,6 @@ exports.create_notifs= function(req, res){
     if(req.body.glicemia>=120){
 var newN= new Notificacoes({
 email:req.body.email,
-medicEmail:req.body.medicEmail,
 pacient: req.body.pacient,
 glicemia: req.body.glicemia,
 
