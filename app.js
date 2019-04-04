@@ -325,7 +325,7 @@ server.listen(process.env.PORT || 5000, process.env.IP , function(){
   console.log("Chat server listening at", addr.address + ":" + addr.port);
 });*/
 server.listen(process.env.PORT || 3000 , process.env.IP || '0.0.0.0', ()=>{
-console.log('https://228537b6feeb4474b08e19d3c5a5a492.vfs.cloud9.us-east-2.amazonaws.com/');
+console.log('https://39e4c824149241e2b62a8cf411671688.vfs.cloud9.us-east-2.amazonaws.com/');
 
 });
 

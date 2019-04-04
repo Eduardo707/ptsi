@@ -128,17 +128,34 @@ Pacientes.findOne({_id: id},function(err, docs){
             res.json({err});
         }
         // res.send(docs);
-        
-docs.email= req.body.email;
-docs.medicEmail= req.body.medicEmail;
-docs.nome= req.body.nome;
-docs.num_tel= req.body.num_tel;
-docs.morada= req.body.morada;
-//docs.mail= req.body.mail;
-docs.utente=req.body.utente;
-docs.data_nasc= req.body.date;
-docs.beneficiario= req.body.beneficiario;
-docs.app= req.body.app;
+        if(!req.body.email==null){
+            docs.email= req.body.email;
+        }
+          if(!req.body.medicEmail==null){
+            docs.email= req.body.medicEmail;
+        }
+          if(!req.body.nome==null){
+            docs.email= req.body.nome;
+        }
+          if(!req.body.num_tel==null){
+            docs.email= req.body.num_tel;
+        } 
+        if(!req.body.morada==null){
+            docs.email= req.body.morada;
+        } 
+        if(!req.body.utente==null){
+            docs.email= req.body.utente;
+        }
+        if(!req.body.date==null){
+            docs.email= req.body.date;
+        }  
+        if(!req.body.beneficiario==null){
+            docs.email= req.body.beneficiario;
+        }
+        if(!req.body.app==null){
+            docs.email= req.body.app;
+        }
+
 
        
      docs.save(function(err, docs) {
