@@ -130,7 +130,7 @@ Pacientes.findOne({_id: id},function(err, docs){
             res.json({err});
         }
         // res.send(docs);
-        if(typeof req.body.email === 'undifined'){
+        if(typeof req.body.email === 'undefined'){
             docs.email= req.body.email;
         }else {docs.email = docs.email}
         
