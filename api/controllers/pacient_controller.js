@@ -123,7 +123,7 @@ var id= req.params.id;
  
 Pacientes.findOne({_id: id},function(err, docs){
     console.log( docs + "docs-----");
-    console.log("++++++" + req.body);
+    console.log("++++++" + req.body.medicEmail);
     
          if(err) {
             console.log(err);
@@ -169,7 +169,7 @@ Pacientes.findOne({_id: id},function(err, docs){
     
 
        console.log(docs);
-    docs.update(function(err, docs) {
+    docs.save(function(err, docs) {
         if(err) {
             console.log(err);
             res.json({err});
