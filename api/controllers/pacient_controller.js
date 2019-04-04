@@ -130,15 +130,15 @@ Pacientes.findOne({_id: id},function(err, docs){
             res.json({err});
         }
         // res.send(docs);
-        if( req.body.email !== 'undefined'){
+        if( req.body.email){
             docs.email= req.body.email;
         }else {docs.email = docs.email}
         
-          if( req.body.medicEmail !== 'undefined'){
+          if( req.body.medicEmail){
             docs.medicEmail= req.body.medicEmail;
         }else {docs.medicEmail = docs.medicEmail}
         
-          if( req.body.nome !== 'undefined'){
+          if( req.body.nome){
               console.log(req.body.nome);
             docs.nome= req.body.nome;
         }
@@ -149,25 +149,25 @@ Pacientes.findOne({_id: id},function(err, docs){
              console.log(docs.num_tel + '     2');
         } 
         
-        if(typeof req.body.morada !== 'undefined'){
+        if(typeof req.body.morada){
             docs.morada= req.body.morada;
                          console.log(docs.moradal + '     2');
 
         } 
         
-        if( req.body.utente !== 'undefined'){
+        if( req.body.utente){
             docs.utente= req.body.utente;
         }
         
-        if( req.body.date !== 'undefined'){
+        if( req.body.date){
             docs.date= req.body.date;
         } 
         
-        if( req.body.beneficiario !== 'undefined'){
+        if( req.body.beneficiario){
             docs.beneficiario= req.body.beneficiario;
         }
         
-        if( req.body.app !== 'undefined'){
+        if( req.body.app ){
             docs.app= req.body.app;
         }
     
