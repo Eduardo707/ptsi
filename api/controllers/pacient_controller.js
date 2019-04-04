@@ -93,7 +93,7 @@ Pacientes.findOne({email: mail},function(err, docs){
 exports.get_user_pacients2= function(req, res) {
     
  
- var us= req.body.email;
+ var us= req.params.email;
 
 Pacientes.findOne({email: us},function(err, docs){
     
@@ -169,7 +169,7 @@ Pacientes.findOne({_id: id},function(err, docs){
     
 
        console.log(docs);
-    docs.save(function(err, docs) {
+    docs.update(function(err, docs) {
         if(err) {
             console.log(err);
             res.json({err});
