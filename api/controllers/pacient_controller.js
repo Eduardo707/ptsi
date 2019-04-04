@@ -149,8 +149,10 @@ Pacientes.findOne({_id: id},function(err, docs){
              console.log(docs.num_tel + '     2');
         } 
         
-        if( req.body.morada !== 'undefined'){
+        if(typeof req.body.morada !== 'undefined'){
             docs.morada= req.body.morada;
+                         console.log(docs.moradal + '     2');
+
         } 
         
         if( req.body.utente !== 'undefined'){
