@@ -10,7 +10,7 @@ var leituras_gliSchema = new mongoose.Schema({
 
     
 });
-
+///glicemia
 
  module.exports = mongoose.model('leituras_glis', leituras_gliSchema);
 

@@ -6,27 +6,27 @@
   "repository": "",
   "author": "",
   "dependencies": {
+    "alert-node": "^1.2.3",
     "async": "~0.2.8",
     "bcrypt-nodejs": "0.0.3",
+    "body-parser": "*",
     "connect-flash": "^0.1.1",
-    
+    "cookie-parser": "*",
+    "crypto": "*",
+    "css": "*",
+    "dotenv": "*",
     "ejs": "2.2.3",
     "express": "~4.13.4",
     "express-session": "*",
     "gentelella": "^1.4.0",
+    "method-override": "*",
     "mongodb": "^3.0.6",
     "mongoose": "*",
     "nodemailer": "^4.6.4",
     "passport": "*",
+    "passport-http-bearer": "*",
     "passport-local": "*",
-       "passport-http-bearer": "*",
-       "crypto" : "*",
     "passport-local-mongoose": "*",
-    "socket.io": "^2.0.3",
-    "method-override": "*",
-    "css": "*",
-    "body-parser": "*",
-    "cookie-parser": "*",
-    "dotenv": "*"
+    "socket.io": "^2.0.3"
   }
 }

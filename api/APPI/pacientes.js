@@ -2,17 +2,17 @@ var mongoose = require('mongoose');
 
 var pacientesSchema = new mongoose.Schema({
     
-     email: String,
+     patientID: String,
     // medicEmail:String,
     nome: String,
  num_tel: Number,
-    especialidade: String, 
-    morada: String,  
+
+ leituras: [String],
  
-    utente: Number,
+    
     data_nasc: Date,
-    beneficiario: Number,
-    app: {type:Boolean, default: false}
+    sns: Number,
+    Active: {type:Boolean, default: false}
      
       
     

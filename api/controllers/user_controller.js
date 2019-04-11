@@ -10,8 +10,8 @@ var passport = require("passport");
 
 exports.register = function(req, res){
     
-    var newUser = new User({
-        username: req.body.username,
+    var newUser= new User({
+    username: req.body.username,
       
       //  email: req.body.email,
        
@@ -80,7 +80,7 @@ User.findOne({_id: id},function(err, docs){
         // res.send(docs);
         
 docs.username= req.body.username;
-docs.email= req.body.email;
+
 docs.isAdmin= req.body.isAdmin;
 
 

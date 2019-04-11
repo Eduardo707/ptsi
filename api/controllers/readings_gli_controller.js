@@ -2,7 +2,6 @@
 
 var mongoose= require('mongoose');
 var Leituras_gli= require('../APPI/leituras_gli');
-var MP= require('../APPI/medic_pacients');
 var Notificacoes= require('../APPI/notificacoes');
 
 

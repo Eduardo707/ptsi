@@ -1,12 +1,12 @@
-var mongoose = require('mongoose');
+var mongoose= require('mongoose');
 
-var pacientesSchema = new mongoose.Schema({
+var pacientesSchema= new mongoose.Schema({
     
-     email: String,
-     limites:String,
-    tipo_leit: String,
- limit_inf: Number,
-    limit_sup: Number, 
+patientID: String,
+type: String,
+    
+inf: Number,
+sup: Number, 
 
      
       
@@ -14,6 +14,6 @@ var pacientesSchema = new mongoose.Schema({
 });
 
 
- module.exports = mongoose.model('limites', pacientesSchema);
+module.exports= mongoose.model('limites', pacientesSchema);
 
     

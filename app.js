@@ -2,6 +2,9 @@ var express= require('express');
 var bodyParser= require('body-parser');
 var mongoose= require('mongoose');
 var User= require('./api/APPI/user');
+var Patients= require('./api/APPI/pacientes');
+var Medics= require('./api/APPI/medicos');
+
 var Chat= require('./api/APPI/chat');
 
 var cookieParser = require('cookie-parser');
@@ -105,12 +108,52 @@ passport.use(new LocalStrategy(
 */
 
 
-
-
 passport.use(new LocalStrategy(User.authenticate()));
 
+/*
+passport.use(new LocalStrategy(
+    {usernameField:'username'},
+    
+  function(userID, password, done) {
+    User.findOne({ userID: userID }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+*/
 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
+passport.use('medic', new LocalStrategy( function(username, done) {
+       Medics.findOne({ medicID: username}, function (err, user) {
+      console.log(user);;
+      if (err) { return done(err); }
+      if (!user) { return done(null, false, { message: 'User not active' }) }
+      return done(null, user);
+    })}));
+
+passport.use('patient', new LocalStrategy(
+    function(username, done) {
+  
+
+       Patients.findOne({ patientID: username}, function (err, user) {
+      console.log(user);
+      if (err) { return done(null, err); }
+      if (!user) { return done(null, false, { message: 'Not patient' }); }
+        if (!user.Active) { return done(null, false ,{ message: 'User not active' }); }
+      return done(null, user);
+    });
+    
+}
+));
 
 passport.use(new BearerStrategy( function(access_token, done) {
   
@@ -122,8 +165,7 @@ passport.use(new BearerStrategy( function(access_token, done) {
     });
   }
 ));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+
  
 
 
@@ -191,7 +233,7 @@ app.get("/index", function(req, res){
 res.render("index", {page: 'index'}); 
 
 });
-app.get("/pacients/user", function(req, res){
+app.get("/pacients/new", function(req, res){
     
    res.render("pacientes"); 
 
@@ -216,6 +258,12 @@ app.get("/login", function(req, res){
    
 res.render("login", {page: 'login'}); 
 });
+
+app.get("/login/patient", function(req, res){
+   
+res.render("login", {page: 'login'}); 
+});
+
 
 
 
@@ -248,8 +296,10 @@ console.log('user connected');
 
 
 
-
 socket.on('identify', function(userNickname) {
+    
+    
+
 
         console.log(userNickname +" : has joined the chat "  );
 
@@ -258,7 +308,7 @@ socket.on('identify', function(userNickname) {
 
 
 socket.on('newmessage', (name,text) => {
-       
+ 
        //log the message in console 
 
         //create a message object 

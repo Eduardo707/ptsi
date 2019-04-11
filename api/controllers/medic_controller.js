@@ -9,42 +9,21 @@ var Pacientes= require('../APPI/pacientes');
 exports.create_medics= function(req, res){
     
 
-    
-
-    
- Pacientes.findOne({email: "to@to"},function(err, docs){
-    
-         if(err) {
-            console.log(err);
-            res.json({err});
-        }
-    
- 
-   
-  
 
 var newM= new Medicos({
 
-nome: "dsa",
+nome: req.body.nome,
 //req.body.nome,  
-num_tel:"555666222",
-//req.body.num_tel, 
-morada: "jbu",
-//req.body.morada,
-email: "sd@c",
-//req.body.email,
-especialidade: "n",
-//req.body.especialidade,
-data_nasc: Date.now(),
-cedula: "65" ,
+medicID: req.body.medicID,
+
+sns: req.body.sns ,
 //req.body.cedula,
-data_acesso: Date.now(),
-//req.body.data_acesso,
-notas: "fsa"
+Active: req.body.Active,
+
     
        
       });
-newM.lista_pacientes.push({id_paciente: docs.id, nome_paciente: docs.nome})
+newM.lista_pacientes.push({id_paciente: req.body.id, nome_paciente: req.body.nome})
 
 
     newM.save(function(err){
@@ -54,7 +33,7 @@ newM.lista_pacientes.push({id_paciente: docs.id, nome_paciente: docs.nome})
         }
        res.send("sucesso");
     });
- });
+
     };
 
 
@@ -71,7 +50,7 @@ exports.get_all_medics= function(req, res) {
 };
 
 exports.get_user_medics= function(req, res) {
-Medicos.find({email: req.body.email},function(err, docs){
+Medicos.find({medicID: req.body.medicID},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
@@ -81,16 +60,7 @@ Medicos.find({email: req.body.email},function(err, docs){
     });
 };
 
-exports.get_recent_medics= function(req, res) {
-Medicos.findOne().sort({"date_reg": -1}).exec(function(err, docs){
-          if(err) {
-            console.log(err);
-            res.json({err});
-        }
-      console.log(docs);
-      res.json(docs);
-    });
-};
+
 
 
 exports.update_medics= function(req, res) {
@@ -105,18 +75,12 @@ Medicos.findOne({_id: id},function(err, docs){
         }
         // res.send(docs);
         
-docs.username= req.body.username;
+docs.medicID= req.body.medicID;
 docs.nome= req.body.nome;
-docs.num_tel= req.body.num_tel;
-docs.morada= req.body.morada;
-docs.email= req.body.email;
-docs.especialidade=req.body.especialidade;
-docs.data_nasc= req.body.date;
-docs.cedula= req.body.cedula;
-docs.data_acesso= req.body.data_acesso;
-docs.notas = req.body.notas;
+docs.Active= req.body.Active;
+docs.lista_pacientes.push({patientID: req.body.patientID,nome_paciente: req.body.nome_paciente});
     /*--------------------------------------------------------------------------------
-   // docs.lista_pacientes.push({id_paciente:"54",nome_paciente: "dfs"});
+   // 
 --------------------------------------------------------------------------*/
        
      docs.save(function(err, docs) {

@@ -5,6 +5,9 @@ var crypto = require("crypto");
 
 var mongoose = require('mongoose');
 var Users = require('../APPI/user');
+var Patients = require('../APPI/pacientes');
+var Medics = require('../APPI/medicos');
+
 
 var router= express();
 var passport = require("passport");
@@ -16,7 +19,7 @@ const readings= require('../controllers/readings_controller');
 const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
-const mp= require('../controllers/m_p_controller');
+
 const ca= require('../controllers/calendar_controller');
 
 const notifications= require('../controllers/notifications_controller');
@@ -60,34 +63,72 @@ var cc;
      res.json(req.user);
  });
  router.get('/logout',log.logout);
- router.post('/login', tok,passport.authenticate('local'), (req, res) => {
+ 
+ 
+ 
+ 
+ 
+ router.post('/login/medic', tok, passport.authenticate('local'),  (req, res) => {
+
+          
+          Medics.findOne({ patientID: req.user.username}, function (err,  medic) {
       
-//  res.json({session: req.session, user: req.user});
-/*req.session.save((err) => {
-    if (err) {
-      return next(err);
-    }
-    console.log('req.session', req.session)
-    console.log('req.user', req.user)
-    res.session = { cookie: req.session.cookie }
-    res.cookie('userid', req.user._id, { maxAge: 2592000000 });*/
- //   cc = "hello";
-   res.status(200).json({msg:"true",  user: req.user});
-  
-  //});
+      if (err) { res.json(err);  req.logout();}
+      if (!medic) { res.json({ message: 'Not medic' });  req.logout();}
+        if (!medic.Active) { res.json({ message: 'User not active' });
+            req.logout();
+            req.session.destroy();
+           
+        }
+        else{
+res.status(200).json({msg:"true",  user: req.user});}
 });
+    //});
+    
+    
+});
+
+ router.post('/login/patient', tok, passport.authenticate('local'), (req, res) => {
+     
+     
+          Patients.findOne({ patientID: req.user.username}, function (err, patient) {
+      
+      if (err) { res.json(err);  req.logout();}
+      if (!patient) { res.json({ message: 'Not patient' });  req.logout();}
+        if (!patient.Active) { res.json({ message: 'User not active' });
+            req.logout();
+            req.session.destroy();
+           
+        }
+        else{
+res.status(200).json({msg:"true",  user: req.user, patient: patient});}
+});
+    //});
+    
+    
+    
   
+});
+
+
+ 
+ 
+ 
   function tok(req,res,next){
              
    Users.findOne({username: req.body.username}, function(err, docs) {
-    console.log(Date.now());
+       if (err) { return res.err; }
+       if (!docs) { return res.json('no'); }
+  
       crypto.randomBytes(20, function(err, buf) {
+                 if (err) { return res.err; }
+
         var token = buf.toString('hex');
          docs.token = token;
          docs.resetSessionExpires = Date.now() + 86400000;
         docs.save(function(err, docs) {
         if(err) {
-            console.log(err);
+          
             res.json({err});
         }
       console.log('y');
@@ -95,7 +136,7 @@ var cc;
     next();
 
     });  
-        
+       
 
 });}); 
   };
@@ -138,7 +179,7 @@ router.post('/readings_gli/:id',passport.authenticate("bearer", {session: false}
 
 
  router.get('/pacients/all',passport.authenticate("bearer", {session: false}),pacients.get_all_pacients);
-  router.post('/pacients/new',passport.authenticate("bearer", {session: false}),pacients.create_pacients);
+  router.post('/pacients/new',pacients.create_pacients);
   router.get('/pacients/user',passport.authenticate("bearer", {session: false}),pacients.get_user_pacients);
     router.get('/pacients2/:email',passport.authenticate("bearer", {session: false}),pacients.get_user_pacients2);
 
@@ -149,13 +190,10 @@ router.put('/pacients/:id',passport.authenticate("bearer", {session: false}),pac
  router.get('/medics',passport.authenticate("bearer", {session: false}),medics.get_all_medics);
   router.post('/medics/new',passport.authenticate("bearer", {session: false}),medics.create_medics);
   router.get('/medics/user',passport.authenticate("bearer", {session: false}),medics.get_user_medics);
-  router.get('/medics/recent',passport.authenticate("bearer", {session: false}),medics.get_recent_medics);
+ 
 router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medics.update_medics);
 
-  router.get('/mp/list', mp.get_medic_p);
- router.post('/mp/new', mp.create_m_p);
 
- router.get('/mp/all', mp.get_all_m_p);
  
 
  router.get('/calendar/all',ca.get_all_calendar);

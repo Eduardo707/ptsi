@@ -1,19 +1,18 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Leituras = require('../APPI/leituras');
+var mongoose= require('mongoose');
+var Limites= require('../APPI/limites');
 
 
 
-exports.post_readings =  function(req, res){
-    var newL = new Leituras({
-      patientID: decodeURIComponent(req.body.patientID),
-      type:req.body.type,
+exports.create_limits= function(req, res){
+var newL= new Limites({
+patientID: decodeURIComponent(req.body.patientID),
+type:req.body.type,
 
-    value: req.body.value,  
+inf: req.body.inf,  
 
-      data_resg: Date.now(),
-      notas: req.body.notas
+sup: req.body.sup
        
       });
 
@@ -24,11 +23,11 @@ exports.post_readings =  function(req, res){
             console.log(err);
             
         }
-       res.json({msg: 'true'});
+res.json({msg: 'true'});
     });
 };
-exports.get_all_reads =  function(req, res) {
-    Leituras.find(function(err, docs){
+exports.get_all_limits= function(req, res) {
+    Limites.find(function(err, docs){
         if(err) {
             console.log(err);
             res.json({err});
@@ -38,8 +37,8 @@ exports.get_all_reads =  function(req, res) {
     });
 };
 
-exports.get_user_reads =  function(req, res) {
-    Leituras.findOne({patientID: req.body.patientID},function(err, docs){
+exports.get_user_limits= function(req, res) {
+Limites.findOne({patientID: req.body.patientID},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
@@ -49,8 +48,8 @@ exports.get_user_reads =  function(req, res) {
     });
 };
 
-exports.get_recent_read =  function(req, res) {
-    Leituras.findOne().sort({"date_reg": -1}).exec(function(err, docs){
+exports.get_recent_limits= function(req, res) {
+Limites.findOne().sort({"date_reg": -1}).exec(function(err, docs){
           if(err) {
             console.log(err);
             res.json({err});
@@ -60,11 +59,11 @@ exports.get_recent_read =  function(req, res) {
     });
 };
 
-exports.update_read= function(req, res) {
+exports.update_limits= function(req, res) {
    
 var id= req.param.id;
  
-Leituras.findOne({_id: id},function(err, docs){
+Limites.findOne({_id: id},function(err, docs){
     
          if(err) {
             console.log(err);
@@ -75,10 +74,9 @@ Leituras.findOne({_id: id},function(err, docs){
 docs.patientID= req.body.patientID;
 docs.type=req.body.type;
 
-docs.value= req.body.value;
-docs.data_resg= req.body.data_resg;
-docs.notas= req.body.notas;
-    
+docs.inf= req.body.inf;
+docs.sup= req.body.sup;
+
        
      docs.save(function(err, docs) {
         if(err) {
@@ -93,3 +91,4 @@ docs.notas= req.body.notas;
     });
 });
  };
+

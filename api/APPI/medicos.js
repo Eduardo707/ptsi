@@ -6,17 +6,12 @@ var Pacientes= require('../APPI/pacientes');
 var medicosSchema = new mongoose.Schema({
     
     
-    nome: String,
- num_tel: Number,
-    especialidade: String, 
-    morada: String,  
-    email:  {type: String, unique: true, required: true},
-    cedula: String,
-    data_nasc: Date,
 
-      notas: String,
+   medicID:  {type: String, unique: true, required: true},
+   nome: String,
+   Active:  {type: Boolean, required: true},
       
-      lista_pacientes:  [{_id: false,id_paciente: String, nome_paciente: String}]
+      lista_pacientes:  [{_id: false,patientID: String, nome_paciente: String}]
     
 });
 

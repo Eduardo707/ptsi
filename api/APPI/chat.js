@@ -10,7 +10,7 @@ var chatSchema = new mongoose.Schema({
  patient_username:{type:String, unique: true},
   
       
-     msg:  [{_id: false,name: String, text: String}]
+     msg:  [{_id: false,name: String, text: String, date: Date}]
     
 });
 

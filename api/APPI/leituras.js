@@ -3,13 +3,10 @@ var mongoose = require('mongoose');
 var leiturasSchema = new mongoose.Schema({
 
 
-    email: String,
-     medicEmail: String,
-    ritmo: Number,  
-    pressao_art: Number, 
-    temp_pele: Number,
-    ph: Number,
-    passos:Number,
+    patientID: String,
+  
+    type: String,  
+    value: Number,
       data_resg: Date,
       notas: String
 });

@@ -1,11 +1,25 @@
-<h1> Sign Up Form </h1>
 
-<form method="GET" action="/pacients/user">
-       <input  name="email" placeholder="email">
+<form method="POST" action="/pacients/new">
+<link rel="stylesheet" href="css/style.css">
+<div class="wrapper fadeInDown">
+<h1 style="color:white;"> Sign Up Form </h1>
 
 
-  
-       
-    <button> Submit </button>
-</form>
+    <!-- Register -->
+    <div id="formContentt">
+  <form method="POST" action="/pacients/new">
+      <input type="text"  class="fadeIn second" name="patientID" placeholder="patientID">
+      <input type="password" class="fadeIn third" name="nome" placeholder="nome">
+            <input type="password" class="fadeIn third" name="num_tel" placeholder="num_tel">
+                  <input type="password" class="fadeIn third" name="leituras" placeholder="leituras">
+                        <input type="password" class="fadeIn third" name="data_nasc" placeholder="data_nasc">
+                              <input type="password" class="fadeIn third" name="sns" placeholder="sns">
+   <!--    <input type="email" class="fadeIn third" name="email" placeholder="email">-->
+      <input type="submit" class="fadeIn fourth" value="Submit">
+      
 
+
+    </form>
+
+
+</div></div>
