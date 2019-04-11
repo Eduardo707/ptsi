@@ -101,7 +101,7 @@ res.status(200).json({msg:"true",  user: req.user});}
            
         }
         else{
-res.status(200).json({msg:"true",  user: req.user, patient: patient});}
+res.status(200).json({msg:"true",  user: req.user});}
 });
     //});
     
