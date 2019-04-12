@@ -71,7 +71,7 @@ var cc;
  router.post('/login/medic', tok, passport.authenticate('local'),  (req, res) => {
 
           
-          Medics.findOne({ patientID: req.user.username}, function (err,  medic) {
+          Medics.findOne({ medicID: req.user.username}, function (err,  medic) {
       
       if (err) { res.json(err);  req.logout();}
       if (!medic) { res.json({ message: 'Not medic' });  req.logout();}
@@ -104,15 +104,8 @@ res.status(200).json({msg:"true",  user: req.user});}
 res.status(200).json({msg:"true", user: req.user});}
 });
     //});
-    
-    
-    
-  
-});
+    });
 
-
- 
- 
  
   function tok(req,res,next){
              

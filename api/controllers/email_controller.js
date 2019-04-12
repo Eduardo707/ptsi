@@ -19,7 +19,7 @@ exports.forgot =  function(req, res, next) {
       });
     },
     function(token, done) {
-      User.findOne({ username: req.body.email }, function(err, user) {
+      User.findOne({ username: req.body.username }, function(err, user) {
         if (!user) {
         //  req.flash('error', 'No account with that email address exists.');
           return done(null,err);

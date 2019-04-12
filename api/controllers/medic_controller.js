@@ -16,7 +16,6 @@ nome: req.body.nome,
 //req.body.nome,  
 medicID: req.body.medicID,
 
-sns: req.body.sns ,
 //req.body.cedula,
 Active: req.body.Active,
 
