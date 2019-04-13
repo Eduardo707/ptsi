@@ -111,7 +111,7 @@ res.status(200).json({msg:"true", user: req.user});}
              
    Users.findOne({username: req.body.username}, function(err, docs) {
        if (err) { return res.err; }
-       if (!docs) { return next() }
+    if (!docs) { return res.status(500).json('brooke')}
   
       crypto.randomBytes(20, function(err, buf) {
                  if (err) { return res.err; }
