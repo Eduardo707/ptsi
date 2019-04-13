@@ -92,7 +92,7 @@ res.status(200).json({msg:"true",  user: req.user});}
 router.post('/login/patient', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
-    if (!user) { return res.status(400).json('no'); }
+    if (!user) { return res.status(400).send('no'); }
     req.logIn(user, function(err) {
       if (err) { return res.json(err); }
       return res.redirect('/users/' + user.username);
