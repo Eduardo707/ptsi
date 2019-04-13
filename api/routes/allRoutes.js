@@ -88,7 +88,21 @@ res.status(200).json({msg:"true",  user: req.user});}
     
 });
 
+
+router.post('/login/patient', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.status(400).json('no'); }
+    req.logIn(user, function(err) {
+      if (err) { return res.json(err); }
+      return res.redirect('/users/' + user.username);
+    });
+  })(req, res, next);
+});
+/*
+
  router.post('/login/patient', tok, passport.authenticate('local'), (req, res) => {
+
      
      
           Patients.findOne({ patientID: req.user.username}, function (err, patient) {
@@ -105,7 +119,7 @@ res.status(200).json({msg:"true", user: req.user});}
 });
     //});
     });
-
+*/
  
   function tok(req,res,next){
              
