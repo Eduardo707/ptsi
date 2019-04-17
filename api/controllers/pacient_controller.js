@@ -15,13 +15,11 @@ nome:req.body.nome,
 num_tel: req.body.num_tel, 
 patientID: req.body.patientID,
 sns:req.body.sns,
-data_nasc: Date.now(),
-
-Active: req.body.Active
-    
+data_nasc: Date.now,
+    leituras: req.body.leituras
        
       }); 
-      newP.leituras.push(req.body.leituras);
+     // newP.leituras.push(req.body.leituras);
 
 
 
