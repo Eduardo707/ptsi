@@ -15,7 +15,7 @@ nome:req.body.nome,
 num_tel: req.body.num_tel, 
 patientID: req.body.patientID,
 sns:req.body.sns,
-data_nasc: Date.now,
+data_nasc: req.body.date_nasc,
     leituras: req.body.leituras
        
       }); 
