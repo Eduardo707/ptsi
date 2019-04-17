@@ -24,7 +24,7 @@ data_nasc: Date.now,
 
 
     var newUser = new User({
-        username: req.body.username,
+        username: req.body.patientID,
       
      //   email: req.body.email,
        
