@@ -285,6 +285,8 @@ app.post('/endpoint', function(req, res){
 
 
 io.on('connection', (socket) => {
+        console.log('Yay, connection was recorded');
+
   
 messages.forEach(function (data) {
       socket.emit('message', data);
