@@ -103,7 +103,7 @@ exports.update_password= function(req, res) {
    
 var id= req.body.username;
  
-User.findOne({_id: id},function(err, docs){
+User.findOne({username: id},function(err, docs){
     
          if(err) {
             console.log(err);
@@ -148,8 +148,8 @@ User.findOne({_id: id},function(err, docs){
             return res.json('back1');
           //  return res.redirect('back');
         }
-        }
-      
+        }else{
+      return res.json('already exists');}
       
         });
         

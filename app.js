@@ -226,6 +226,10 @@ app.get("/chat", function(req, res){
 
 res.render("chat", {page: 'chat'}); 
 
+});app.get("/login1", function(req, res){
+
+res.render("login1", {page: 'reset'}); 
+
 });
 
 app.get("/index", function(req, res){

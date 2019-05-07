@@ -78,7 +78,6 @@ router.post('/login/medic', tok, function(req, res, next) {
         if (!medic.Active) {return res.json({ message: 'User not active' })}
     
    
-console.log(req.session);
 
 
     req.logIn(user, function(err) {
