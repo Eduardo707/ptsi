@@ -66,55 +66,70 @@ var cc;
  
  
  
+router.post('/login/medic', tok, function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.json('not exist'); }
  
- 
- router.post('/login/medic', tok, passport.authenticate('local'),  (req, res) => {
-
-          
-          Medics.findOne({ medicID: req.user.username}, function (err,  medic) {
+            Medics.findOne({ medicID: user.username}, function (err, medic) {
       
-      if (err) { res.json(err);  req.logout();}
-      if (!medic) { res.json({ message: 'Not medic' });  req.logout();}
-        if (!medic.Active) { res.json({ message: 'User not active' });
-            req.logout();
-            req.session.destroy();
-           
-        }
-        else{
-res.status(200).json({msg:"true",  user: req.user});}
-});
-    //});
+      if (err) { return res.json(err); }
+      if (!medic) {return res.json({ message: 'Not medic' });}
+        if (!medic.Active) {return res.json({ message: 'User not active' })}
     
-    
-});
+   
+console.log(req.session);
 
 
-
- router.post('/login/patient', tok, passport.authenticate('local'), (req, res) => {
-
-     
-     
-          Patients.findOne({ patientID: req.user.username}, function (err, patient) {
-      
-      if (err) { res.json(err);  req.logout();}
-      if (!patient) { res.json({ message: 'Not patient' });  req.logout();}
-        if (!patient.Active) { res.json({ message: 'User not active' });
-            req.logout();
-            req.session.destroy();
-           
-        }
-        else{
-res.status(200).json({msg:"true", user: req.user});}
-});
-    //});
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.status(200).json({msg:"true", user: req.user});
     });
+                
+                console.log(req.session);
+            });
+  })(req, res, next);
+});
+
+router.post('/login/patient', tok, function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.json('not exist'); }
+ 
+            Patients.findOne({ patientID: user.username}, function (err, patient) {
+      
+      if (err) { return res.json(err); }
+      if (!patient) {return res.json({ message: 'Not patient' });}
+        if (!patient.Active) {return res.json({ message: 'User not active' })}
+    
+   
+console.log(req.session);
+
+
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.status(200).json({msg:"true", user: req.user});
+    });
+                
+                console.log(req.session);
+            });
+  })(req, res, next);
+});
+/*
+router.post('/login/patient', tok, passport.authenticate('local'), (req, res) => {
+
+     
+     
+  
+    //});
+    });*/
 
  
   function tok(req,res,next){
              
    Users.findOne({username: req.body.username}, function(err, docs) {
        if (err) { return res.err; }
-       if (!docs) { return res.json('no'); }
+       if (!docs) { return next(); }
   
       crypto.randomBytes(20, function(err, buf) {
                  if (err) { return res.err; }
@@ -137,6 +152,7 @@ res.status(200).json({msg:"true", user: req.user});}
 });}); 
   };
   
+router.post('/signup/patient',tok,userr.update_password);
 
 
 // PARTE DOS ROLES
@@ -152,14 +168,14 @@ router.post('/users/update/:id',passport.authenticate("bearer", {session: false}
   router.post('/forgot',email.forgot);
 router.get('/reset/:token',email.get_reset);
 router.post('/reset/:token',email.post_reset);
-  
+
   router.get('/readings/all',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
   router.post('/readings/new', readings.post_readings);
   router.get('/readings/user',passport.authenticate("bearer", {session: false}),readings.get_user_reads);
   router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);
 router.post('/readings/:id',passport.authenticate("bearer", {session: false}),readings.update_read);
 
-
+/*
  router.get('/readings_gli/all',passport.authenticate("bearer", {session: false}),readings_gli.get_all_reads_gli);
   router.post('/readings_gli/new',passport.authenticate("bearer", {session: false}),readings_gli.create_readings_gli);
   router.get('/readings_gli/user',passport.authenticate("bearer", {session: false}),readings_gli.get_user_reads_gli);
@@ -168,7 +184,7 @@ router.post('/readings/:id',passport.authenticate("bearer", {session: false}),re
 
 
 router.post('/readings_gli/:id',passport.authenticate("bearer", {session: false}),readings_gli.update_read_gli);
-
+*/
 
 
 // router.get('/readings_gli/ll',readings_gli.get_ll_reads_gli);
