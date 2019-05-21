@@ -39,7 +39,17 @@ exports.get_all_reads =  function(req, res) {
 };
 
 exports.get_user_reads =  function(req, res) {
-    Leituras.findOne({patientID: req.body.patientID},function(err, docs){
+    Leituras.find({patientID: req.body.patientID},function(err, docs){
+         if(err) {
+            console.log(err);
+            res.json({err});
+        }
+      console.log(docs);
+      res.json(docs);
+    });
+};
+exports.get_user_gli_reads =  function(req, res) {
+    Leituras.find({patientID: req.body.patientID, type: "glicemia"},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
