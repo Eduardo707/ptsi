@@ -12,7 +12,7 @@ exports.post_readings =  function(req, res){
 
     value: req.body.value,  
 
-      data_resg: Date.now(),
+      data_resg: req.body.data_resg,
       notas: req.body.notas
        
       });
