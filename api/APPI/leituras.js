@@ -7,7 +7,7 @@ var leiturasSchema = new mongoose.Schema({
   
     type: String,  
     value: Number,
-      data_resg: Date,
+      data_resg: {type: Date, unique: true, required: true},
       notas: String
 });
 
