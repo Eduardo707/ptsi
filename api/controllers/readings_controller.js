@@ -60,7 +60,7 @@ exports.get_user_gli_reads =  function(req, res) {
 };
 
 exports.get_user_gli_reads_params =  function(req, res) {
-    Leituras.find({patientID: req.param.id, type: "glicemia"},function(err, docs){
+    Leituras.find({patientID: req.params.id, type: "glicemia"},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
@@ -83,7 +83,7 @@ exports.get_recent_read =  function(req, res) {
 
 exports.update_read= function(req, res) {
    
-var id= req.param.id;
+var id= req.params.id;
  
 Leituras.findOne({_id: id},function(err, docs){
     
