@@ -14,12 +14,12 @@ exports.create_calendar= function(req, res){
 var newC= new Calendar({
 
 
- username: 'edumf7@hotmail.com',
-    title: 'lkmklmkl',
-     start_date: Date.now(),
-    due_date: Date.now(),  
-    assigned_to: 'Luisa', 
-    description: ''
+ username: req.body.username,
+    title: req.body.title,
+     start_date: req.body.start_date,
+    due_date: req.body.due_date,  
+    assigned_to: req.body.assigned_to, 
+    description: req.body.description
 
        
       });

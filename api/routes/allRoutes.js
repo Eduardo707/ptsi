@@ -172,6 +172,7 @@ router.post('/reset/:token',email.post_reset);
   router.post('/readings/new', readings.post_readings);
   router.get('/readings/user',passport.authenticate("bearer", {session: false}),readings.get_user_reads);
   router.get('/readings/user/gli',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads);
+  router.get('/readings/user/gli/:id',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads_params);
   router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);
 router.post('/readings/:id',passport.authenticate("bearer", {session: false}),readings.update_read);
 
