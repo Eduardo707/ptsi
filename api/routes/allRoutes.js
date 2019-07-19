@@ -19,6 +19,7 @@ const readings= require('../controllers/readings_controller');
 const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
+const rawdata= require('../controllers/rawdata');
 
 const ca= require('../controllers/calendar_controller');
 
@@ -169,12 +170,17 @@ router.get('/reset/:token',email.get_reset);
 router.post('/reset/:token',email.post_reset);
 
   router.get('/readings/all',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
-  router.post('/readings/new', readings.post_readings);
+  router.post('/readings/new',passport.authenticate("bearer", {session: false}), readings.post_readings);
   router.get('/readings/user',passport.authenticate("bearer", {session: false}),readings.get_user_reads);
   router.get('/readings/user/gli',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads);
   router.get('/readings/user/gli/:id',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads_params);
   router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);
 router.post('/readings/:id',passport.authenticate("bearer", {session: false}),readings.update_read);
+ 
+ 
+ 
+ router.get('/rawdata/user/:id',passport.authenticate("bearer", {session: false}),rawdata.get_user_data);
+  router.post('/rawdata/new',passport.authenticate("bearer", {session: false}),rawdata.post_rawdata());
 
 /*
  router.get('/readings_gli/all',passport.authenticate("bearer", {session: false}),readings_gli.get_all_reads_gli);
