@@ -19,7 +19,7 @@ const readings= require('../controllers/readings_controller');
 const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
-const rawdata= require('../controllers/rawdata');
+const rawdata= require('../controllers/rawdata_controller');
 
 const ca= require('../controllers/calendar_controller');
 
