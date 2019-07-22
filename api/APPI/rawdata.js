@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 
 var rawdataSchema = new mongoose.Schema({
 
-
-    tagId: {type: String,  required: true},
-        data: {type: String,required: true},
+    patientID :  {type: String,  required: true},
+    tagID: String,
+        data: String
 
 });
 

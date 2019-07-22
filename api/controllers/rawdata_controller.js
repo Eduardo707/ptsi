@@ -7,8 +7,9 @@ var Rawdata = require('../APPI/rawdata');
 
 exports.post_rawdata =  function(req, res){
     var newR = new Rawdata({
-      rawID: req.body.rawID,
-      data:req.body.data
+      patientID: req.body.patientID,
+      tagID: req.body.tagID,
+      data: req.body.data
 
 
        

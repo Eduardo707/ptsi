@@ -180,7 +180,7 @@ router.post('/readings/:id',passport.authenticate("bearer", {session: false}),re
  
  
  router.get('/rawdata/user/:id',passport.authenticate("bearer", {session: false}),rawdata.get_user_data);
-  router.post('/rawdata/new',passport.authenticate("bearer", {session: false}),rawdata.post_rawdata());
+  router.post('/rawdata/new',passport.authenticate("bearer", {session: false}),rawdata.post_rawdata);
 
 /*
  router.get('/readings_gli/all',passport.authenticate("bearer", {session: false}),readings_gli.get_all_reads_gli);
