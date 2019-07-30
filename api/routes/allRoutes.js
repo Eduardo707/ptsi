@@ -169,32 +169,20 @@ router.post('/users/update/:id',passport.authenticate("bearer", {session: false}
 router.get('/reset/:token',email.get_reset);
 router.post('/reset/:token',email.post_reset);
 
-  router.get('/readings/all',passport.authenticate("bearer", {session: false}),readings.get_all_reads);
-  router.post('/readings/new',passport.authenticate("bearer", {session: false}), readings.post_readings);
-  router.get('/readings/user',passport.authenticate("bearer", {session: false}),readings.get_user_reads);
-  router.get('/readings/user/gli',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads);
-  router.get('/readings/user/gli/:id',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads_params);
-  router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);
-router.post('/readings/:id',passport.authenticate("bearer", {session: false}),readings.update_read);
+  router.get('/readings/all',passport.authenticate("bearer", {session: false}),readings.get_all_reads); //todas as leituras
+  router.post('/readings/new',passport.authenticate("bearer", {session: false}), readings.post_readings);//nova leitura
+  router.get('/readings/user',passport.authenticate("bearer", {session: false}),readings.get_user_reads);//todas as leituras de um utilizador
+  router.get('/readings/user/gli',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads);//todas as leituras de glicemia de um utilizador
+  router.get('/readings/user/bat',passport.authenticate("bearer", {session: false}),readings.get_user_bat_reads);
+  router.get('/readings/user/gli/:id',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads_params);//todas as leituras de glicemia de um utilizador data decrescente (diferente maneira de buscar dados)
+  router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);// leitura mais recente
+router.post('/readings/:id',passport.authenticate("bearer", {session: false}),readings.update_read);//editar leitura
  
  
  
  router.get('/rawdata/user/:id',passport.authenticate("bearer", {session: false}),rawdata.get_user_data);
   router.post('/rawdata/new',passport.authenticate("bearer", {session: false}),rawdata.post_rawdata);
 
-/*
- router.get('/readings_gli/all',passport.authenticate("bearer", {session: false}),readings_gli.get_all_reads_gli);
-  router.post('/readings_gli/new',passport.authenticate("bearer", {session: false}),readings_gli.create_readings_gli);
-  router.get('/readings_gli/user',passport.authenticate("bearer", {session: false}),readings_gli.get_user_reads_gli);
-  router.get('/readings_gli/recent',passport.authenticate("bearer", {session: false}),readings_gli.get_recent_read_gli);
-     router.get('/readings_gli/medic',passport.authenticate("bearer", {session: false}),readings_gli.get_medic_reads_gli);
-
-
-router.post('/readings_gli/:id',passport.authenticate("bearer", {session: false}),readings_gli.update_read_gli);
-*/
-
-
-// router.get('/readings_gli/ll',readings_gli.get_ll_reads_gli);
 
 
  router.get('/pacients/all',passport.authenticate("bearer", {session: false}),pacients.get_all_pacients);
