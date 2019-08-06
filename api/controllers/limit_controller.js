@@ -38,7 +38,7 @@ exports.get_all_limits= function(req, res) {
 };
 
 exports.get_user_limits= function(req, res) {
-Limites.findOne({patientID: req.body.patientID},function(err, docs){
+Limites.findOne({patientID: req.params.id},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});

@@ -20,6 +20,7 @@ const readings_gli= require('../controllers/readings_gli_controller');
 const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
 const rawdata= require('../controllers/rawdata_controller');
+const limit= require('../controllers/limit_controller');
 
 const ca= require('../controllers/calendar_controller');
 
@@ -182,6 +183,11 @@ router.post('/readings/:id',passport.authenticate("bearer", {session: false}),re
  
  router.get('/rawdata/user/:id',passport.authenticate("bearer", {session: false}),rawdata.get_user_data);
   router.post('/rawdata/new',passport.authenticate("bearer", {session: false}),rawdata.post_rawdata);
+
+
+
+  router.post('/limit/new',passport.authenticate("bearer", {session: false}), limit.create_limits);//nova leitura
+  router.get('/limit/user/:id',passport.authenticate("bearer", {session: false}),limit.get_user_limits);//todas as leituras de glicemia de um utilizador data decrescente (diferente maneira de buscar dados)
 
 
 
