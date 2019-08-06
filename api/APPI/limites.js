@@ -1,6 +1,6 @@
 var mongoose= require('mongoose');
 
-var pacientesSchema= new mongoose.Schema({
+var limitesSchema= new mongoose.Schema({
     
 patientID: String,
 type: String,
@@ -14,6 +14,6 @@ sup: Number,
 });
 
 
-module.exports= mongoose.model('limites', pacientesSchema);
+module.exports= mongoose.model('limites', limitesSchema);
 
     
