@@ -64,7 +64,7 @@ exports.get_all_pacients= function(req, res) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+     // console.log(docs);
       res.json(docs);
     });
 };
@@ -74,7 +74,7 @@ exports.get_user_pacients= function(req, res) {
     //var mail = decodeURIComponent(req.body.email);
     console.log("body " + req.body)
     var mail = unescape(req.body.username);
-    console.log(mail);
+  //  console.log(mail);
     
 Pacientes.findOne({patientID: mail},function(err, docs){
     
@@ -82,8 +82,8 @@ Pacientes.findOne({patientID: mail},function(err, docs){
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
-      console.log(req.body.patientID);
+   //   console.log(docs);
+     // console.log(req.body.patientID);
       res.json(docs);
     });
 };
@@ -109,7 +109,7 @@ Pacientes.findOne().sort({"date_reg": -1}).exec(function(err, docs){
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+ //     console.log(docs);
       res.json(docs);
     });
 };
@@ -135,14 +135,14 @@ Pacientes.findOne({_id: id},function(err, docs){
        
         
           if( req.body.nome){
-              console.log(req.body.nome);
+           //   console.log(req.body.nome);
             docs.nome= req.body.nome;
         }
         
           if( req.body.num_tel){
-              console.log(docs.num_tel + '     1');
+           //   console.log(docs.num_tel + '     1');
             docs.num_tel= req.body.num_tel;
-             console.log(docs.num_tel + '     2');
+           //  console.log(docs.num_tel + '     2');
         } 
         
 

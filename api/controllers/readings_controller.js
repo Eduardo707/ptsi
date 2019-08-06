@@ -33,7 +33,7 @@ exports.get_all_reads =  function(req, res) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+   //   console.log(docs);
       res.json(docs);
     });
 };
@@ -44,7 +44,7 @@ exports.get_user_reads =  function(req, res) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+    //  console.log(docs);
       res.json(docs);
     });
 };
@@ -54,7 +54,7 @@ exports.get_user_gli_reads =  function(req, res) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+     // console.log(docs);
       res.json(docs);
     });
 };
@@ -65,7 +65,7 @@ exports.get_user_bat_reads =  function(req, res) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+   //   console.log(docs);
       res.json(docs);
     });
 };
@@ -75,7 +75,7 @@ exports.get_user_gli_reads_params =  function(req, res) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+    //  console.log(docs);
       res.json(docs);
     });
 };
@@ -86,7 +86,7 @@ exports.get_recent_read =  function(req, res) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+     // console.log(docs);
       res.json(docs);
     });
 };
@@ -116,7 +116,7 @@ docs.notas= req.body.notas;
             console.log(err);
             res.json({err});
         }
-      console.log('y');
+  //    console.log('y');
       res.send(docs);
       
  
