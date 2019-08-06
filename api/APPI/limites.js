@@ -6,7 +6,7 @@ patientID: String,
 type: String,
     
 inf: Number,
-sup: Number, 
+sup: Number
 
      
       

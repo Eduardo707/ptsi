@@ -7,7 +7,7 @@ var Limites= require('../APPI/limites');
 
 exports.create_limits= function(req, res){
 var newL= new Limites({
-patientID: decodeURIComponent(req.body.patientID),
+patientID: req.body.patientID,
 type:req.body.type,
 
 inf: req.body.inf,  
