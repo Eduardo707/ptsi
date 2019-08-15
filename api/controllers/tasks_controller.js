@@ -14,8 +14,8 @@ exports.create_tasks= function(req, res){
 var newC= new Tasks({
 
 
-    username: "a",
-    description: "a"
+    username: req.body.username,
+    description: req.body.description
 
        
       });
