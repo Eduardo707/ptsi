@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var tasksSchema = new mongoose.Schema({
 
     username: String,
-    details: String,
+    description: String,
     
 });
 
