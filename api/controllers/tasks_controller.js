@@ -28,7 +28,7 @@ var newC= new Tasks({
             
         }
        
-       res.send("sucesso");
+       res.json("sucesso");
     });
  };
     
@@ -95,7 +95,7 @@ docs.description= req.body.description;
             res.json({err});
         }
       console.log('y');
-      res.send(docs);
+      res.json(docs);
       
  
 
