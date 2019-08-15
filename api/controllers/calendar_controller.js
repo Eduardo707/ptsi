@@ -32,7 +32,7 @@ var newC= new Calendar({
             
         }
        
-       res.send("sucesso");
+       res.json("sucesso");
     });
  };
     
