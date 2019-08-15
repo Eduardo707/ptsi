@@ -23,6 +23,7 @@ const rawdata= require('../controllers/rawdata_controller');
 const limit= require('../controllers/limit_controller');
 
 const ca= require('../controllers/calendar_controller');
+const ta= require('../controllers/tasks_controller');
 
 const notifications= require('../controllers/notifications_controller');
 
@@ -213,6 +214,11 @@ router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medi
   router.post('/calendar/new',ca.create_calendar);
   router.get('/calendar/user',passport.authenticate("bearer", {session: false}),ca.get_user_calendar);
 router.post('/calendar/:id',passport.authenticate("bearer", {session: false}),ca.update_calendar);
+
+ router.get('/tasks/all',ta.get_all_tasks);
+  router.post('/tasks/new',ta.create_tasks);
+  router.get('/tasks/user',passport.authenticate("bearer", {session: false}),ta.get_user_tasks);
+router.post('/tasks/:id',passport.authenticate("bearer", {session: false}),ta.update_tasks);
 
  
 

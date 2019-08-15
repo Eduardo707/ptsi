@@ -1,24 +1,20 @@
 'use strict';
 
 var mongoose= require('mongoose');
-var Calendar= require('../APPI/calendar');
+var Tasks= require('../APPI/tasks');
     require('dotenv').config();
 
 
 
 
-exports.create_calendar= function(req, res){
+exports.create_tasks= function(req, res){
     
 
     
-var newC= new Calendar({
+var newC= new Tasks({
 
 
- username: req.body.username,
-    title: req.body.title,
-     start_date: req.body.start_date,
-    due_date: req.body.due_date,  
-    assigned_to: req.body.assigned_to, 
+    username: req.body.username,
     description: req.body.description
 
        
@@ -39,8 +35,8 @@ var newC= new Calendar({
 
 
 
-exports.get_all_calendar= function(req, res) {
-    Calendar.find(function(err, docs){
+exports.get_all_tasks= function(req, res) {
+    Tasks.find(function(err, docs){
         if(err) {
             console.log(err);
             res.json({err});
@@ -50,8 +46,8 @@ exports.get_all_calendar= function(req, res) {
     });
 };
 
-exports.get_user_calendar= function(req, res) {
-Calendar.find({username: req.body.username},function(err, docs){
+exports.get_user_tasks= function(req, res) {
+Tasks.find({username: req.body.username},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
@@ -73,11 +69,11 @@ Medicos.findOne().sort({"date_reg": -1}).exec(function(err, docs){
 };*/
 
 
-exports.update_calendar= function(req, res) {
+exports.update_tasks= function(req, res) {
    
 var id= req.params.id;
  
-Calendar.findOne({_id: id},function(err, docs){
+Tasks.findOne({_id: id},function(err, docs){
     
          if(err) {
             console.log(err);
@@ -86,11 +82,8 @@ Calendar.findOne({_id: id},function(err, docs){
         // res.send(docs);
         
 docs.username= req.body.username;
-docs.title= req.body.title;
-docs.start_date= req.body.start_date;
-docs.due_date=req.body.due_date;
-docs.assigned_to= req.body.assigned_to; 
 docs.description= req.body.description;
+
 
     /*--------------------------------------------------------------------------------
    // docs.lista_pacientes.push({id_paciente:"54",nome_paciente: "dfs"});
