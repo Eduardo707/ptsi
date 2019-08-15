@@ -15,7 +15,7 @@ var newC= new Tasks({
 
 
     username: req.body.username,
-    description: req.body.description
+    details: req.body.details
 
        
       });
