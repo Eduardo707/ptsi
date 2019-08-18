@@ -49,7 +49,7 @@ exports.get_user_reads =  function(req, res) {
     });
 };
 exports.get_user_reads2 =  function(req, res) {
-    Leituras.find({patientID: req.params.patientID},function(err, docs){
+    Leituras.find({patientID: req.params.id},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
