@@ -64,9 +64,9 @@ Medicos.find({medicID: req.body.medicID},function(err, docs){
 
 exports.update_medics= function(req, res) {
    
-var id= req.param.id;
+var id= req.params.id;
  
-Medicos.findOne({_id: id},function(err, docs){
+Medicos.findOne({medicID: id},function(err, docs){
     
          if(err) {
             console.log(err);
@@ -76,7 +76,38 @@ Medicos.findOne({_id: id},function(err, docs){
         
 docs.medicID= req.body.medicID;
 docs.nome= req.body.nome;
-docs.Active= req.body.Active;
+//docs.Active= req.body.Active;
+docs.lista_pacientes.push({patientID: req.body.patientID,nome_paciente: req.body.nome_paciente});
+    /*--------------------------------------------------------------------------------
+   // 
+--------------------------------------------------------------------------*/
+       
+     docs.save(function(err, docs) {
+        if(err) {
+            console.log(err);
+            res.json({err});
+        }
+      console.log('y');
+      res.send(docs);
+      
+ 
+
+    });
+});
+ };
+exports.update_lists= function(req, res) {
+   
+var id= req.params.id;
+ 
+Medicos.findOne({medicID: id},function(err, docs){
+    
+         if(err) {
+            console.log(err);
+            res.json({err});
+        }
+        // res.send(docs);
+        
+
 docs.lista_pacientes.push({patientID: req.body.patientID,nome_paciente: req.body.nome_paciente});
     /*--------------------------------------------------------------------------------
    // 

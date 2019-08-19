@@ -105,7 +105,7 @@ exports.update_read= function(req, res) {
    
 var id= req.params.id;
  
-Leituras.findOne({_id: id},function(err, docs){
+Leituras.findOne({data_resg: id},function(err, docs){
     
          if(err) {
             console.log(err);
@@ -113,11 +113,11 @@ Leituras.findOne({_id: id},function(err, docs){
         }
         // res.send(docs);
         
-docs.patientID= req.body.patientID;
+/*docs.patientID= req.body.patientID;
 docs.type=req.body.type;
 
 docs.value= req.body.value;
-docs.data_resg= req.body.data_resg;
+docs.data_resg= req.body.data_resg;*/
 docs.notas= req.body.notas;
     
        

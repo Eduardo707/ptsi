@@ -207,6 +207,7 @@ router.put('/pacients/:id',passport.authenticate("bearer", {session: false}),pac
   router.get('/medics/user',passport.authenticate("bearer", {session: false}),medics.get_user_medics);
  
 router.post('/medics/:id',passport.authenticate("bearer", {session: false}),medics.update_medics);
+router.post('/medics/list/:id',passport.authenticate("bearer", {session: false}),medics.update_lists);
 
 
  
