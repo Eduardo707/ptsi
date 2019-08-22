@@ -96,13 +96,13 @@ router.post('/login/medic', tok, function(req, res, next) {
 router.post('/login/patient', tok, function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
-    if (!user) { return res.json('not exist'); }
+    if (!user) { return res.json("not exist"); }
  
             Patients.findOne({ patientID: user.username}, function (err, patient) {
       
       if (err) { return res.json(err); }
-      if (!patient) {return res.json('Not patient' );}
-        if (!patient.Active) {return res.json( 'User not active' )}
+      if (!patient) {return res.json("Not patient" );}
+        if (!patient.Active) {return res.json( "User not active" )}
     
    
 console.log(req.session);
