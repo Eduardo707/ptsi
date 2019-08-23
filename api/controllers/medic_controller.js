@@ -22,7 +22,7 @@ Active: req.body.Active
     
        
       });
-newM.lista_pacientes.push({id_paciente: req.body.id, nome_paciente: req.body.nome})
+newM.lista_pacientes.push({patientID: req.body.id, nome_paciente: req.body.nome})
 
 
     newM.save(function(err){
