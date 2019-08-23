@@ -289,10 +289,11 @@ app.post('/endpoint', function(req, res){
 
 io.on('connection', (socket) => {
         console.log('Yay, connection was recorded');
+        socket.join('hi');
 
   
 messages.forEach(function (data) {
-      socket.emit('message', data);
+      socket.to('hi').emit('message', data);
       console.log(data);
     });
 
@@ -308,7 +309,7 @@ socket.on('identify', function(userNickname) {
 
         console.log(userNickname +" : has joined the chat "  );
 
-        socket.broadcast.emit('userjoinedthechat',userNickname);
+        socket.broadcast.to('hi').emit('userjoinedthechat',userNickname);
     });
 
 
@@ -319,7 +320,7 @@ socket.on('newmessage', (name,text) => {
         //create a message object 
        let  data = {"text":text, "name":name}
           // send the message to the client side  
-       io.emit('message', data );
+       io.to('hi').emit('message', data );
        
             console.log(data);
                     messages.push(data);
@@ -330,7 +331,7 @@ socket.on('newmessage', (name,text) => {
   
  socket.on('disconnect', function() {
     console.log( ' user has left ')
-    socket.broadcast.emit("userdisconnect"," user has left ") 
+    socket.broadcast.to('hi').emit("userdisconnect"," user has left ") 
 
 });
 
