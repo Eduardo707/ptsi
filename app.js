@@ -285,45 +285,97 @@ app.post('/endpoint', function(req, res){
 	res.send(req.body);
 });
 
-
+var mmm = "d";
 
 io.on('connection', (socket) => {
-        console.log('Yay, connection was recorded');
-        socket.join(socket);
+     
 
-  
-messages.forEach(function (data) {
-      socket.to(data.name).emit('message', data);
-      console.log(data);
+
+
+
+
+socket.on('identify', function(userNickname) {
+mmm = 'sss';
+    
+
+
+        console.log(userNickname +" : has joined the chat "  );
+          
+    //   socket.join(userNickname);  
+       //console.log( socket );
+
+        socket.broadcast.emit('userjoinedthechat',userNickname);
+        
+        Chat.findOne({$or:[{medic_username: userNickname},{patient_username:userNickname}]}, function(err, docs){
+         if(err) {
+            console.log(err);
+          
+        }else{  messages = [];
+       
+       
+         if(docs!=null){
+              mmm = docs.medic_username  +"-"+docs.patient_username;
+socket.join(mmm);
+       
+
+         messages = docs.msg;
+
+             
+         }
+            
+        }
+
+ 
+
+ messages.forEach(function (data) {
+      socket.to(mmm).emit('message', data);
+     console.log(mmm);
+    })
     });
+        
+          
+
 
     sockets.push(socket);
 console.log('user connected');
 
 
 
-socket.on('identify', function(userNickname) {
-    
-    
-
-
-        console.log(userNickname +" : has joined the chat "  );
-
-        socket.broadcast.to(userNickname).emit('userjoinedthechat',userNickname);
     });
 
+   
 
-socket.on('newmessage', (name,text) => {
+
+
+socket.on('newmessage', (name,text,date) => {
  
        //log the message in console 
 
         //create a message object 
-       let  data = {"text":text, "name":name}
+       let  data = {"text":text, "name":name, "date": new Date()}
+       
+       console.log(mmm);
           // send the message to the client side  
-       io.to(data.name).emit('message', data );
+       io.to(mmm).emit('message', data );
        
             console.log(data);
                     messages.push(data);
+                      
+        Chat.findOne({$or:[{medic_username: name},{patient_username:name}]}, function(err, docs){
+         if(err) {
+            console.log(err);
+          
+        } else if(docs!=null){
+        
+        docs.msg.push(data);
+             docs.save();
+    
+        }
+ 
+
+ 
+   
+    });
 
 
       });

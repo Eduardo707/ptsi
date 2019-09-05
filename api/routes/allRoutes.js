@@ -77,8 +77,8 @@ router.post('/login/medic', tok, function(req, res, next) {
             Medics.findOne({ medicID: user.username}, function (err, medic) {
       
       if (err) { return res.json(err); }
-      if (!medic) {return res.json({ message: 'Not medic' });}
-        if (!medic.Active) {return res.json({ message: 'User not active' })}
+      if (!medic) {return res.json({ msg: 'Not medic' });}
+        if (!medic.Active) {return res.json({ msg: 'User not active' })}
     
    
 
