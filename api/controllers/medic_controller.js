@@ -3,7 +3,7 @@
 var mongoose= require('mongoose');
 var Medicos= require('../APPI/medicos');
 var Pacientes= require('../APPI/pacientes');
-var Chat= require('./api/APPI/chat');
+var Chat= require('../APPI/chat');
 
 
 
