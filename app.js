@@ -314,7 +314,7 @@ mmm = 'sss';
        
        
          if(docs!=null){
-              mmm = docs.medic_username  +"-"+docs.patient_username;
+              mmm = docs.medic_username ;
 socket.join(mmm);
        
 
