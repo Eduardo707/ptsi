@@ -315,11 +315,15 @@ mmm = 'sss';
        
          if(docs!=null){
               mmm = docs.medic_username ;
-socket.join(mmm);
+socket.join(docs.medic_username);
        
 
-         messages = docs.msg;
-
+         messages = docs.msg.slice(- 10);
+console.log(messages);
+ messages.forEach(function (data) {
+      socket.emit('message', data);
+     console.log( docs.medic_username);
+    });
              
          }
             
@@ -327,10 +331,7 @@ socket.join(mmm);
 
  
 
- messages.forEach(function (data) {
-      socket.to(mmm).emit('message', data);
-     console.log(mmm);
-    })
+
     });
         
           
@@ -348,24 +349,24 @@ console.log('user connected');
 
 
 socket.on('newmessage', (name,text,date) => {
- 
+         Chat.findOne({$or:[{medic_username: name},{patient_username:name}]}, function(err, docs){
+         if(err) {
+            console.log(err);
+          
+        } 
        //log the message in console 
 
         //create a message object 
        let  data = {"text":text, "name":name, "date": new Date()}
        
-       console.log(mmm);
+       console.log(docs.medic_username);
           // send the message to the client side  
-       io.to(mmm).emit('message', data );
+       io.to(docs.medic_username).emit('message', data );
        
             console.log(data);
                     messages.push(data);
                       
-        Chat.findOne({$or:[{medic_username: name},{patient_username:name}]}, function(err, docs){
-         if(err) {
-            console.log(err);
-          
-        } else if(docs!=null){
+ if(docs!=null){
         
         docs.msg.push(data);
              docs.save();

@@ -18,6 +18,7 @@
         $scope.roster = [];
         $scope.name = '';
         $scope.text = '';
+        $scope.date = '';
 
         socket.on('connect', function () {
           $scope.setName();
@@ -71,12 +72,14 @@
               <tr>
                 <th class="span2">Name</th>
                 <th class="span7">Text</th>
+                <th class="span7">Date</th>
               </tr>
             </thead>
             <tbody>
               <tr ng-repeat="msg in messages">
                 <td class="span2" ng-bind="msg.name"></td>
                 <td class="span7" ng-bind="msg.text"></td>
+                <td class="span7" ng-bind="msg.date"></td>
               </tr>
             </tbody>
           </table>
