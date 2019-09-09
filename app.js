@@ -205,7 +205,7 @@ res.render("register", {page: 'register'});
 
 });
 
-app.get("/medics/id", function(req, res){
+app.get("/reads", function(req, res){
     
 res.render("leituras", {page: 'leituras'}); 
 
