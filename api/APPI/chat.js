@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var chatSchema = new mongoose.Schema({
     
     
-    medic_username: {type:String, unique: true},
+    medic_username: {type:String},
 
  patient_username:{type:String, unique: true},
   

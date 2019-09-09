@@ -357,7 +357,7 @@ socket.on('newmessage', (name,text,date) => {
        //log the message in console 
 
         //create a message object 
-       let  data = {"text":text, "name":name, "date": new Date()}
+       let  data = {"text":text, "name":name, "date": new Date()};
        
        console.log(docs.medic_username);
           // send the message to the client side  
