@@ -59,12 +59,12 @@ exports.get_user_reads2 =  function(req, res) {
     });
 };
 exports.get_user_gli_reads =  function(req, res) {
-    Leituras.find({patientID: req.body.patientID, type: "glicemia"},function(err, docs){
-         if(err) {
+    Leituras.find({patientID: req.body.patientID, type: "glicemia"}).sort({"data_resg": +1}).exec(function(err, docs){
+          if(err) {
             console.log(err);
             res.json({err});
         }
-     // console.log(docs);
+    //  console.log(docs);
       res.json(docs);
     });
 };
@@ -80,7 +80,7 @@ exports.get_user_bat_reads =  function(req, res) {
     });
 };
 exports.get_user_gli_reads_params =  function(req, res) {
-    Leituras.findOne({patientID: req.params.id, type: "glicemia"}).sort({"data_resg": -1}).exec(function(err, docs){
+    Leituras.findOne({patientID: req.params.id, type: "glicemia"}).sort({"data_resg": +1}).exec(function(err, docs){
           if(err) {
             console.log(err);
             res.json({err});
