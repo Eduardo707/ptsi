@@ -177,7 +177,7 @@ router.post('/reset/:token',email.post_reset);
   router.get('/readings/user/:id',passport.authenticate("bearer", {session: false}),readings.get_user_reads2);//todas as leituras de um utilizador
   router.get('/readings/user/gli',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads);//todas as leituras de glicemia de um utilizador
   router.get('/readings/user/bat',passport.authenticate("bearer", {session: false}),readings.get_user_bat_reads);
-  router.get('/readings/user/gli/:id',passport.authenticate("bearer", {session: false}),readings.get_user_gli_reads_params);//todas as leituras de glicemia de um utilizador data decrescente (diferente maneira de buscar dados)
+  router.get('/readings/user/gli/:id',readings.get_user_gli_reads_params);//todas as leituras de glicemia de um utilizador data decrescente (diferente maneira de buscar dados)
   router.get('/readings/recent',passport.authenticate("bearer", {session: false}),readings.get_recent_read);// leitura mais recente
 router.post('/readings/:id',passport.authenticate("bearer", {session: false}),readings.update_read);//editar leitura
  
