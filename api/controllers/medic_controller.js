@@ -115,7 +115,7 @@ Medicos.findOne({medicID: id},function(err, docs){
 docs.lista_pacientes.push({patientID: req.body.patientID,nome_paciente: req.body.nome_paciente});
 
 
-
+/*
 var newC = new Chat({
       medic_username: id,
     patient_username: req.body.patientID
@@ -130,7 +130,7 @@ var newC = new Chat({
             
         }else{
        res.json({msg:"sucesso"});}
-    });
+    });*/
 
 
     /*--------------------------------------------------------------------------------
