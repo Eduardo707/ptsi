@@ -80,7 +80,7 @@ exports.get_user_bat_reads =  function(req, res) {
     });
 };
 exports.get_user_gli_reads_params =  function(req, res) {
-    Leituras.findOne({patientID: req.params.id, type: "glicemia"}).sort({"data_resg": +1}).exec(function(err, docs){
+    Leituras.findOne({patientID: req.params.id, type: "glicemia"}).sort({"data_resg": -1}).exec(function(err, docs){
           if(err) {
             console.log(err);
             res.json({err});
