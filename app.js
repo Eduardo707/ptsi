@@ -356,20 +356,71 @@ socket.on('newmessage', (name,text,date) => {
         } 
        //log the message in console 
 
-        //create a message object 
+      //create a message object 
        let  data = {"text":text, "name":name, "date": new Date()};
        
-       console.log(docs.medic_username);
+      if(docs!=null){ 
+      console.log(docs.medic_username);
           // send the message to the client side  
        io.to(docs.medic_username).emit('message', data );
        
             console.log(data);
                     messages.push(data);
                       
- if(docs!=null){
+
         
         docs.msg.push(data);
              docs.save();
+    
+        }
+ 
+
+ 
+   
+    });
+
+
+      });
+      
+      
+      socket.on('seentext', (name,text,date) => {
+         Chat.findOne({$or:[{medic_username: name},{patient_username:name}]}, function(err, docs){
+         if(err) {
+            console.log(err);
+          
+        } 
+       //log the message in console 
+
+      //create a message object 
+       //let  data = {"text":text, "name":name, "date": new Date()};
+       
+      if(docs!=null){ 
+
+    for(var i =0; i<docs.msg.length; i++){
+        
+        if(docs.msg.name== name && docs.msg.text == text && docs.msg.date == date){
+            
+            docs.msg.is_seen = true;
+       
+     docs.save(function(err, docs) {
+        if(err) {
+            console.log(err);
+         
+        }
+      console.log('y');
+   
+      
+ 
+
+    });
+            
+        }
+        
+        
+    }
+    
+    
+    
     
         }
  
