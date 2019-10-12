@@ -399,7 +399,7 @@ socket.on('newmessage', (name,text,date) => {
     for(var i =0; i<docs.msg.length; i++){
         
         if(docs.msg[i].name== name && docs.msg[i].text == text && docs.msg[i].date == date){
-            console.log("find");
+            console.log(docs.msg[i].name);
             
             docs.msg[i].is_seen = true;
        
