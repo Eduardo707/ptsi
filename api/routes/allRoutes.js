@@ -202,6 +202,9 @@ router.post('/readings/:id',passport.authenticate("bearer", {session: false}),re
 router.put('/pacients/:id',passport.authenticate("bearer", {session: false}),pacients.update_pacients);
 
 
+
+
+
  router.get('/medics',passport.authenticate("bearer", {session: false}),medics.get_all_medics);
   router.post('/medics/new',passport.authenticate("bearer", {session: false}),medics.create_medics);
   router.get('/medics/user',passport.authenticate("bearer", {session: false}),medics.get_user_medics);

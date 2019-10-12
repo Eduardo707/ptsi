@@ -4,7 +4,7 @@ var mongoose= require('mongoose');
 var User= require('./api/APPI/user');
 var Patients= require('./api/APPI/pacientes');
 var Medics= require('./api/APPI/medicos');
-var Chat= require('./api/APPI/chat');
+var Chat= require('./api/APPI/notificacoes');
 
 var cookieParser = require('cookie-parser');
 

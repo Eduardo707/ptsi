@@ -2,16 +2,13 @@ var mongoose = require('mongoose');
 
 var notificacoesSchema = new mongoose.Schema({
     
-     email: String,
-    pacient: String,
+    
+    medic_username: String,
 
-glicemia: Number,
- aviso: String,
-    nivel: String,
-    date_resg: Date
+ patient_username:{type:String, unique: true},
   
       
-    
+     msg:  [{_id: false,name: String, text: String, date: Date, is_seen: {type:Boolean, default: false}}]
 });
 
 
