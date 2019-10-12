@@ -397,7 +397,7 @@ socket.on('newmessage', (name,text,date) => {
       if(docs!=null){ 
 var i ;
     for( i =0; i<docs.msg.length; i++){
-         if(docs.msg[i].name == name && docs.msg[i].text == text && docs.msg[i].date == date) {
+         if(docs.msg[i].name == name && docs.msg[i].text == text ) {
                     console.log("nfknnnnn");}
 
         
