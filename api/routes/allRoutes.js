@@ -72,7 +72,7 @@ var cc;
 router.post('/login/medic', tok, function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
-    if (!user) { return res.json('not exist'); }
+    if (!user) { return res.json({msg:"not exist"}); }
  
             Medics.findOne({ medicID: user.username}, function (err, medic) {
       

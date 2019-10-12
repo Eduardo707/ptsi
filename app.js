@@ -400,6 +400,10 @@ socket.on('newmessage', (name,text,date) => {
       if(docs!=null){ 
 var i ;
 var z;
+var mesg = [];
+
+mesg  = docs.msg;
+docs.msg = [];
     for( i =0; i<docs.msg.length ; i++){
         
          if(docs.msg[i].name == name && docs.msg[i].text == text ) {
@@ -410,21 +414,12 @@ var z;
             console.log(docs.msg[i].name);
             
     
-         docs.save(function(err, docs) {
-        if(err) {
-            console.log(err);
-         
-        }
-      console.log('y');
-   
-      
- 
-
-    });
+     
+     
+     
         }
 
     }
-    console.log(z);
 
 
     
