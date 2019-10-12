@@ -403,7 +403,12 @@ socket.on('newmessage', (name,text,date) => {
             
             docs.msg.is_seen = true;
        
-     docs.save(function(err, docs) {
+            
+        }
+        
+        
+    }
+         docs.save(function(err, docs) {
         if(err) {
             console.log(err);
          
@@ -414,11 +419,7 @@ socket.on('newmessage', (name,text,date) => {
  
 
     });
-            
-        }
-        
-        
-    }
+
     
     
     
