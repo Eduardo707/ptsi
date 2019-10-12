@@ -414,7 +414,7 @@ var i ;
         
         
     }
-    
+    console.log(docs);
 
     
          docs.save(function(err, docs) {
