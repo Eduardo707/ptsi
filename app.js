@@ -398,10 +398,10 @@ socket.on('newmessage', (name,text,date) => {
 
     for(var i =0; i<docs.msg.length; i++){
         
-        if(docs.msg.name== name && docs.msg.text == text && docs.msg.date == date){
+        if(docs.msg[i].name== name && docs.msg[i].text == text && docs.msg[i].date == date){
             console.log("find");
             
-            docs.msg.is_seen = true;
+            docs.msg[i].is_seen = true;
        
             
         }
