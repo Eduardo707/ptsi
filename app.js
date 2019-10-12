@@ -399,6 +399,7 @@ socket.on('newmessage', (name,text,date) => {
        
       if(docs!=null){ 
 var i ;
+var z;
 
          if(docs.msg[i].name == name && docs.msg[i].text == text ) {
                     console.log("nfknnnnn");}
@@ -407,13 +408,13 @@ var i ;
         if(docs.msg[i].name == name && docs.msg[i].text == text && docs.msg[i].date == date){
             console.log(docs.msg[i].name);
             
-            docs.msg[i].is_seen = true;
-       
+     
+       z = i;
             
         }
         
     
-    console.log(docs);
+    console.log(z);
 
     
          docs.save(function(err, docs) {
