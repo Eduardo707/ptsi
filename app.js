@@ -400,7 +400,7 @@ socket.on('newmessage', (name,text,date) => {
       if(docs!=null){ 
 var i ;
 var z;
-    for( i =0; i<docs.msg.length; i++){
+    for( i =0; i<docs.msg.length ; i++){
         
          if(docs.msg[i].name == name && docs.msg[i].text == text ) {
                     console.log("nfknnnnn");}
@@ -409,14 +409,6 @@ var z;
         if(docs.msg[i].name == name && docs.msg[i].text == text && docs.msg[i].date == date){
             console.log(docs.msg[i].name);
             
-z=i;       
-            
-        }
-        return z;
-        
-    }
-    console.log(z);
-
     
          docs.save(function(err, docs) {
         if(err) {
@@ -429,6 +421,12 @@ z=i;
  
 
     });
+        }
+
+    }
+    console.log(z);
+
+
     
     
         }
