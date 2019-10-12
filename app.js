@@ -395,9 +395,9 @@ socket.on('newmessage', (name,text,date) => {
        //let  data = {"text":text, "name":name, "date": new Date()};
        
       if(docs!=null){ 
-
-    for(var i =0; i<docs.msg.length; i++){
-                    console.log(docs.msg[i].name);
+var i ;
+    for( i =0; i<docs.msg.length; i++){
+                    console.log(docs.msg[i]);
 
         
         if(docs.msg[i].name== name && docs.msg[i].text == text && docs.msg[i].date == date){
@@ -410,6 +410,9 @@ socket.on('newmessage', (name,text,date) => {
         
         
     }
+    
+
+    
          docs.save(function(err, docs) {
         if(err) {
             console.log(err);
@@ -421,9 +424,6 @@ socket.on('newmessage', (name,text,date) => {
  
 
     });
-
-    
-    
     
     
         }
