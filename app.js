@@ -389,6 +389,9 @@ socket.on('newmessage', (name,text,date) => {
             console.log(err);
           
         } 
+        
+                    console.log(name +"  " + text  + "  " + date);
+
        //log the message in console 
 
       //create a message object 
