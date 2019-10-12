@@ -399,21 +399,23 @@ socket.on('newmessage', (name,text,date) => {
        
       if(docs!=null){ 
 var i ;
-    for( i =0; i<docs.msg.length; i++){
-         if(docs.msg[i].name == name && docs.msg[i].text == text ) {
+  //  for( i =0; i<docs.msg.length; i++){
+        
+        docs.msg.forEach(function(item, index, array) {
+         if(item.name == name && item.text == text ) {
                     console.log("nfknnnnn");}
 
         
-        if(docs.msg[i].name == name && docs.msg[i].text == text && docs.msg[i].date == date){
-            console.log(docs.msg[i].name);
+        if(item.name == name && item.text == text && item.date == date){
+            console.log(item.name);
             
-            docs.msg[i].is_seen = true;
+          item.is_seen = true;
        
             
         }
         
         
-    }
+    });
     console.log(docs);
 
     
@@ -430,7 +432,7 @@ var i ;
     });
     
     
-        }
+        };
  
 
  
