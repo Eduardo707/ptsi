@@ -8,7 +8,7 @@ var notificacoesSchema = new mongoose.Schema({
  patient_username:{type:String, unique: true},
   
       
-     msg:  [{_id: false,name: String, text: String, date: Date, is_seen: {type:Boolean, default: false}}]
+     msg:  [{name: String, text: String, date: Date, is_seen: {type:Boolean, default: false}}]
 });
 
 

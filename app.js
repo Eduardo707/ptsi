@@ -360,11 +360,11 @@ socket.on('newmessage', (name,text,date) => {
        let  data = {"text":text, "name":name, "date": new Date()};
        
       if(docs!=null){ 
-      console.log(docs.medic_username);
+   //   console.log(docs.medic_username);
           // send the message to the client side  
        io.to(docs.medic_username).emit('message', data );
        
-            console.log(data);
+           // console.log(data);
                     messages.push(data);
                       
 
@@ -383,49 +383,14 @@ socket.on('newmessage', (name,text,date) => {
       });
       
       
-      socket.on('seentext', (name,text,date) => {
-         Chat.findOne({$or:[{medic_username: name},{patient_username:name}]}, function(err, docs){
+      socket.on('seentext', (id) => {
+         Chat.update({ 'msg._id':  id},  { '$set': { 'msg.$.is_seen':true } }, function(err, docs){
          if(err) {
             console.log(err);
           
         } 
         
-                    console.log(name +"  " + text  + "  " + date);
 
-       //log the message in console 
-
-      //create a message object 
-       //let  data = {"text":text, "name":name, "date": new Date()};
-       
-      if(docs!=null){ 
-var i ;
-var z;
-var mesg = [];
-
-mesg  = docs.msg;
-docs.msg = [];
-    for( i =0; i<docs.msg.length ; i++){
-        
-         if(docs.msg[i].name == name && docs.msg[i].text == text ) {
-                    console.log("nfknnnnn");}
-
-        
-        if(docs.msg[i].name == name && docs.msg[i].text == text && docs.msg[i].date == date){
-            console.log(docs.msg[i].name);
-            
-    
-     
-     
-     
-        }
-
-    }
-
-
-    
-    
-        }
- 
 
  
    

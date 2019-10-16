@@ -19,8 +19,10 @@ exports.forgot =  function(req, res, next) {
       });
     },
     function(token, done) {
-      User.findOne({ username: req.body.username }, function(err, user) {
-        if (!user) {
+      console.log(req.body.email);
+      User.findOne({ username: req.body.email }, function(err, user) {
+        if (!user) {console.log("not user");
+          
         //  req.flash('error', 'No account with that email address exists.');
           return done(null,err);
         }
@@ -48,11 +50,12 @@ exports.forgot =  function(req, res, next) {
      
         service: 'Gmail', 
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS
+          user:"tese.ishealthy@gmail.com",
+          pass: "tesediabetes"
         }
       });
      
+     console.log(user.username);
       var mailOptions = {
         to: user.username,
         from: 'diabetes.ptsi2018@gmail.com',
@@ -65,8 +68,9 @@ exports.forgot =  function(req, res, next) {
       smtpTransport.sendMail(mailOptions, function(err) {
         console.log(req.headers.host);
       //  req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-        res.json('mail sent');
-        done(err, 'done');
+       if(err) console.log(err + "/////////")
+       res.json('mail sent');
+      //  done(err, 'done');
       });
     }
   ], function(err) {
@@ -79,13 +83,13 @@ exports.forgot =  function(req, res, next) {
 exports.forgot_app =  function(req, res, next) {
   async.waterfall([
     function(done) {
-      crypto.randomBytes(6, function(err, buf) {
+      crypto.randomBytes(3, function(err, buf) {
         var token = buf.toString('hex');
        done(err, token);
       });
     },
     function(token, done) {
-      User.findOne({ username: req.body.username }, function(err, user) {
+      User.findOne({ username: req.body.email }, function(err, user) {
         if (!user) {
         //  req.flash('error', 'No account with that email address exists.');
           return done(null,err);
@@ -114,8 +118,8 @@ exports.forgot_app =  function(req, res, next) {
      
         service: 'Gmail', 
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS
+                  user:"tese.ishealthy@gmail.com",
+          pass: "tesediabetes"
         }
       });
      
@@ -125,7 +129,7 @@ exports.forgot_app =  function(req, res, next) {
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-        token +
+        token +  '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       smtpTransport.sendMail(mailOptions, function(err, info) {

@@ -22,7 +22,7 @@
     "method-override": "*",
     "mongodb": "^3.0.6",
     "mongoose": "*",
-    "nodemailer": "^4.6.4",
+    "nodemailer": "^4.7.0",
     "passport": "*",
     "passport-http-bearer": "*",
     "passport-local": "*",
