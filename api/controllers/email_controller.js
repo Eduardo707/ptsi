@@ -76,6 +76,71 @@ exports.forgot =  function(req, res, next) {
 };
 
 
+exports.forgot_app =  function(req, res, next) {
+  async.waterfall([
+    function(done) {
+      crypto.randomBytes(6, function(err, buf) {
+        var token = buf.toString('hex');
+       done(err, token);
+      });
+    },
+    function(token, done) {
+      User.findOne({ username: req.body.username }, function(err, user) {
+        if (!user) {
+        //  req.flash('error', 'No account with that email address exists.');
+          return done(null,err);
+        }
+
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        user.save(function(err) {
+          done(err, token, user);
+        });
+      });
+    },
+    function(token, user, done) {
+     /*  Gmail.find(function(err, docs){
+      console.log(docs);
+     process.env.USER = docs.username;
+    });*/
+    
+    
+            console.log(process.env.EMAIL_PASS);
+
+      var smtpTransport = nodemailer.createTransport({
+        
+        
+     
+        service: 'Gmail', 
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
+     
+      var mailOptions = {
+        to: user.username,
+        from: 'diabetes.ptsi2018@gmail.com',
+        subject: 'Node.js Password Reset',
+        text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+        token +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+      };
+      smtpTransport.sendMail(mailOptions, function(err, info) {
+      //  req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        res.json('mail sent');
+       // done(err, 'done');
+      });
+    }
+  ], function(err) {
+ if (err) return next(err);
+  });
+ 
+};
+
+
 
 
 
