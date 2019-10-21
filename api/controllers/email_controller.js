@@ -58,7 +58,7 @@ exports.forgot =  function(req, res, next) {
      console.log(user.username);
       var mailOptions = {
         to: user.username,
-        from: 'diabetes.ptsi2018@gmail.com',
+        from: 'tese.ishealthy@gmail.com',
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -125,7 +125,7 @@ exports.forgot_app =  function(req, res, next) {
      
       var mailOptions = {
         to: user.username,
-        from: 'diabetes.ptsi2018@gmail.com',
+        from: 'tese.ishealthy@gmail.com',
         subject: 'Node.js Password Reset',
         text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -190,13 +190,13 @@ exports.post_reset = function(req, res) {
       var smtpTransport = nodemailer.createTransport({
         service: 'Gmail', 
         auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS
+          user: "tese.ishealthy@gmail.com",
+          pass: "tesediabetes"
         }
       });
       var mailOptions = {
         to: user.username,
-        from: process.env.EMAIL_USER,
+        from:"tese.ishealthy@gmail.com",
         subject: 'Your password has been changed',
         text: 'Hello,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
