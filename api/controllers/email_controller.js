@@ -134,7 +134,7 @@ exports.forgot_app =  function(req, res, next) {
       };
       smtpTransport.sendMail(mailOptions, function(err, info) {
       //  req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-        res.json('mail sent');
+        res.json({msg:"true"});
        // done(err, 'done');
       });
     }
