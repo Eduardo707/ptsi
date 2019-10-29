@@ -21,6 +21,7 @@ const pacients= require('../controllers/pacient_controller');
 const medics= require('../controllers/medic_controller');
 const rawdata= require('../controllers/rawdata_controller');
 const limit= require('../controllers/limit_controller');
+const calcs= require('../controllers/calculations_controller');
 
 const ca= require('../controllers/calendar_controller');
 const ta= require('../controllers/tasks_controller');
@@ -191,6 +192,10 @@ router.post('/readings/:id',passport.authenticate("bearer", {session: false}),re
 
   router.post('/limit/new',passport.authenticate("bearer", {session: false}), limit.create_limits);//nova leitura
   router.get('/limit/user/:id',passport.authenticate("bearer", {session: false}),limit.get_user_limits);//todas as leituras de glicemia de um utilizador data decrescente (diferente maneira de buscar dados)
+
+
+ router.post('/calculations/new',passport.authenticate("bearer", {session: false}), calcs.create_calcs);
+  router.get('/calculations/user/:id',passport.authenticate("bearer", {session: false}),calcs.get_user_calcs);
 
 
 

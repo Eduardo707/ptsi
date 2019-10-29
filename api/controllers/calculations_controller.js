@@ -1,18 +1,16 @@
 'use strict';
 
 var mongoose= require('mongoose');
-var Limites= require('../APPI/limites');
+var Limites= require('../APPI/calculations');
 
 
 
-exports.create_limits= function(req, res){
+exports.create_calcs= function(req, res){
 var newL= new Limites({
 patientID: req.body.patientID,
 type:req.body.type,
 
-inf: req.body.inf,  
-
-sup: req.body.sup
+value: req.body.value
        
       });
 
@@ -26,40 +24,38 @@ sup: req.body.sup
 res.json({msg: 'true'});
     });
 };
-exports.get_all_limits= function(req, res) {
+exports.get_all_calcs= function(req, res) {
     Limites.find(function(err, docs){
         if(err) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
+   
       res.json(docs);
     });
 };
 
-exports.get_user_limits= function(req, res) {
+exports.get_user_calcs= function(req, res) {
 Limites.find({patientID: req.params.id},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
       res.json(docs);
     });
 };
 
-exports.get_recent_limits= function(req, res) {
+exports.get_recent_calcs= function(req, res) {
 Limites.findOne().sort({"date_reg": -1}).exec(function(err, docs){
           if(err) {
             console.log(err);
             res.json({err});
         }
-      console.log(docs);
       res.json(docs);
     });
 };
 
-exports.update_limits= function(req, res) {
+exports.update_calcs= function(req, res) {
    
 var id= req.params.id;
  
@@ -74,8 +70,7 @@ Limites.findOne({_id: id},function(err, docs){
 docs.patientID= req.body.patientID;
 docs.type=req.body.type;
 
-docs.inf= req.body.inf;
-docs.sup= req.body.sup;
+docs.value= req.body.value;
 
        
      docs.save(function(err, docs) {
