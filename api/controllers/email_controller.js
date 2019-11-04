@@ -159,6 +159,18 @@ exports.get_reset =  function(req, res) {
     res.json({msg:'reset', token:tok});
   });
 };
+exports.get_reset_app =  function(req, res) {
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+    if (!user) {
+          console.log("cpde hee note-------");
+
+   //   req.flash('error', 'Password reset token is invalid or has expired.');
+  //    ret/urn res.redirect('/forgot');
+    }
+    console.log("cpde here-------");
+    res.json({msg:'reset'});
+  });
+};
 
 exports.post_reset = function(req, res) {
   async.waterfall([
