@@ -321,7 +321,7 @@ socket.join(docs.medic_username);
          messages = docs.msg.slice(- 10);
 console.log(messages);
  messages.forEach(function (data) {
-      socket.emit('message', data);
+     if(data.is_seen==false)socket.emit('message', data);
      console.log( docs.medic_username);
     });
              
