@@ -160,7 +160,9 @@ exports.get_reset =  function(req, res) {
   });
 };
 exports.get_reset_app =  function(req, res) {
-  User.findOne({ resetPasswordToken: req.param.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+            console.log("cpde hee note-------");
+
+  User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
     if (!user) {
           console.log("cpde hee note-------");
 
