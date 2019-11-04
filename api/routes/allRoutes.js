@@ -155,7 +155,8 @@ router.post('/login/patient', tok, passport.authenticate('local'), (req, res) =>
 });}); 
   };
   
-router.post('/signup/patient',tok,userr.update_password);
+router.post('/signup/patient',tok,userr.signUp);
+router.post('/change_password/patient',tok,userr.update_password);
 
 
 // PARTE DOS ROLES

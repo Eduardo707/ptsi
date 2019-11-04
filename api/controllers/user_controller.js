@@ -99,7 +99,7 @@ docs.isAdmin= req.body.isAdmin;
     });
 });
  };
-exports.update_password= function(req, res) {
+exports.signUp= function(req, res) {
    
 var id= req.body.username;
  
@@ -130,7 +130,67 @@ User.findOne({username: id},function(err, docs){
                               if(err){return err;}});
             docs.resetPasswordToken = undefined;
             docs.resetPasswordExpires = undefined;
+            docs.firstLog = false;
+            docs.save(function(err) {
+                              if(err){return err;}
 
+                
+              req.logIn(docs, function(err) {
+                                if(err){return err;}
+
+                    // res.json(user);
+                           
+             res.status(200).json({msg:"true", user: req.user});   
+              });
+            });
+          });
+        } else {
+            return res.json('back1');
+          //  return res.redirect('back');
+        }
+        }else{
+      return res.json('already exists');}
+      
+        });
+        
+        
+        
+        
+        
+  
+        ////////
+});
+ };
+ 
+ exports.update_password= function(req, res) {
+   
+var id= req.body.username;
+ 
+User.findOne({username: id},function(err, docs){
+    
+         if(err) {
+            console.log(err);
+            return res.json({err});
+        }
+        // res.send(docs);
+        //////////////////
+        if(!docs){ return res.json('not exist')}
+        Patients.findOne({patientID:id},function(err, pat){
+             
+         if(err) {
+            console.log(err);
+            return res.json({err});
+        }
+      
+        if(!pat){ return res.json('not exist')}
+        if(pat.Active){
+            
+                if(req.body.password === req.body.confirm) {
+          docs.setPassword(req.body.password, function(err) {
+              if(err){return err;}
+             
+            docs.resetPasswordToken = undefined;
+            docs.resetPasswordExpires = undefined;
             docs.save(function(err) {
                               if(err){return err;}
 
