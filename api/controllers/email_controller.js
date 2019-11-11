@@ -170,7 +170,7 @@ exports.get_reset_app =  function(req, res) {
   //    ret/urn res.redirect('/forgot');
     }
     console.log("cpde here-------");
-    res.json({msg:'reset'});
+    res.json({msg:"reset"});
   });
 };
 
