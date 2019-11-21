@@ -68,6 +68,16 @@ exports.get_user_gli_reads =  function(req, res) {
       res.json(docs);
     });
 };
+exports.get_user_bat_reads_all =  function(req, res) {
+    Leituras.find({patientID: req.params.id, type: "batimentos"}).sort({"data_resg": +1}).exec(function(err, docs){
+          if(err) {
+            console.log(err);
+            res.json({err});
+        }
+    //  console.log(docs);
+      res.json(docs);
+    });
+};
 
 exports.get_user_bat_reads =  function(req, res) {
     Leituras.find({patientID: req.body.patientID, type: "batimentos"},function(err, docs){
