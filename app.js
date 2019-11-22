@@ -307,7 +307,7 @@ var express= require('express');
 
              socket.broadcast.emit('userjoinedthechat',userNickname);
              
-             Chat.find({patient_username:userNickname}).exec(function(err, docs){
+             Chat.findOne({patient_username:userNickname}).exec(function(err, docs){
 
               if(err) {
                  console.log(err);
@@ -316,10 +316,10 @@ var express= require('express');
                      
             
               if(docs!=null){
-     socket.join(userNickname);
+     socket.join(docs.username);
             
 
-              messages = docs.msg.slice(- 10);
+              messages = docs.msg;
      console.log(messages);
       messages.forEach(function (data) {
      socket.emit('message_chat', data);
@@ -338,7 +338,7 @@ var express= require('express');
                
 
 
-        /// sockets.push(socket);
+        sockets.push(socket);
      console.log('user connected');
 
 
