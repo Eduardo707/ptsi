@@ -404,7 +404,7 @@ var express= require('express');
 
 
      socket.on('newmessage', (name, text, date) => {
-         Chat.findOne({ patient_username: name }, function(err, docs) {
+             Chat.findOne({patient_username:name}).exec(function(err, docs){
              if (err) {
                  console.log(err);
 
@@ -417,7 +417,7 @@ var express= require('express');
              if (docs != null) {
                  //   console.log(docs.medic_username);
                  // send the message to the client side  
-                 io.to(docs.medic_username).emit('message', data);
+                 io.to(docs.medic_username).emit('message_chat', data);
 
                  // console.log(data);
                  messages.push(data);
