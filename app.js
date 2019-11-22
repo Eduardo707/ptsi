@@ -403,8 +403,8 @@ var express= require('express');
      });
 
 
-     socket.on('newmessage', (name, text, date) => {
-             Chat.findOne({patient_username:name}).exec(function(err, docs){
+     socket.on('newmessage', (name, dest, text, date) => {
+             Chat.findOne({patient_username:dest}).exec(function(err, docs){
              if (err) {
                  console.log(err);
 
