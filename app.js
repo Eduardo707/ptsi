@@ -322,7 +322,7 @@ var express= require('express');
               messages = docs.msg.slice(- 10);
      console.log(messages);
       messages.forEach(function (data) {
-     socket.emit('message', data);
+     socket.emit('message_chat', data);
          
          });
                   
