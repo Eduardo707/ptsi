@@ -338,7 +338,7 @@ var express= require('express');
                
 
 
-         sockets.push(socket);
+        /// sockets.push(socket);
      console.log('user connected');
 
 
