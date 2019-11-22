@@ -376,7 +376,7 @@ var express= require('express');
                      for (var i = 0; i < docs.length; i++) {
 
                          console.log(docs[i]);
-                         messages = docs[i].msg.slice(-10);
+                     
                          console.log(messages);
                          messages.forEach(function(data) {
                         socket.emit('message', data);
