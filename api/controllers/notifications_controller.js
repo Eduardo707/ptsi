@@ -49,6 +49,16 @@ exports.get_all_notifs= function(req, res) {
     });
 };
 
+exports.get_user_pat= function(req, res) {
+Notificacoes.find({patient_username: req.body.patient},function(err, docs){
+         if(err) {
+            console.log(err);
+            res.json({err});
+        }
+      console.log(docs);
+      res.json(docs);
+    });
+};
 exports.get_user_notifs= function(req, res) {
 Notificacoes.find({email: req.body.email},function(err, docs){
          if(err) {

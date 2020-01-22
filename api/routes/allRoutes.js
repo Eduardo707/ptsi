@@ -239,6 +239,7 @@ router.post('/tasks/:id',passport.authenticate("bearer", {session: false}),ta.up
  router.get('/notifications',passport.authenticate("bearer", {session: false}),notifications.get_all_notifs);
   router.post('/notifications/new',passport.authenticate("bearer", {session: false}),notifications.create_notifs);
   router.get('/notifications/user',passport.authenticate("bearer", {session: false}),notifications.get_user_notifs);
+  router.get('/notifications/pat',passport.authenticate("bearer", {session: false}),notifications.get_user_pat);
   router.get('/notifications/recent',passport.authenticate("bearer", {session: false}),notifications.get_recent_notifs);
 router.post('/notifications/:id',passport.authenticate("bearer", {session: false}),notifications.update_notifs);
 

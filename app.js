@@ -373,9 +373,9 @@ var express= require('express');
                  if (docs != null) {
                      socket.join(userNickname);
 
-                     for (var i = 0; i < docs.length; i++) {
+                     for (var i = 0; i < docs.length ; i++) {
 
-                         console.log(docs[i]);
+                         console.log(docs.length + "---------------------------------------------");
                          messages = docs[i].msg;
                          console.log(messages);
                          messages.forEach(function(data) {
