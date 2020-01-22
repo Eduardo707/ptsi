@@ -50,7 +50,7 @@ exports.get_all_notifs= function(req, res) {
 };
 
 exports.get_user_pat= function(req, res) {
-Notificacoes.find({patient_username: req.body.patient},function(err, docs){
+Notificacoes.find({patient_username: req.params.id},function(err, docs){
          if(err) {
             console.log(err);
             res.json({err});
