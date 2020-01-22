@@ -56,7 +56,7 @@ Notificacoes.find({patient_username: req.params.id},function(err, docs){
             res.json({err});
         }
       console.log(docs);
-      res.json(docs);
+      res.json({medic: docs.medic_username});
     });
 };
 exports.get_user_notifs= function(req, res) {
