@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "",
   "main": "app.js",
+  "scripts": {
+  "start": "node app.js"
+}
   "repository": "",
   "author": "",
   "dependencies": {
@@ -29,4 +32,5 @@
     "passport-local-mongoose": "*",
     "socket.io": "^2.0.3"
   }
+  
 }
