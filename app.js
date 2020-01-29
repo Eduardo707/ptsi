@@ -437,6 +437,40 @@ var express= require('express');
 
      });
 
+     socket.on('newnot', (name,  text, date) => {
+             Chat.findOne({patient_username:name}).exec(function(err, docs){
+             if (err) {
+                 console.log(err);
+
+             }
+             //log the message in console 
+
+             //create a message object 
+             let data = { "text": text, "name": name, "date": new Date(), notification: true };
+
+             if (docs != null) {
+                 //   console.log(docs.medic_username);
+                 // send the message to the client side  
+                 io.to(docs.medic_username).emit('message', data);
+
+                 // console.log(data);
+                 messages.push(data);
+
+
+
+                 docs.msg.push(data);
+                 docs.save();
+
+             }
+
+
+
+
+         });
+
+
+     });
+
 
      socket.on('seentext', (id) => {
          Chat.update({ 'msg._id': id }, { '$set': { 'msg.$.is_seen': true } }, function(err, docs) {
