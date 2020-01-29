@@ -6,9 +6,7 @@
   
   "repository": "",
   "author": "",
-  "scripts": {
-  "start": "node app.js"
-}
+
   "dependencies": {
     "alert-node": "^1.2.3",
     "async": "~0.2.8",
