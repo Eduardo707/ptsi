@@ -17,7 +17,7 @@
     "crypto": "*",
     "css": "*",
     "dotenv": "*",
-    "ejs": "2.2.3",
+    "ejs": "3.0.1",
     "express": "~4.13.4",
     "express-session": "*",
     "gentelella": "^1.4.0",
